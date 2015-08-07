@@ -31,7 +31,7 @@ class ValidationFieldRule
     public function __construct($name, array $parameters = null)
     {
         // Check if rule is negative.
-        if (preg_match('/^not[A-Z]/', $name)) {
+        if (preg_match('/^not\w/i', $name)) {
             $name = substr($name, 3);
             $this->negative = true;
         }

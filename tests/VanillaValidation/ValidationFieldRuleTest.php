@@ -34,6 +34,16 @@ class ValidationFieldRuleTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($fieldRule->negative);
         $this->assertSame("name.not", $fieldRule->getQualifiedName());
 
+        $fieldRule = new ValidationFieldRule("NotName");
+
+        $this->assertTrue($fieldRule->negative);
+        $this->assertSame("name.not", $fieldRule->getQualifiedName());
+
+        $fieldRule = new ValidationFieldRule("notname");
+
+        $this->assertTrue($fieldRule->negative);
+        $this->assertSame("name.not", $fieldRule->getQualifiedName());
+
         $fieldRule = new ValidationFieldRule("name", [ 1, 2, 3 ]);
 
         $this->assertSame([ 1, 2, 3 ], $fieldRule->parameters);
