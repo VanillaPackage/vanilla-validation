@@ -2,6 +2,9 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
+use Rentalhost\VanillaValidation\Validation;
+use Rentalhost\VanillaValidation\ValidationChain;
+
 class TrimActionTest extends ActionTestCase
 {
     /**
@@ -23,5 +26,14 @@ class TrimActionTest extends ActionTestCase
             [ "trim", [ "-" ], " test ", " test " ],
             [ "trim", [ "-" ], "-test-", "test" ],
         ];
+    }
+
+    /**
+     * Test rule directly.
+     * @return void
+     */
+    public function testDirect()
+    {
+        $this->assertInstanceOf(ValidationChain::class, Validation::trim());
     }
 }

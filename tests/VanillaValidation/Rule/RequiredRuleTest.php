@@ -2,10 +2,13 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
+use Rentalhost\VanillaValidation\Validation;
+use Rentalhost\VanillaValidation\ValidationChain;
+
 class RequiredRuleTest extends RuleTestCase
 {
     /**
-     * Test action.
+     * Test rule.
      * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validate
      * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validateNegative
      * @dataProvider dataRule
@@ -36,5 +39,14 @@ class RequiredRuleTest extends RuleTestCase
             [ "notRequired", [], false ],
             [ "notRequired", [], null ],
         ];
+    }
+
+    /**
+     * Test rule directly.
+     * @return void
+     */
+    public function testDirect()
+    {
+        $this->assertInstanceOf(ValidationChain::class, Validation::required());
     }
 }

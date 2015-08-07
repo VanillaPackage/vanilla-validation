@@ -2,10 +2,13 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
+use Rentalhost\VanillaValidation\Validation;
+use Rentalhost\VanillaValidation\ValidationChain;
+
 class EmptyRuleTest extends RuleTestCase
 {
     /**
-     * Test action.
+     * Test rule.
      * @covers Rentalhost\VanillaValidation\Rule\EmptyRule::validate
      * @dataProvider dataRule
      */
@@ -35,5 +38,14 @@ class EmptyRuleTest extends RuleTestCase
             [ "notEmpty", [], "test" ],
             [ "notEmpty", [], " " ],
         ];
+    }
+
+    /**
+     * Test rule directly.
+     * @return void
+     */
+    public function testDirect()
+    {
+        $this->assertInstanceOf(ValidationChain::class, Validation::emp());
     }
 }

@@ -2,10 +2,13 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
+use Rentalhost\VanillaValidation\Validation;
+use Rentalhost\VanillaValidation\ValidationChain;
+
 class StringRuleTest extends RuleTestCase
 {
     /**
-     * Test action.
+     * Test rule.
      * @covers Rentalhost\VanillaValidation\Rule\StringRule::validate
      * @covers Rentalhost\VanillaValidation\Rule\StringRule::validateNegative
      * @dataProvider dataRule
@@ -34,5 +37,14 @@ class StringRuleTest extends RuleTestCase
             [ "notString", [], false ],
             [ "notString", [], null ],
         ];
+    }
+
+    /**
+     * Test rule directly.
+     * @return void
+     */
+    public function testDirect()
+    {
+        $this->assertInstanceOf(ValidationChain::class, Validation::string());
     }
 }

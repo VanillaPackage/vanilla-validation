@@ -5,7 +5,6 @@ namespace Rentalhost\VanillaValidation;
 use Rentalhost\VanillaValidation\Rule\Action;
 use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
-use ArrayIterator;
 
 class ValidationRulesSingleton
 {
@@ -25,9 +24,14 @@ class ValidationRulesSingleton
             "trim" => Rule\TrimAction::class,
 
             // Rules.
-            "empty" => Rule\EmptyRule::class,
             "required" => Rule\RequiredRule::class,
             "string" => Rule\StringRule::class,
+
+            // Rules with aliases.
+            "emp" => Rule\EmptyRule::class,
+            "empty" => Rule\EmptyRule::class,
+            "arr" => Rule\ArrayRule::class,
+            "array" => Rule\ArrayRule::class,
         ];
     }
 
