@@ -32,6 +32,8 @@ class ValidationRulesSingleton
             "empty" => Rule\EmptyRule::class,
             "arr" => Rule\ArrayRule::class,
             "array" => Rule\ArrayRule::class,
+            "bool" => Rule\BooleanRule::class,
+            "boolean" => Rule\BooleanRule::class,
         ];
     }
 

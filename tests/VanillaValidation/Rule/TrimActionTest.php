@@ -30,6 +30,7 @@ class TrimActionTest extends ActionTestCase
 
     /**
      * Test rule directly.
+     * @coversNothing
      * @return void
      */
     public function testDirect()

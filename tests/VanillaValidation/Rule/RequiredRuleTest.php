@@ -43,6 +43,7 @@ class RequiredRuleTest extends RuleTestCase
 
     /**
      * Test rule directly.
+     * @coversNothing
      * @return void
      */
     public function testDirect()
