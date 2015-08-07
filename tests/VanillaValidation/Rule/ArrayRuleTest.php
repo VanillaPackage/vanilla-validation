@@ -35,9 +35,9 @@ class ArrayRuleTest extends RuleTestCase
             [ "array", [], "abc", "fail:array" ],
 
             3000 =>
-            [ "notArray", [], [], "fail:array.not" ],
-            [ "notArray", [], [ 1, 2, 3 ], "fail:array.not" ],
-            [ "notArray", [], new ArrayIterator, "fail:array.not" ],
+            [ "notArray", [], [], "fail:notArray" ],
+            [ "notArray", [], [ 1, 2, 3 ], "fail:notArray" ],
+            [ "notArray", [], new ArrayIterator, "fail:notArray" ],
         ];
     }
 

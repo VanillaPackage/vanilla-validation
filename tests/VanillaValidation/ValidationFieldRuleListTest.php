@@ -140,12 +140,12 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         // Prepare.
         $ruleListResult = $ruleList->validate(null);
 
-        $resultFailFirst = new Fail("fail:empty.not");
+        $resultFailFirst = new Fail("fail:notEmpty");
         $resultFailFirst->value = null;
         $resultFailFirst->ruleIndex = 0;
         $resultFailFirst->rule = new ValidationFieldRule("notEmpty");
 
-        $resultFailSecond = new Fail("fail:empty.not");
+        $resultFailSecond = new Fail("fail:notEmpty");
         $resultFailSecond->value = null;
         $resultFailSecond->ruleIndex = 1;
         $resultFailSecond->rule = new ValidationFieldRule("notEmpty");
@@ -170,7 +170,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         $resultSuccess->ruleIndex = 0;
         $resultSuccess->rule = new ValidationFieldRule("notEmpty");
 
-        $resultFail = new Fail("fail:empty.not");
+        $resultFail = new Fail("fail:notEmpty");
         $resultFail->value = "";
         $resultFail->ruleIndex = 2;
         $resultFail->rule = new ValidationFieldRule("notEmpty");

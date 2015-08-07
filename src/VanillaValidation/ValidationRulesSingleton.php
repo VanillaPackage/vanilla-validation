@@ -46,7 +46,7 @@ class ValidationRulesSingleton
      */
     public function define($name, $classname)
     {
-        $this->rules[strtolower($name)] = $classname;
+        $this->rules[$name] = $classname;
     }
 
     /**
@@ -56,7 +56,7 @@ class ValidationRulesSingleton
      */
     public function has($name)
     {
-        return array_key_exists(strtolower($name), $this->rules);
+        return array_key_exists($name, $this->rules);
     }
 
     /**
@@ -91,6 +91,6 @@ class ValidationRulesSingleton
         }
 
         // Returns a fail.
-        return new Fail("fail:" . $rule->getQualifiedName(), $validateOutputData);
+        return new Fail("fail:" . $rule->originalName, $validateOutputData);
     }
 }

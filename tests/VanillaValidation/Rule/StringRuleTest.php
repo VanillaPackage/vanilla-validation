@@ -24,18 +24,12 @@ class StringRuleTest extends RuleTestCase
             1000 =>
             [ "string", [], "test" ],
             [ "string", [], "" ],
+
+            2000 =>
             [ "string", [], 0, "fail:string" ],
             [ "string", [], [], "fail:string" ],
             [ "string", [], false, "fail:string" ],
             [ "string", [], null, "fail:string" ],
-
-            2000 =>
-            [ "notString", [], "test", "fail:string.not" ],
-            [ "notString", [], "", "fail:string.not" ],
-            [ "notString", [], 0 ],
-            [ "notString", [], [] ],
-            [ "notString", [], false ],
-            [ "notString", [], null ],
         ];
     }
 

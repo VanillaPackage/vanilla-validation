@@ -57,7 +57,7 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
         $resultSuccess->ruleIndex = 0;
         $resultSuccess->rule = new ValidationFieldRule("notEmpty");
 
-        $resultFail = new Fail("fail:empty.not");
+        $resultFail = new Fail("fail:notEmpty");
         $resultFail->field = $field;
         $resultFail->value = "";
         $resultFail->ruleIndex = 2;

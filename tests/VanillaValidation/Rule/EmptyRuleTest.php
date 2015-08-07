@@ -26,17 +26,10 @@ class EmptyRuleTest extends RuleTestCase
             [ "empty", [], "" ],
             [ "empty", [], false ],
             [ "empty", [], null ],
-            [ "empty", [], "test", "fail:empty" ],
-            [ "empty", [], " ", "fail:empty" ],
 
             2000 =>
-            [ "notEmpty", [], 0, "fail:empty.not" ],
-            [ "notEmpty", [], [], "fail:empty.not" ],
-            [ "notEmpty", [], "", "fail:empty.not" ],
-            [ "notEmpty", [], false, "fail:empty.not" ],
-            [ "notEmpty", [], null, "fail:empty.not" ],
-            [ "notEmpty", [], "test" ],
-            [ "notEmpty", [], " " ],
+            [ "empty", [], "test", "fail:empty" ],
+            [ "empty", [], " ", "fail:empty" ],
         ];
     }
 

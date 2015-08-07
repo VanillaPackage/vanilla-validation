@@ -11,6 +11,12 @@ class ValidationFieldRule
     public $name;
 
     /**
+     * Store rule original name.
+     * @var string
+     */
+    public $originalName;
+
+    /**
      * Store rule parameters.
      * @var mixed[]
      */
@@ -30,23 +36,16 @@ class ValidationFieldRule
      */
     public function __construct($name, array $parameters = null)
     {
+        $this->originalName = $name;
+
         // Check if rule is negative.
-        if (preg_match('/^not\w/i', $name)) {
-            $name = substr($name, 3);
+        if (preg_match('/^not[A-Z]/', $name)) {
+            $name = strtolower($name[3]) . substr($name, 4);
             $this->negative = true;
         }
 
-        $this->name = strtolower($name);
+        $this->name = $name;
         $this->parameters = $parameters ?: [];
-    }
-
-    /**
-     * Returns the rule qualified name.
-     * @return string
-     */
-    public function getQualifiedName()
-    {
-        return $this->negative === true ? "{$this->name}.not" : $this->name;
     }
 
     /**
