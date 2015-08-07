@@ -1,0 +1,29 @@
+{
+    "name": "rentalhost/vanilla-validation",
+    "description": "The vanilla-validation will help you to validate your data.",
+
+    "require": {
+        "rentalhost/vanilla-result": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Rentalhost\\VanillaValidation\\": "src/VanillaValidation/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rentalhost\\Test\\": "tests/Test/",
+            "Rentalhost\\VanillaValidation\\Test\\": "tests/VanillaValidation/"
+        }
+    },
+
+    "authors": [{
+        "name": "David Rodrigues",
+        "email": "david.rodrigues@rentalhost.net"
+    }],
+    "license": "MIT"
+}
