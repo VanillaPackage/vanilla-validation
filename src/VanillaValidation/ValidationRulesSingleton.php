@@ -27,6 +27,7 @@ class ValidationRulesSingleton
             "required" => Rule\RequiredRule::class,
             "string" => Rule\StringRule::class,
             "date" => Rule\DateRule::class,
+            "email" => Rule\EmailRule::class,
 
             // Rules with aliases.
             "emp" => Rule\EmptyRule::class,
