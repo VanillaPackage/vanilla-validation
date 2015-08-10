@@ -23,6 +23,7 @@ class ValidationRulesSingleton
             // Actions.
             "trim" => Rule\TrimAction::class,
             "collect" => Rule\CollectAction::class,
+            "intersectNumbers" => Rule\IntersectNumbersAction::class,
 
             // Rules.
             "required" => Rule\RequiredRule::class,
