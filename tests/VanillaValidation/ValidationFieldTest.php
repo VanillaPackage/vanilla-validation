@@ -69,4 +69,18 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([ $resultSuccess, $resultFail ], $fieldResult->getResults());
         $this->assertEquals([ $resultFail ], $fieldResult->getFails());
     }
+
+    /**
+     * Test collect method.
+     * @covers Rentalhost\VanillaValidation\ValidationField::collect
+     */
+    public function testCollect()
+    {
+        $field = new ValidationField("test", " hello ");
+        $field->collect($beforeAction)->trim()->collect($afterAction);
+        $field->validate();
+
+        $this->assertSame(" hello ", $beforeAction);
+        $this->assertSame("hello", $afterAction);
+    }
 }

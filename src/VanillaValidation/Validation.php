@@ -97,6 +97,16 @@ class Validation
     }
 
     /**
+     * Start a validation chain with a reference.
+     * @param  variable &$reference Reference variable.
+     * @return ValidationChain
+     */
+    public static function collect(&$reference)
+    {
+        return self::__callStatic("collect", [ &$reference ]);
+    }
+
+    /**
      * Create a chain instance.
      * @param string $function First chain function.
      * @param mixed  $args     First chain parameters.

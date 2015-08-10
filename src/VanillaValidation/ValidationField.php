@@ -48,6 +48,16 @@ class ValidationField
     }
 
     /**
+     * Add the collect action.
+     * @param  variable &$reference Reference variable.
+     * @return $this
+     */
+    public function collect(&$reference)
+    {
+        return $this->__call("collect", [ &$reference ]);
+    }
+
+    /**
      * Validate each rules of this field.
      * It will run the rules list validate method, passing this value
      * and filling the attribute field with this instance.

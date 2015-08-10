@@ -32,6 +32,16 @@ class ValidationChain
     }
 
     /**
+     * Add the collect action.
+     * @param  variable &$reference Reference variable.
+     * @return $this
+     */
+    public function collect(&$reference)
+    {
+        return $this->__call("collect", [ &$reference ]);
+    }
+
+    /**
      * Validate each rules of this chain.
      * @return ValidationResult
      */

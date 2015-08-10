@@ -22,6 +22,7 @@ class ValidationRulesSingleton
         $this->rules = [
             // Actions.
             "trim" => Rule\TrimAction::class,
+            "collect" => Rule\CollectAction::class,
 
             // Rules.
             "required" => Rule\RequiredRule::class,

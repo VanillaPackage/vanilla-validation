@@ -33,4 +33,17 @@ class ValidationChainTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($chain->required()->string()->validate(123)->isSuccess());
         $this->assertFalse($chain->required()->string()->validate(null)->isSuccess());
     }
+
+    /**
+     * Test collect method.
+     * @covers Rentalhost\VanillaValidation\ValidationChain::collect
+     * @return void
+     */
+    public function testCollect()
+    {
+        $validation = Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(" hello ");
+
+        $this->assertSame(" hello ", $beforeAction);
+        $this->assertSame("hello", $afterAction);
+    }
 }
