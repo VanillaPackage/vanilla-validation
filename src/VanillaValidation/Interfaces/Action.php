@@ -1,8 +1,8 @@
 <?php
 
-namespace Rentalhost\VanillaValidation\Rule;
+namespace Rentalhost\VanillaValidation\Interfaces;
 
-abstract class Action
+interface Action
 {
     /**
      * Action of this class.
@@ -10,5 +10,5 @@ abstract class Action
      * @param  array  $parameters Rule parameters.
      * @return mixed
      */
-    abstract public function action($input, array $parameters);
+    public function action($input, array $parameters);
 }

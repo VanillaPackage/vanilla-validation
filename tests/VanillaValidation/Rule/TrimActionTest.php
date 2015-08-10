@@ -17,7 +17,6 @@ class TrimActionTest extends ActionTestCase
         return parent::testAction($name, $parameters, $input, $expectedReturn);
     }
 
-
     public function dataAction()
     {
         return [

@@ -2,17 +2,10 @@
 
 namespace Rentalhost\VanillaValidation\Rule;
 
-abstract class Rule
-{
-    /**
-     * Validate the rule.
-     * @param  mixed $input      Input rule.
-     * @param  array $parameters Rule parameters.
-     * @param  array $data       Output data.
-     * @return boolean
-     */
-    abstract public function validate($input, array $parameters, array &$data);
+use Rentalhost\VanillaValidation\Interfaces\Rule as RuleInterface;
 
+abstract class Rule implements RuleInterface
+{
     /**
      * Negative validation of rule.
      * @see self::validate

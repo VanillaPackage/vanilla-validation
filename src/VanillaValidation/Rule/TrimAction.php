@@ -2,12 +2,14 @@
 
 namespace Rentalhost\VanillaValidation\Rule;
 
-class TrimAction extends Action
+use Rentalhost\VanillaValidation\Interfaces\Action;
+
+class TrimAction implements Action
 {
     /**
      * Trim the input.
      * @param  string $input         Trim input.
-     * @param  array  $parameters[0] Characters to trim (optional).
+     * @param  string $parameters[0] Characters to trim (optional).
      * @return string
      */
     public function action($input, array $parameters)

@@ -2,7 +2,7 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Rule\Action;
+use Rentalhost\VanillaValidation\Interfaces\Action;
 use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
 
