@@ -52,4 +52,21 @@ class RequiredRuleTest extends RuleTestCase
     {
         $this->assertInstanceOf(ValidationChain::class, Validation::required());
     }
+
+    /**
+     * Test if rule breakable parameter works properly.
+     * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validate
+     * @return void
+     */
+    public function testBreakable()
+    {
+        $validation = Validation::required()->minLength(8)->validate("");
+
+        $this->assertCount(2, $validation->getFails());
+
+        $validation = Validation::required(true)->minLength(8)->validate("");
+
+        $this->assertCount(1, $validation->getFails());
+        $this->assertSame("required", $validation->getFails()[0]->rule->name);
+    }
 }

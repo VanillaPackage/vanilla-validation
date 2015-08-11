@@ -3,6 +3,7 @@
 namespace Rentalhost\VanillaValidation;
 
 use Rentalhost\VanillaValidation\Result\Fail;
+use Rentalhost\VanillaValidation\Result\FailBreakable;
 use Rentalhost\VanillaValidation\Result\Success;
 use Rentalhost\VanillaValidation\Result\Result;
 
@@ -88,6 +89,12 @@ class ValidationFieldRuleList
 
                 // Add to results.
                 $results[] = $ruleResult;
+
+                // If it's a Breaker instance, break the iteration.
+                if ($ruleResult instanceof FailBreakable) {
+                    break;
+                }
+
                 continue;
             }
 

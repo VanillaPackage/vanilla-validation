@@ -5,6 +5,7 @@ namespace Rentalhost\VanillaValidation;
 use Rentalhost\VanillaValidation\Interfaces\Action;
 use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
+use Rentalhost\VanillaValidation\Result\Result;
 
 class ValidationRulesSingleton
 {
@@ -115,6 +116,11 @@ class ValidationRulesSingleton
         $validateMethod = $rule->negative === true ? "validateNegative" : "validate";
         $validateOutputData = [];
         $validateReturn = call_user_func_array([ $validateClass, $validateMethod ], [ $input, $rule->parameters, &$validateOutputData ]);
+
+        // If returns a instance of Result, return it directly.
+        if ($validateReturn instanceof Result) {
+            return $validateReturn;
+        }
 
         // Returns a success.
         if ($validateReturn) {
