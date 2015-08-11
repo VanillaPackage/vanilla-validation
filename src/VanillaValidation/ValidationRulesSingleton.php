@@ -30,6 +30,7 @@ class ValidationRulesSingleton
             "string" => Rule\StringRule::class,
             "date" => Rule\DateRule::class,
             "email" => Rule\EmailRule::class,
+            "equals" => Rule\EqualsRule::class,
             "mask" => Rule\MaskRule::class,
             "minLength" => Rule\MinLengthRule::class,
             "maxLength" => Rule\MaxLengthRule::class,

@@ -22,6 +22,8 @@
         "fail:empty" => 'o campo ":field" deve estar vazio',
         "fail:notEmpty" => 'o campo ":field" não pode estar vazio',
 
+        "fail:equals" => 'o campo ":field" não possui o valor esperado',
+
         "fail:mask" => 'o campo ":field" deve ser definido no formato especificado',
         "fail:notMask" => 'o campo ":field" não pode ser definido no formato especificado',
 
