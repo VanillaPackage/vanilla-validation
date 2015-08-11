@@ -64,18 +64,19 @@ class ValidationFieldRuleList
 
         // Run each rules in this list.
         foreach ($this->rules as $ruleIndex => $rule) {
-            // Validate if is a breakable.
-            // Basically, it'll stop iteration if exists fail.
+            // Fill breakable first parameter with current status.
             if ($rule->name === "breakable") {
-                if ($resultStatus === false) {
-                    break;
-                }
-
-                continue;
+                $rule->parameters[0] = $resultStatus;
             }
 
             // Default validation.
             $ruleResult = $rule->validate($input);
+
+            // If it returns a FailBreakable and is a breakable, so break iteration.
+            if ($rule->name === "breakable"
+            &&  $ruleResult instanceof FailBreakable) {
+                break;
+            }
 
             // If it results in a Result instance, will treat it as a validation.
             if ($ruleResult instanceof Result) {
@@ -90,7 +91,7 @@ class ValidationFieldRuleList
                 // Add to results.
                 $results[] = $ruleResult;
 
-                // If it's a Breaker instance, break the iteration.
+                // If it's a FailBreakable instance, break the iteration.
                 if ($ruleResult instanceof FailBreakable) {
                     break;
                 }

@@ -186,6 +186,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
     /**
      * Test breakable pseudo-rule.
      * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
+     * @covers Rentalhost\VanillaValidation\Rule\BreakableRule::validate
      * @return void
      */
     public function testBreakable()

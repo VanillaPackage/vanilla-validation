@@ -21,9 +21,6 @@ class ValidationRulesSingleton
     public function __construct()
     {
         $this->rules = [
-            // Pseudo-rules.
-            // "breakable" => Rule\BreakableRule::class,
-
             // Actions.
             "trim" => Rule\TrimAction::class,
             "collect" => Rule\CollectAction::class,
@@ -39,6 +36,7 @@ class ValidationRulesSingleton
             "minLength" => Rule\MinLengthRule::class,
             "maxLength" => Rule\MaxLengthRule::class,
             "sameLength" => Rule\SameLengthRule::class,
+            "breakable" => Rule\BreakableRule::class,
 
             // Rules with aliases.
             "empty" => Rule\EmptyRule::class,

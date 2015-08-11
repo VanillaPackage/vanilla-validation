@@ -55,6 +55,8 @@ class RequiredRuleTest extends RuleTestCase
 
     /**
      * Test if rule breakable parameter works properly.
+     * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
+     * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::validate
      * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validate
      * @return void
      */
