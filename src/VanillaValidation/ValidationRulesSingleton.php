@@ -30,6 +30,7 @@ class ValidationRulesSingleton
             "string" => Rule\StringRule::class,
             "date" => Rule\DateRule::class,
             "email" => Rule\EmailRule::class,
+            "CPF" => Rule\CPFRule::class,
 
             // Rules with aliases.
             "emp" => Rule\EmptyRule::class,
