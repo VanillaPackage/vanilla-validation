@@ -11,6 +11,7 @@ class CPFRuleTest extends RuleTestCase
      * Test rule.
      * @covers Rentalhost\VanillaValidation\Rule\CPFRule::validate
      * @covers Rentalhost\VanillaValidation\Rule\CPFRule::validateNegative
+     * @covers Rentalhost\VanillaValidation\Rule\CPFRule::calculateDigit
      * @dataProvider dataRule
      */
     public function testRule($name, $parameters, $input, $expectedMessage = "success", $expectedData = null)
