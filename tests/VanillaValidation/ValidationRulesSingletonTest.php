@@ -12,6 +12,7 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
      * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::__construct
      * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::has
      * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::define
+     * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::normalize
      * @return void
      */
     public function testBasic()
@@ -24,6 +25,12 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
         $rules->define("leftTrim", Test\LeftTrimAction::class);
 
         $this->assertTrue($rules->has("leftTrim"));
+
+        $this->assertNull($rules->normalize("inexistent"));
+        $this->assertNull($rules->normalize("notRequired"));
+        $this->assertSame("required", $rules->normalize("required"));
+        $this->assertSame("boolean", $rules->normalize("bool"));
+        $this->assertSame("boolean", $rules->normalize("boolean"));
     }
 
     /**

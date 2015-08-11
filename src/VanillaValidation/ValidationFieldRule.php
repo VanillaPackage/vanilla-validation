@@ -36,15 +36,14 @@ class ValidationFieldRule
      */
     public function __construct($name, array $parameters = null)
     {
-        $this->originalName = $name;
-
         // Check if rule is negative.
         if (preg_match('/^not[A-Z]/', $name)) {
             $name = strtolower($name[3]) . substr($name, 4);
             $this->negative = true;
         }
 
-        $this->name = $name;
+        $this->name = ValidationRules::normalize($name) ?: $name;
+        $this->originalName = $this->negative ? "not" . ucfirst($this->name) : $this->name;
         $this->parameters = $parameters ?: [];
     }
 

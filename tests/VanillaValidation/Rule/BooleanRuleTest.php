@@ -33,6 +33,19 @@ class BooleanRuleTest extends RuleTestCase
             [ "boolean", [], "abc", "fail:boolean" ],
             [ "boolean", [], 0, "fail:boolean" ],
             [ "boolean", [], 1, "fail:boolean" ],
+
+            3000 =>
+            [ "bool", [], null, "fail:boolean" ],
+            [ "bool", [], 123, "fail:boolean" ],
+            [ "bool", [], [], "fail:boolean" ],
+            [ "bool", [], (object) [], "fail:boolean" ],
+            [ "bool", [], "abc", "fail:boolean" ],
+            [ "bool", [], 0, "fail:boolean" ],
+            [ "bool", [], 1, "fail:boolean" ],
+
+            4000 =>
+            [ "notBoolean", [], true, "fail:notBoolean" ],
+            [ "notBoolean", [], false, "fail:notBoolean" ],
         ];
     }
 

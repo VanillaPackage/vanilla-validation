@@ -34,24 +34,24 @@ class CPFRuleTest extends RuleTestCase
             [ "CPF", [], "95574461102", "success", [ "digits" => "02", "expected" => "95574461102" ] ],
 
             2000 =>
-            [ "CPF", [], "11122244405", "fail:CPF", [ "digits" => "01", "expected" => "11122244401" ] ],
-            [ "CPF", [], "69331911040", "fail:CPF", [ "digits" => "92", "expected" => "69331911092" ] ],
-            [ "CPF", [], "69811111100", "fail:CPF", [ "digits" => "03", "expected" => "69811111103" ] ],
-            [ "CPF", [], "12345678900", "fail:CPF", [ "digits" => "09", "expected" => "12345678909" ] ],
-            [ "CPF", [], "99299929384", "fail:CPF", [ "digits" => "60", "expected" => "99299929360" ] ],
-            [ "CPF", [], "84434895894", "fail:CPF", [ "digits" => "85", "expected" => "84434895885" ] ],
-            [ "CPF", [], "44242340000", "fail:CPF", [ "digits" => "28", "expected" => "44242340028" ] ],
-            [ "CPF", [], "34244419878", "fail:CPF", [ "digits" => "88", "expected" => "34244419888" ] ],
+            [ "CPF", [], "11122244405", "fail:cpf", [ "digits" => "01", "expected" => "11122244401" ] ],
+            [ "CPF", [], "69331911040", "fail:cpf", [ "digits" => "92", "expected" => "69331911092" ] ],
+            [ "CPF", [], "69811111100", "fail:cpf", [ "digits" => "03", "expected" => "69811111103" ] ],
+            [ "CPF", [], "12345678900", "fail:cpf", [ "digits" => "09", "expected" => "12345678909" ] ],
+            [ "CPF", [], "99299929384", "fail:cpf", [ "digits" => "60", "expected" => "99299929360" ] ],
+            [ "CPF", [], "84434895894", "fail:cpf", [ "digits" => "85", "expected" => "84434895885" ] ],
+            [ "CPF", [], "44242340000", "fail:cpf", [ "digits" => "28", "expected" => "44242340028" ] ],
+            [ "CPF", [], "34244419878", "fail:cpf", [ "digits" => "88", "expected" => "34244419888" ] ],
 
             3000 =>
-            [ "CPF", [], "abc", "fail:CPF" ],
-            [ "CPF", [], "1", "fail:CPF" ],
-            [ "CPF", [], "22", "fail:CPF" ],
-            [ "CPF", [], "123", "fail:CPF" ],
-            [ "CPF", [], "00000000011", "fail:CPF" ],
-            [ "CPF", [], "00000000000", "fail:CPF" ],
-            [ "CPF", [], "992999999999929384", "fail:CPF" ],
-            [ "CPF", [], "not34244419888valid", "fail:CPF" ],
+            [ "CPF", [], "abc", "fail:cpf" ],
+            [ "CPF", [], "1", "fail:cpf" ],
+            [ "CPF", [], "22", "fail:cpf" ],
+            [ "CPF", [], "123", "fail:cpf" ],
+            [ "CPF", [], "00000000011", "fail:cpf" ],
+            [ "CPF", [], "00000000000", "fail:cpf" ],
+            [ "CPF", [], "992999999999929384", "fail:cpf" ],
+            [ "CPF", [], "not34244419888valid", "fail:cpf" ],
         ];
     }
 

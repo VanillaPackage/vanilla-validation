@@ -33,16 +33,16 @@ class ValidationRulesSingleton
             "mask" => Rule\MaskRule::class,
 
             // Rules with aliases.
-            "emp" => Rule\EmptyRule::class,
             "empty" => Rule\EmptyRule::class,
-            "arr" => Rule\ArrayRule::class,
+            "emp" => Rule\EmptyRule::class,
             "array" => Rule\ArrayRule::class,
-            "bool" => Rule\BooleanRule::class,
+            "arr" => Rule\ArrayRule::class,
             "boolean" => Rule\BooleanRule::class,
-            "CPF" => Rule\CPFRule::class,
+            "bool" => Rule\BooleanRule::class,
             "cpf" => Rule\CPFRule::class,
-            "CNPJ" => Rule\CNPJRule::class,
+            "CPF" => Rule\CPFRule::class,
             "cnpj" => Rule\CNPJRule::class,
+            "CNPJ" => Rule\CNPJRule::class,
         ];
     }
 
@@ -64,6 +64,23 @@ class ValidationRulesSingleton
     public function has($name)
     {
         return array_key_exists($name, $this->rules);
+    }
+
+    /**
+     * Normalize the rule name.
+     * It'll return the full name of an alias, for instance.
+     * It'll not normalize rule case.
+     * Will return null if rule not exists.
+     * @param  string $name Rule name to normalize.
+     * @return string|null
+     */
+    public function normalize($name)
+    {
+        if (!$this->has($name)) {
+            return null;
+        }
+
+        return array_search($this->rules[$name], $this->rules);
     }
 
     /**
