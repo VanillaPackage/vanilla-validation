@@ -31,6 +31,9 @@ class ValidationRulesSingleton
             "date" => Rule\DateRule::class,
             "email" => Rule\EmailRule::class,
             "mask" => Rule\MaskRule::class,
+            "minLength" => Rule\MinLengthRule::class,
+            "maxLength" => Rule\MaxLengthRule::class,
+            "sameLength" => Rule\SameLengthRule::class,
 
             // Rules with aliases.
             "empty" => Rule\EmptyRule::class,

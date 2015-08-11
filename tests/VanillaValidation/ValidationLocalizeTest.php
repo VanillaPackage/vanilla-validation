@@ -33,6 +33,8 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
      */
     public function testTranslateFail()
     {
+        $defaultLocale = Validation::option("locale");
+
         Validation::option("locale", "pt-BR");
 
         $validation = new Validation;
@@ -50,5 +52,29 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
         $validationFails = Validation::cpf()->validate("11122244405")->getFails();
 
         $this->assertSame('o campo deve ser um CPF', $validationFails[0]->getLocalized());
+
+        Validation::option("locale", $defaultLocale);
+    }
+
+    /**
+     * Test if quantify system works properly.
+     * @covers Rentalhost\VanillaValidation\ValidationLocalize::translateFail
+     * @return void
+     */
+    public function testQuantify()
+    {
+        $defaultLocale = Validation::option("locale");
+
+        Validation::option("locale", "pt-BR");
+
+        $validationFails = Validation::minLength(1)->validate("")->getFails();
+
+        $this->assertSame('o campo deve possuir no mínimo um caractere', $validationFails[0]->getLocalized());
+
+        $validationFails = Validation::minLength(10)->validate("hello")->getFails();
+
+        $this->assertSame('o campo deve possuir no mínimo 10 caracteres', $validationFails[0]->getLocalized());
+
+        Validation::option("locale", $defaultLocale);
     }
 }

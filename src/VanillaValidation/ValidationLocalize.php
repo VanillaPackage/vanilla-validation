@@ -58,6 +58,11 @@ class ValidationLocalize
         $failTranslationDataFieldKey = $fail->field ? ":field" : ' ":field"';
         $failTranslationData[$failTranslationDataFieldKey] = $fail->field ? $fail->field->name : null;
 
+        // If "quantify" data was defined, so use transChoice, instead.
+        if (array_key_exists(":quantify", $failTranslationData)) {
+            return self::$translator->transChoice($failTranslationKey, intval($failTranslationData[":quantify"]), $failTranslationData);
+        }
+
         return self::$translator->trans($failTranslationKey, $failTranslationData);
     }
 
@@ -78,7 +83,7 @@ class ValidationLocalize
     {
         $localeOption = Validation::option("locale");
 
-        if (is_string($localeOption)) {
+        if (!is_array($localeOption)) {
             self::$translator->setLocale($localeOption);
             self::$translator->setFallbackLocale($localeOption);
         }
