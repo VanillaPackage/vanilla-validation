@@ -5,6 +5,18 @@ namespace Rentalhost\VanillaValidation;
 class Validation
 {
     /**
+     * Store validation global options.
+     * @var array
+     */
+    private static $options = [
+        /**
+         * Locale fallbacks.
+         * @var string[]|string
+         */
+        "locale" => [ "en" ]
+    ];
+
+    /**
      * Store fields controller.
      * @var ValidationFieldList
      */
@@ -94,6 +106,27 @@ class Validation
                 $field->value = $values[$field->name];
             }
         }
+    }
+
+    /**
+     * Set or get global option.
+     * @param  string $key   Option key.
+     * @param  mixed  $value Option value (to set).
+     * @return mixed|null
+     */
+    public static function option($key, $value = null)
+    {
+        if (!array_key_exists($key, self::$options)) {
+            return;
+        }
+
+        // Get a option by key.
+        if (func_num_args() === 1) {
+            return self::$options[$key];
+        }
+
+        // Set a existing option.
+        self::$options[$key] = $value;
     }
 
     /**

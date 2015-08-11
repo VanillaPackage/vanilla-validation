@@ -125,4 +125,32 @@ class ValidationTest extends PHPUnit_Framework_TestCase
         $this->assertSame("hello", $afterAction1);
         $this->assertSame("hello", $afterAction2);
     }
+
+    /**
+     * Test option method.
+     * @covers Rentalhost\VanillaValidation\Validation::option
+     * @return void
+     */
+    public function testOption()
+    {
+        $defaultLocale = Validation::option("locale");
+
+        $this->assertNotEmpty($defaultLocale);
+
+        Validation::option("locale", null);
+
+        $this->assertNull(Validation::option("locale"));
+
+        Validation::option("locale", "pt-BR");
+
+        $this->assertSame("pt-BR", Validation::option("locale"));
+
+        $this->assertNull(Validation::option("unexistentOption"));
+
+        Validation::option("unexistentOption", "value");
+
+        $this->assertNull(Validation::option("unexistentOption"));
+
+        Validation::option("locale", $defaultLocale);
+    }
 }
