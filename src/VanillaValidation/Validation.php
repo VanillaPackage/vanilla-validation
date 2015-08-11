@@ -2,6 +2,8 @@
 
 namespace Rentalhost\VanillaValidation;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
 class Validation
 {
     /**
@@ -21,6 +23,12 @@ class Validation
      * @var ValidationFieldList
      */
     public $fields;
+
+    /**
+     * Store event dispatcher.
+     * @var EventDispatcher
+     */
+    private static $eventDispatcher;
 
     /**
      * Construct.
@@ -109,6 +117,19 @@ class Validation
     }
 
     /**
+     * Returns the unique instance of event dispatcher.
+     * @return EventDispatcher
+     */
+    public static function getEventDispatcher()
+    {
+        if (!self::$eventDispatcher) {
+            self::$eventDispatcher = new EventDispatcher;
+        }
+
+        return self::$eventDispatcher;
+    }
+
+    /**
      * Set or get global option.
      * @param  string $key   Option key.
      * @param  mixed  $value Option value (to set).
@@ -127,6 +148,9 @@ class Validation
 
         // Set a existing option.
         self::$options[$key] = $value;
+
+        // Dispatch option.set event.
+        self::getEventDispatcher()->dispatch("option.set.{$key}");
     }
 
     /**

@@ -6,6 +6,7 @@ use Rentalhost\VanillaValidation\Result\Fail;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\PhpFileLoader;
+use Symfony\Component\EventDispatcher\Event;
 
 class ValidationLocalize
 {
@@ -34,6 +35,11 @@ class ValidationLocalize
                 self::$translator->addResource("php", $file, $fileLocaleMatch[1]);
             }
         }
+
+        self::configureLocale();
+
+        // Reconfigure locale if it was changed.
+        Validation::getEventDispatcher()->addListener("option.set.locale", [ self::class, "configureLocale" ]);
     }
 
     /**
@@ -43,8 +49,6 @@ class ValidationLocalize
      */
     public function translateFail(Fail $fail)
     {
-        self::configureLocale();
-
         $failData = $fail->getData();
 
         $failTranslationKey = "fail:" . $fail->rule->originalName;
@@ -70,7 +74,7 @@ class ValidationLocalize
      * Configure translator locale.
      * @return void
      */
-    private static function configureLocale()
+    public static function configureLocale()
     {
         $localeOption = Validation::option("locale");
 
