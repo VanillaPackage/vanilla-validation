@@ -20,6 +20,9 @@ class ValidationRulesSingleton
     public function __construct()
     {
         $this->rules = [
+            // Pseudo-rules.
+            // "breakable" => Rule\BreakableRule::class,
+
             // Actions.
             "trim" => Rule\TrimAction::class,
             "collect" => Rule\CollectAction::class,

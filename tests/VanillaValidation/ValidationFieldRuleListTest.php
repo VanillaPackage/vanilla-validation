@@ -182,4 +182,25 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([ $resultSuccess, $resultFail ], $ruleListResult->getResults());
         $this->assertEquals([ $resultFail ], $ruleListResult->getFails());
     }
+
+    /**
+     * Test breakable pseudo-rule.
+     * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
+     * @return void
+     */
+    public function testBreakable()
+    {
+        $validation = Validation::maxLength(4)->minLength(8)->validate("hello");
+
+        $this->assertCount(2, $validation->getFails());
+
+        $validation = Validation::maxLength(4)->breakable()->minLength(8)->validate("hello");
+
+        $this->assertCount(1, $validation->getFails());
+        $this->assertSame("maxLength", $validation->getFails()[0]->rule->name);
+
+        $validation = Validation::maxLength(8)->breakable()->minLength(8)->validate("hello");
+
+        $this->assertSame("minLength", $validation->getFails()[0]->rule->name);
+    }
 }
