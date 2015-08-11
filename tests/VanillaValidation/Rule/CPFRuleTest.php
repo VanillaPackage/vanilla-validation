@@ -63,6 +63,7 @@ class CPFRuleTest extends RuleTestCase
     public function testDirect()
     {
         $this->assertInstanceOf(ValidationChain::class, Validation::CPF());
+        $this->assertInstanceOf(ValidationChain::class, Validation::cpf());
     }
 
     /**

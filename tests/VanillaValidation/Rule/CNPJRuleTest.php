@@ -56,6 +56,7 @@ class CNPJRuleTest extends RuleTestCase
     public function testDirect()
     {
         $this->assertInstanceOf(ValidationChain::class, Validation::CNPJ());
+        $this->assertInstanceOf(ValidationChain::class, Validation::cnpj());
     }
 
     /**

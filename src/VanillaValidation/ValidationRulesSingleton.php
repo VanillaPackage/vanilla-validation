@@ -30,8 +30,7 @@ class ValidationRulesSingleton
             "string" => Rule\StringRule::class,
             "date" => Rule\DateRule::class,
             "email" => Rule\EmailRule::class,
-            "CPF" => Rule\CPFRule::class,
-            "CNPJ" => Rule\CNPJRule::class,
+            "mask" => Rule\MaskRule::class,
 
             // Rules with aliases.
             "emp" => Rule\EmptyRule::class,
@@ -40,6 +39,10 @@ class ValidationRulesSingleton
             "array" => Rule\ArrayRule::class,
             "bool" => Rule\BooleanRule::class,
             "boolean" => Rule\BooleanRule::class,
+            "CPF" => Rule\CPFRule::class,
+            "cpf" => Rule\CPFRule::class,
+            "CNPJ" => Rule\CNPJRule::class,
+            "cnpj" => Rule\CNPJRule::class,
         ];
     }
 
