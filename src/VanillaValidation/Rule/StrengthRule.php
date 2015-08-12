@@ -32,10 +32,10 @@ class StrengthRule extends Rule
         $inputStrength = 0;
 
         // Input length: max 8.
-        $inputStrength+= min(8, strlen($input) - 8);
+        $inputStrength+= min(8, max(0, strlen($input) - 8));
 
         // Input content: max 4.
-        $inputStrength =
+        $inputStrength+=
             preg_match('/\d/', $inputStrength) +
             preg_match('/[a-z]/', $inputStrength) +
             preg_match('/[A-Z]/', $inputStrength) +
