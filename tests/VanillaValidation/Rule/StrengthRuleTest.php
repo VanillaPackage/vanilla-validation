@@ -24,21 +24,21 @@ class StrengthRuleTest extends RuleTestCase
     {
         return [
             1000 =>
-            [ "strength", [ 0 ], "", "success", [ "expected" => 0.0, "strength" => 0.07 ] ],
-            [ "strength", [ 0 ], "hello", "success", [ "expected" => 0.0, "strength" => 0.28 ] ],
-            [ "strength", [ "0.10" ], "hello", "success", [ "expected" => 0.10, "strength" => 0.28 ] ],
-            [ "strength", [ "0%" ], "hello", "success", [ "expected" => 0.0, "strength" => 0.28 ] ],
-            [ "strength", [ 0.38 ], "heLLo", "success", [ "expected" => 0.38, "strength" => 0.38 ] ],
+            [ "strength", [ 0 ], "", "success", [ "expected" => 0.0, "strength" => 0.0 ] ],
+            [ "strength", [ 0 ], "hello", "success", [ "expected" => 0.0, "strength" => 0.25 ] ],
+            [ "strength", [ "0.10" ], "hello", "success", [ "expected" => 0.10, "strength" => 0.25 ] ],
+            [ "strength", [ "0%" ], "hello", "success", [ "expected" => 0.0, "strength" => 0.25 ] ],
+            [ "strength", [ 0.37 ], "heLLo", "success", [ "expected" => 0.37, "strength" => 0.37 ] ],
             [ "strength", [ 0.52 ], "heLLo123", "success", [ "expected" => 0.52, "strength" => 0.52 ] ],
-            [ "strength", [ 0.65 ], "heLLo123$$", "success", [ "expected" => 0.65, "strength" => 0.65 ] ],
-            [ "strength", [ 0.28 ], "aaaaaaaaaaaaaaaaaaaaa", "success", [ "expected" => 0.28, "strength" => 0.28 ] ],
-            [ "strength", [ 0.85 ], 'aGoodPa$$wordIsL1keThat', "success", [ "expected" => 0.85, "strength" => 0.85 ] ],
-            [ "strength", [ 0.92 ], 'orUC4nJu$tChec%Tha+Herê', "success", [ "expected" => 0.92, "strength" => 0.92 ] ],
-            [ "strength", [ 0.40 ], 'abcdefghijklmnopqr', "success", [ "expected" => 0.40, "strength" => 0.40 ] ],
+            [ "strength", [ 0.70 ], "heLLo123$$", "success", [ "expected" => 0.70, "strength" => 0.70 ] ],
+            [ "strength", [ 0.25 ], "aaaaaaaaaaaaaaaaaaaaa", "success", [ "expected" => 0.25, "strength" => 0.25 ] ],
+            [ "strength", [ 0.90 ], 'aGoodPa$$wordIsL1keThat', "success", [ "expected" => 0.90, "strength" => 0.90 ] ],
+            [ "strength", [ 0.97 ], 'orUC4nJu$tChec%Tha+Herê', "success", [ "expected" => 0.97, "strength" => 0.97 ] ],
+            [ "strength", [ 0.37 ], 'abcdefghijklmnopqr', "success", [ "expected" => 0.37, "strength" => 0.37 ] ],
 
             2000 =>
             [ "strength", [], "hello", "fail:strength" ],
-            [ "strength", [ 0.70 ], 'abcdefghijklmnopqr', "fail:strength", [ "expected" => 0.70, "strength" => 0.40 ] ],
+            [ "strength", [ 0.70 ], 'abcdefghijklmnopqr', "fail:strength", [ "expected" => 0.70, "strength" => 0.37 ] ],
         ];
     }
 

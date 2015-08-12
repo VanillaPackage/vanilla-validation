@@ -36,16 +36,15 @@ class StrengthRule extends Rule
 
         // Input content: max 4.
         $inputStrength+=
-            preg_match('/\d/', $inputStrength) +
-            preg_match('/[a-z]/', $inputStrength) +
-            preg_match('/[A-Z]/', $inputStrength) +
-            preg_match('/[^\d\w]/', $inputStrength);
-
+            preg_match('/\d/', $input) +
+            preg_match('/[a-z]/', $input) +
+            preg_match('/[A-Z]/', $input) +
+            preg_match('/[^\d\w]/', $input);
         // Input unique chars: max 8.
-        $inputStrength+= min(8, count(array_unique(str_split($input))));
+        $inputStrength+= min(8, count(array_filter(array_unique(str_split($input)))));
 
         // Input special chars: max 8.
-        $inputStrength+= min(4, count(array_unique(str_split(preg_replace('/[\d\w]/', null, $input))))) * 2;
+        $inputStrength+= min(4, count(array_filter(array_unique(str_split(preg_replace('/[\d\w]/', null, $input)))))) * 2;
 
         // Input chars distance: max 32.
         $inputDistance = 0;
