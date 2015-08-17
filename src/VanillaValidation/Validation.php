@@ -2,7 +2,7 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Rentalhost\VanillaEvent\EventListener;
 
 class Validation
 {
@@ -25,10 +25,10 @@ class Validation
     public $fields;
 
     /**
-     * Store event dispatcher.
-     * @var EventDispatcher
+     * Store event listener.
+     * @var EventListener
      */
-    private static $eventDispatcher;
+    private static $eventListener;
 
     /**
      * Construct.
@@ -117,16 +117,26 @@ class Validation
     }
 
     /**
-     * Returns the unique instance of event dispatcher.
-     * @return EventDispatcher
+     * Returns the unique instance of event listener.
+     * @return EventListener
+     */
+    public static function getEventListener()
+    {
+        if (!self::$eventListener) {
+            self::$eventListener = new EventListener;
+        }
+
+        return self::$eventListener;
+    }
+
+    /**
+     * Alias to self::getEventListener.
+     * @deprecated 2.0
+     * @see self::getEventListener.
      */
     public static function getEventDispatcher()
     {
-        if (!self::$eventDispatcher) {
-            self::$eventDispatcher = new EventDispatcher;
-        }
-
-        return self::$eventDispatcher;
+        return self::getEventListener();
     }
 
     /**
@@ -150,7 +160,7 @@ class Validation
         self::$options[$key] = $value;
 
         // Dispatch option.set event.
-        self::getEventDispatcher()->dispatch("option.set.{$key}");
+        self::getEventDispatcher()->fire("option.set.{$key}");
     }
 
     /**
