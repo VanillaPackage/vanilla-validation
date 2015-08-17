@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "rentalhost/vanilla-event",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-event.git",
-                "reference": "df01de1f74a77622d47efee15551162a87d9f10c"
+                "reference": "ec048875d6208372eb6541c9b5f9d8612289b818"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-event/get/df01de1f74a77622d47efee15551162a87d9f10c.zip",
-                "reference": "df01de1f74a77622d47efee15551162a87d9f10c",
+                "url": "https://bitbucket.org/rentalhost/vanilla-event/get/ec048875d6208372eb6541c9b5f9d8612289b818.zip",
+                "reference": "ec048875d6208372eb6541c9b5f9d8612289b818",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,7 @@
                 }
             ],
             "description": "The vanilla-event will help you to works with events.",
-            "time": "2015-08-18 00:33:36"
+            "time": "2015-08-18 00:48:24"
         },
         {
             "name": "rentalhost/vanilla-parameter",

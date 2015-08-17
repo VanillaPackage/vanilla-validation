@@ -25,12 +25,6 @@ class Validation
     public $fields;
 
     /**
-     * Store event listener.
-     * @var EventListener
-     */
-    private static $eventListener;
-
-    /**
      * Construct.
      */
     public function __construct()
@@ -117,29 +111,6 @@ class Validation
     }
 
     /**
-     * Returns the unique instance of event listener.
-     * @return EventListener
-     */
-    public static function getEventListener()
-    {
-        if (!self::$eventListener) {
-            self::$eventListener = new EventListener;
-        }
-
-        return self::$eventListener;
-    }
-
-    /**
-     * Alias to self::getEventListener.
-     * @deprecated 2.0
-     * @see self::getEventListener.
-     */
-    public static function getEventDispatcher()
-    {
-        return self::getEventListener();
-    }
-
-    /**
      * Set or get global option.
      * @param  string $key   Option key.
      * @param  mixed  $value Option value (to set).
@@ -160,7 +131,7 @@ class Validation
         self::$options[$key] = $value;
 
         // Dispatch option.set event.
-        self::getEventDispatcher()->fire("option.set.{$key}");
+        self::getEventDispatcher()->fire("rentalhost.validation::option.set.{$key}");
     }
 
     /**

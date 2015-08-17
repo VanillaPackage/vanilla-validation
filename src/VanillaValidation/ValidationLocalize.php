@@ -3,7 +3,7 @@
 namespace Rentalhost\VanillaValidation;
 
 use Rentalhost\VanillaValidation\Result\Fail;
-use Rentalhost\VanillaEvent\Event;
+use Rentalhost\VanillaEvent\EventListener;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\PhpFileLoader;
@@ -39,7 +39,7 @@ class ValidationLocalize
         self::configureLocale();
 
         // Reconfigure locale if it was changed.
-        Validation::getEventListener()->on("option.set.locale", [ self::class, "configureLocale" ]);
+        EventListener::$global->on("rentalhost.validation::option.set.locale", [ self::class, "configureLocale" ]);
     }
 
     /**
