@@ -17,10 +17,10 @@ class RequiredRule extends Rule
      * @param array $parameters Rule parameters.
      * @param array &$data      Output data.
      *
-     * @return bool|FailBreakable
      * @var boolean $parameters [0] Pass true if you like to break validation if it fails (default false).
      *
      * @see Rule::validate
+     * @return bool|FailBreakable
      */
     public function validate($input, array $parameters, array &$data)
     {

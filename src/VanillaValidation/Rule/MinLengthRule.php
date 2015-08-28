@@ -16,6 +16,8 @@ class MinLengthRule extends Rule
      * @param array $parameters Rule parameters.
      * @param array &$data      Output data.
      *
+     * @var int     $parameters [0] Input min length.
+     *
      * @return bool
      */
     public function validate($input, array $parameters, array &$data)

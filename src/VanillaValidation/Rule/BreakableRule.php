@@ -26,8 +26,8 @@ class BreakableRule extends Rule
     {
         // If first parameter is false, so returns a FailBreakable.
         // This parameter is filled automatically in ValidationFieldRuleList::validate method.
-        if (array_key_exists(0, $parameters)
-            && $parameters[0] === false
+        if (array_key_exists(0, $parameters) &&
+            $parameters[0] === false
         ) {
             return new FailBreakable('fail:breakable');
         }

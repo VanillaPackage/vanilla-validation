@@ -57,6 +57,6 @@ class EqualsRuleTest extends RuleTestCase
      */
     public function testDirect()
     {
-        static::assertInstanceOf(ValidationChain::class, Validation::equals());
+        static::assertInstanceOf(ValidationChain::class, Validation::equals('test'));
     }
 }

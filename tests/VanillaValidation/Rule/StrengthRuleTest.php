@@ -62,6 +62,6 @@ class StrengthRuleTest extends RuleTestCase
      */
     public function testDirect()
     {
-        static::assertInstanceOf(ValidationChain::class, Validation::strength());
+        static::assertInstanceOf(ValidationChain::class, Validation::strength(1));
     }
 }
