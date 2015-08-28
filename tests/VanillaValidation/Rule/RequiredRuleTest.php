@@ -5,41 +5,53 @@ namespace Rentalhost\VanillaValidation\Test\Rule;
 use Rentalhost\VanillaValidation\Validation;
 use Rentalhost\VanillaValidation\ValidationChain;
 
+/**
+ * Class RequiredRuleTest
+ * @package Rentalhost\VanillaValidation\Test\Rule
+ */
 class RequiredRuleTest extends RuleTestCase
 {
     /**
      * Test rule.
-     * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validate
-     * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validateNegative
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validateNegative
      * @dataProvider dataRule
      */
-    public function testRule($name, $parameters, $input, $expectedMessage = "success", $expectedData = null)
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
     {
-        return parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
 
+    /**
+     * Rules data.
+     */
     public function dataRule()
     {
         return [
             1000 =>
-            [ "required", [], "test" ],
-
+                [ 'required', [ ], 'test' ],
             2000 =>
-            [ "required", [], 0, "fail:required" ],
-            [ "required", [], [], "fail:required" ],
-            [ "required", [], " ", "fail:required" ],
-            [ "required", [], "", "fail:required" ],
-            [ "required", [], false, "fail:required" ],
-            [ "required", [], null, "fail:required" ],
-
+                [ 'required', [ ], 0, 'fail:required' ],
+            [ 'required', [ ], [ ], 'fail:required' ],
+            [ 'required', [ ], ' ', 'fail:required' ],
+            [ 'required', [ ], '', 'fail:required' ],
+            [ 'required', [ ], false, 'fail:required' ],
+            [ 'required', [ ], null, 'fail:required' ],
             3000 =>
-            [ "notRequired", [], "test" ],
-            [ "notRequired", [], 0 ],
-            [ "notRequired", [], [] ],
-            [ "notRequired", [], " " ],
-            [ "notRequired", [], "" ],
-            [ "notRequired", [], false ],
-            [ "notRequired", [], null ],
+                [ 'notRequired', [ ], 'test' ],
+            [ 'notRequired', [ ], 0 ],
+            [ 'notRequired', [ ], [ ] ],
+            [ 'notRequired', [ ], ' ' ],
+            [ 'notRequired', [ ], '' ],
+            [ 'notRequired', [ ], false ],
+            [ 'notRequired', [ ], null ],
         ];
     }
 
@@ -50,7 +62,7 @@ class RequiredRuleTest extends RuleTestCase
      */
     public function testDirect()
     {
-        $this->assertInstanceOf(ValidationChain::class, Validation::required());
+        static::assertInstanceOf(ValidationChain::class, Validation::required());
     }
 
     /**
@@ -62,13 +74,13 @@ class RequiredRuleTest extends RuleTestCase
      */
     public function testBreakable()
     {
-        $validation = Validation::required()->minLength(8)->validate("");
+        $validation = Validation::required()->minLength(8)->validate('');
 
-        $this->assertCount(2, $validation->getFails());
+        static::assertCount(2, $validation->getFails());
 
-        $validation = Validation::required(true)->minLength(8)->validate("");
+        $validation = Validation::required(true)->minLength(8)->validate('');
 
-        $this->assertCount(1, $validation->getFails());
-        $this->assertSame("required", $validation->getFails()[0]->rule->name);
+        static::assertCount(1, $validation->getFails());
+        static::assertSame('required', $validation->getFails()[0]->rule->name);
     }
 }

@@ -2,13 +2,23 @@
 
 namespace Rentalhost\VanillaValidation;
 
+use Rentalhost\VanillaResult\Result;
+
+/**
+ * Class ValidationRules
+ * @package Rentalhost\VanillaValidation
+ * @method static void define( string $name, string $classname )
+ * @method static boolean has( string $name )
+ * @method static string|null normalize( string $name )
+ * @method static Result validate( ValidationFieldRule $rule, $input )
+ */
 class ValidationRules
 {
     /**
      * Store singleton instance.
      * @var self
      */
-    private static $singleton;
+    private static $instance;
 
     /**
      * Returns the singleton instance or create it.
@@ -16,17 +26,19 @@ class ValidationRules
      */
     public static function singleton()
     {
-        if (!self::$singleton) {
-            self::$singleton = new ValidationRulesSingleton;
+        if (!self::$instance) {
+            self::$instance = new ValidationRulesSingleton;
         }
 
-        return self::$singleton;
+        return self::$instance;
     }
 
     /**
      * Call a method from a singleton.
+     *
      * @param  string $name Method name.
      * @param  array  $args Method args.
+     *
      * @return mixed
      */
     public static function __callStatic($name, $args)

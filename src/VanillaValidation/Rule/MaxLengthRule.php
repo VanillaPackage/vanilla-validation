@@ -2,11 +2,21 @@
 
 namespace Rentalhost\VanillaValidation\Rule;
 
+/**
+ * Class MaxLengthRule
+ * @package Rentalhost\VanillaValidation\Rule
+ */
 class MaxLengthRule extends Rule
 {
     /**
      * Validate if input have a maximum length.
      * @see Rule::validate
+     *
+     * @param mixed $input      Rule input.
+     * @param array $parameters Rule parameters.
+     * @param array &$data      Output data.
+     *
+     * @return bool
      */
     public function validate($input, array $parameters, array &$data)
     {
@@ -14,9 +24,9 @@ class MaxLengthRule extends Rule
             return false;
         }
 
-        $data["length"] = intval($parameters[0]);
-        $data["quantify"] = $data["length"];
+        $data['length'] = (int) $parameters[0];
+        $data['quantify'] = $data['length'];
 
-        return strlen($input) <= $data["length"];
+        return strlen($input) <= $data['length'];
     }
 }

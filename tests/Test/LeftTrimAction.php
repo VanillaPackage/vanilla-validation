@@ -2,18 +2,26 @@
 
 namespace Rentalhost\VanillaValidation\Test;
 
-use Rentalhost\VanillaValidation\Rule\Action;
+use Rentalhost\VanillaValidation\Interfaces\Action;
 
-class LeftTrimAction extends Action
+/**
+ * Class LeftTrimAction
+ * @package Rentalhost\VanillaValidation\Test
+ */
+class LeftTrimAction implements Action
 {
     /**
      * Do a left trim on input.
+     *
      * @param  string $input      Input to left trim.
-     * @param  string $characters Characters to trim.
+     * @param array   $parameters Action parameters.
+     *
+     * @var string    $parameters [0] Characters to trim.
      * @return string
+     *
      */
-    public function action($input, $characters = null)
+    public function action($input, array $parameters)
     {
-        return call_user_func_array("ltrim", func_get_args());
+        return call_user_func_array('ltrim', func_get_args());
     }
 }

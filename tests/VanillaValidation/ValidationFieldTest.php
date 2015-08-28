@@ -6,6 +6,10 @@ use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationFieldTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -16,27 +20,27 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
-        $this->assertClassHasAttribute("name", ValidationField::class);
-        $this->assertClassHasAttribute("value", ValidationField::class);
-        $this->assertClassHasAttribute("rules", ValidationField::class);
+        static::assertClassHasAttribute('name', ValidationField::class);
+        static::assertClassHasAttribute('value', ValidationField::class);
+        static::assertClassHasAttribute('rules', ValidationField::class);
 
-        $field = new ValidationField("name");
+        $field = new ValidationField('name');
 
-        $this->assertSame("name", $field->name);
-        $this->assertSame(null, $field->value);
-        $this->assertInstanceOf(ValidationFieldRuleList::class, $field->rules);
+        static::assertSame('name', $field->name);
+        static::assertSame(null, $field->value);
+        static::assertInstanceOf(ValidationFieldRuleList::class, $field->rules);
 
-        $field = new ValidationField("name", "value");
+        $field = new ValidationField('name', 'value');
 
-        $this->assertSame("name", $field->name);
-        $this->assertSame("value", $field->value);
+        static::assertSame('name', $field->name);
+        static::assertSame('value', $field->value);
 
         $field->required();
 
         $fieldRules = new ValidationFieldRuleList;
-        $fieldRules->add("required", null);
+        $fieldRules->add('required', null);
 
-        $this->assertEquals($fieldRules, $field->rules);
+        static::assertEquals($fieldRules, $field->rules);
     }
 
     /**
@@ -46,28 +50,28 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate()
     {
-        $field = new ValidationField("name", " ");
+        $field = new ValidationField('name', ' ');
         $field->notEmpty()->trim()->notEmpty();
 
         $fieldResult = $field->validate();
 
         $resultSuccess = new Success;
         $resultSuccess->field = $field;
-        $resultSuccess->value = " ";
+        $resultSuccess->value = ' ';
         $resultSuccess->ruleIndex = 0;
-        $resultSuccess->rule = new ValidationFieldRule("notEmpty");
+        $resultSuccess->rule = new ValidationFieldRule('notEmpty');
 
-        $resultFail = new Fail("fail:notEmpty");
+        $resultFail = new Fail('fail:notEmpty');
         $resultFail->field = $field;
-        $resultFail->value = "";
+        $resultFail->value = '';
         $resultFail->ruleIndex = 2;
-        $resultFail->rule = new ValidationFieldRule("notEmpty");
+        $resultFail->rule = new ValidationFieldRule('notEmpty');
 
-        $this->assertFalse($fieldResult->isSuccess());
-        $this->assertSame("fail", $fieldResult->getMessage());
-        $this->assertEquals([ $resultSuccess ], $fieldResult->getSuccesses());
-        $this->assertEquals([ $resultSuccess, $resultFail ], $fieldResult->getResults());
-        $this->assertEquals([ $resultFail ], $fieldResult->getFails());
+        static::assertFalse($fieldResult->isSuccess());
+        static::assertSame('fail', $fieldResult->getMessage());
+        static::assertEquals([ $resultSuccess ], $fieldResult->getSuccesses());
+        static::assertEquals([ $resultSuccess, $resultFail ], $fieldResult->getResults());
+        static::assertEquals([ $resultFail ], $fieldResult->getFails());
     }
 
     /**
@@ -76,11 +80,11 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
      */
     public function testCollect()
     {
-        $field = new ValidationField("test", " hello ");
+        $field = new ValidationField('test', ' hello ');
         $field->collect($beforeAction)->trim()->collect($afterAction);
         $field->validate();
 
-        $this->assertSame(" hello ", $beforeAction);
-        $this->assertSame("hello", $afterAction);
+        static::assertSame(' hello ', $beforeAction);
+        static::assertSame('hello', $afterAction);
     }
 }

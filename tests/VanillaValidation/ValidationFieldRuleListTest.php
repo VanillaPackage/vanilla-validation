@@ -6,6 +6,10 @@ use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationFieldRuleListTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -19,19 +23,19 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $ruleList = new ValidationFieldRuleList;
-        $ruleList->add("name1");
-        $ruleList->add("name2");
-        $ruleList->add("name3", [ 1, 2, 3 ]);
+        $ruleList->add('name1');
+        $ruleList->add('name2');
+        $ruleList->add('name3', [ 1, 2, 3 ]);
 
-        $rule1 = new ValidationFieldRule("name1");
-        $rule2 = new ValidationFieldRule("name2");
-        $rule3 = new ValidationFieldRule("name3", [ 1, 2, 3 ]);
+        $rule1 = new ValidationFieldRule('name1');
+        $rule2 = new ValidationFieldRule('name2');
+        $rule3 = new ValidationFieldRule('name3', [ 1, 2, 3 ]);
 
-        $this->assertEquals([ $rule1, $rule2, $rule3 ], $ruleList->all());
+        static::assertEquals([ $rule1, $rule2, $rule3 ], $ruleList->all());
 
         $ruleList->clear();
 
-        $this->assertEmpty($ruleList->all());
+        static::assertEmpty($ruleList->all());
     }
 
     /**
@@ -42,145 +46,145 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
     public function testValidate()
     {
         $ruleList = new ValidationFieldRuleList;
-        $ruleList->add("required");
+        $ruleList->add('required');
 
         // Prepare.
-        $ruleListResult = $ruleList->validate("value");
+        $ruleListResult = $ruleList->validate('value');
 
         $resultSuccess = new Success;
-        $resultSuccess->value = "value";
+        $resultSuccess->value = 'value';
         $resultSuccess->ruleIndex = 0;
-        $resultSuccess->rule = new ValidationFieldRule("required");
+        $resultSuccess->rule = new ValidationFieldRule('required');
 
         // Success test.
-        $this->assertInstanceOf(ValidationResult::class, $ruleListResult);
-        $this->assertTrue($ruleListResult->isSuccess());
-        $this->assertSame("success", $ruleListResult->getMessage());
-        $this->assertEquals([ $resultSuccess ], $ruleListResult->getResults());
-        $this->assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
-        $this->assertEquals([], $ruleListResult->getFails());
+        static::assertInstanceOf(ValidationResult::class, $ruleListResult);
+        static::assertTrue($ruleListResult->isSuccess());
+        static::assertSame('success', $ruleListResult->getMessage());
+        static::assertEquals([ $resultSuccess ], $ruleListResult->getResults());
+        static::assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
+        static::assertEquals([ ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleListResult = $ruleList->validate(null);
 
-        $resultFail = new Fail("fail:required");
+        $resultFail = new Fail('fail:required');
         $resultFail->value = null;
         $resultFail->ruleIndex = 0;
-        $resultFail->rule = new ValidationFieldRule("required");
+        $resultFail->rule = new ValidationFieldRule('required');
 
         // Fail test.
-        $this->assertFalse($ruleListResult->isSuccess());
-        $this->assertSame("fail", $ruleListResult->getMessage());
-        $this->assertEquals([], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultFail ], $ruleListResult->getResults());
-        $this->assertEquals([ $resultFail ], $ruleListResult->getFails());
+        static::assertFalse($ruleListResult->isSuccess());
+        static::assertSame('fail', $ruleListResult->getMessage());
+        static::assertEquals([ ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultFail ], $ruleListResult->getResults());
+        static::assertEquals([ $resultFail ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleList->clear();
-        $ruleList->add("trim");
-        $ruleList->add("required");
+        $ruleList->add('trim');
+        $ruleList->add('required');
 
-        $ruleListResult = $ruleList->validate(" ");
+        $ruleListResult = $ruleList->validate(' ');
 
-        $resultFail = new Fail("fail:required");
-        $resultFail->value = "";
+        $resultFail = new Fail('fail:required');
+        $resultFail->value = '';
         $resultFail->ruleIndex = 1;
-        $resultFail->rule = new ValidationFieldRule("required");
+        $resultFail->rule = new ValidationFieldRule('required');
 
         // Fail test, after trim.
-        $this->assertFalse($ruleListResult->isSuccess());
-        $this->assertSame("fail", $ruleListResult->getMessage());
-        $this->assertEquals([], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultFail ], $ruleListResult->getResults());
-        $this->assertEquals([ $resultFail ], $ruleListResult->getFails());
+        static::assertFalse($ruleListResult->isSuccess());
+        static::assertSame('fail', $ruleListResult->getMessage());
+        static::assertEquals([ ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultFail ], $ruleListResult->getResults());
+        static::assertEquals([ $resultFail ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleList->clear();
-        $ruleList->add("notEmpty");
-        $ruleList->add("trim");
+        $ruleList->add('notEmpty');
+        $ruleList->add('trim');
 
-        $ruleListResult = $ruleList->validate(" ");
+        $ruleListResult = $ruleList->validate(' ');
 
         $resultSuccess = new Success;
-        $resultSuccess->value = " ";
+        $resultSuccess->value = ' ';
         $resultSuccess->ruleIndex = 0;
-        $resultSuccess->rule = new ValidationFieldRule("notEmpty");
+        $resultSuccess->rule = new ValidationFieldRule('notEmpty');
 
         // Success test, before trim (no side-effect).
-        $this->assertTrue($ruleListResult->isSuccess());
-        $this->assertSame("success", $ruleListResult->getMessage());
-        $this->assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultSuccess ], $ruleListResult->getResults());
-        $this->assertEquals([], $ruleListResult->getFails());
+        static::assertTrue($ruleListResult->isSuccess());
+        static::assertSame('success', $ruleListResult->getMessage());
+        static::assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultSuccess ], $ruleListResult->getResults());
+        static::assertEquals([ ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleList->clear();
-        $ruleList->add("notEmpty");
-        $ruleList->add("notEmpty");
+        $ruleList->add('notEmpty');
+        $ruleList->add('notEmpty');
 
-        $ruleListResult = $ruleList->validate(" ");
+        $ruleListResult = $ruleList->validate(' ');
 
         $resultSuccessFirst = new Success;
-        $resultSuccessFirst->value = " ";
+        $resultSuccessFirst->value = ' ';
         $resultSuccessFirst->ruleIndex = 0;
-        $resultSuccessFirst->rule = new ValidationFieldRule("notEmpty");
+        $resultSuccessFirst->rule = new ValidationFieldRule('notEmpty');
 
         $resultSuccessSecond = new Success;
-        $resultSuccessSecond->value = " ";
+        $resultSuccessSecond->value = ' ';
         $resultSuccessSecond->ruleIndex = 1;
-        $resultSuccessSecond->rule = new ValidationFieldRule("notEmpty");
+        $resultSuccessSecond->rule = new ValidationFieldRule('notEmpty');
 
         // Success test, double required, required will accept spaces string.
-        $this->assertTrue($ruleListResult->isSuccess());
-        $this->assertSame("success", $ruleListResult->getMessage());
-        $this->assertEquals([ $resultSuccessFirst, $resultSuccessSecond ], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultSuccessFirst, $resultSuccessSecond ], $ruleListResult->getResults());
-        $this->assertEquals([], $ruleListResult->getFails());
+        static::assertTrue($ruleListResult->isSuccess());
+        static::assertSame('success', $ruleListResult->getMessage());
+        static::assertEquals([ $resultSuccessFirst, $resultSuccessSecond ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultSuccessFirst, $resultSuccessSecond ], $ruleListResult->getResults());
+        static::assertEquals([ ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleListResult = $ruleList->validate(null);
 
-        $resultFailFirst = new Fail("fail:notEmpty");
+        $resultFailFirst = new Fail('fail:notEmpty');
         $resultFailFirst->value = null;
         $resultFailFirst->ruleIndex = 0;
-        $resultFailFirst->rule = new ValidationFieldRule("notEmpty");
+        $resultFailFirst->rule = new ValidationFieldRule('notEmpty');
 
-        $resultFailSecond = new Fail("fail:notEmpty");
+        $resultFailSecond = new Fail('fail:notEmpty');
         $resultFailSecond->value = null;
         $resultFailSecond->ruleIndex = 1;
-        $resultFailSecond->rule = new ValidationFieldRule("notEmpty");
+        $resultFailSecond->rule = new ValidationFieldRule('notEmpty');
 
         // Fail test, double required in empty value, twice fails.
-        $this->assertFalse($ruleListResult->isSuccess());
-        $this->assertSame("fail", $ruleListResult->getMessage());
-        $this->assertEquals([], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultFailFirst, $resultFailSecond ], $ruleListResult->getResults());
-        $this->assertEquals([ $resultFailFirst, $resultFailSecond ], $ruleListResult->getFails());
+        static::assertFalse($ruleListResult->isSuccess());
+        static::assertSame('fail', $ruleListResult->getMessage());
+        static::assertEquals([ ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultFailFirst, $resultFailSecond ], $ruleListResult->getResults());
+        static::assertEquals([ $resultFailFirst, $resultFailSecond ], $ruleListResult->getFails());
 
         // Prepare.
         $ruleList->clear();
-        $ruleList->add("notEmpty");
-        $ruleList->add("trim");
-        $ruleList->add("notEmpty");
+        $ruleList->add('notEmpty');
+        $ruleList->add('trim');
+        $ruleList->add('notEmpty');
 
-        $ruleListResult = $ruleList->validate(" ");
+        $ruleListResult = $ruleList->validate(' ');
 
         $resultSuccess = new Success;
-        $resultSuccess->value = " ";
+        $resultSuccess->value = ' ';
         $resultSuccess->ruleIndex = 0;
-        $resultSuccess->rule = new ValidationFieldRule("notEmpty");
+        $resultSuccess->rule = new ValidationFieldRule('notEmpty');
 
-        $resultFail = new Fail("fail:notEmpty");
-        $resultFail->value = "";
+        $resultFail = new Fail('fail:notEmpty');
+        $resultFail->value = '';
         $resultFail->ruleIndex = 2;
-        $resultFail->rule = new ValidationFieldRule("notEmpty");
+        $resultFail->rule = new ValidationFieldRule('notEmpty');
 
         // Fail test, first required will pass, but second will fail because of trim.
-        $this->assertFalse($ruleListResult->isSuccess());
-        $this->assertSame("fail", $ruleListResult->getMessage());
-        $this->assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
-        $this->assertEquals([ $resultSuccess, $resultFail ], $ruleListResult->getResults());
-        $this->assertEquals([ $resultFail ], $ruleListResult->getFails());
+        static::assertFalse($ruleListResult->isSuccess());
+        static::assertSame('fail', $ruleListResult->getMessage());
+        static::assertEquals([ $resultSuccess ], $ruleListResult->getSuccesses());
+        static::assertEquals([ $resultSuccess, $resultFail ], $ruleListResult->getResults());
+        static::assertEquals([ $resultFail ], $ruleListResult->getFails());
     }
 
     /**
@@ -191,17 +195,17 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
      */
     public function testBreakable()
     {
-        $validation = Validation::maxLength(4)->minLength(8)->validate("hello");
+        $validation = Validation::maxLength(4)->minLength(8)->validate('hello');
 
-        $this->assertCount(2, $validation->getFails());
+        static::assertCount(2, $validation->getFails());
 
-        $validation = Validation::maxLength(4)->breakable()->minLength(8)->validate("hello");
+        $validation = Validation::maxLength(4)->breakable()->minLength(8)->validate('hello');
 
-        $this->assertCount(1, $validation->getFails());
-        $this->assertSame("maxLength", $validation->getFails()[0]->rule->name);
+        static::assertCount(1, $validation->getFails());
+        static::assertSame('maxLength', $validation->getFails()[0]->rule->name);
 
-        $validation = Validation::maxLength(8)->breakable()->minLength(8)->validate("hello");
+        $validation = Validation::maxLength(8)->breakable()->minLength(8)->validate('hello');
 
-        $this->assertSame("minLength", $validation->getFails()[0]->rule->name);
+        static::assertSame('minLength', $validation->getFails()[0]->rule->name);
     }
 }

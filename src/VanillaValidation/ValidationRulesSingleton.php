@@ -7,6 +7,10 @@ use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\Success;
 use Rentalhost\VanillaValidation\Result\Result;
 
+/**
+ * Class ValidationRulesSingleton
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationRulesSingleton
 {
     /**
@@ -22,39 +26,38 @@ class ValidationRulesSingleton
     {
         $this->rules = [
             // Actions.
-            "trim" => Rule\TrimAction::class,
-            "collect" => Rule\CollectAction::class,
-            "intersectNumbers" => Rule\IntersectNumbersAction::class,
-
+            'trim' => Rule\TrimAction::class,
+            'collect' => Rule\CollectAction::class,
+            'intersectNumbers' => Rule\IntersectNumbersAction::class,
             // Rules.
-            "required" => Rule\RequiredRule::class,
-            "string" => Rule\StringRule::class,
-            "date" => Rule\DateRule::class,
-            "email" => Rule\EmailRule::class,
-            "equals" => Rule\EqualsRule::class,
-            "mask" => Rule\MaskRule::class,
-            "minLength" => Rule\MinLengthRule::class,
-            "maxLength" => Rule\MaxLengthRule::class,
-            "sameLength" => Rule\SameLengthRule::class,
-            "breakable" => Rule\BreakableRule::class,
-            "strength" => Rule\StrengthRule::class,
-
+            'required' => Rule\RequiredRule::class,
+            'string' => Rule\StringRule::class,
+            'date' => Rule\DateRule::class,
+            'email' => Rule\EmailRule::class,
+            'equals' => Rule\EqualsRule::class,
+            'mask' => Rule\MaskRule::class,
+            'minLength' => Rule\MinLengthRule::class,
+            'maxLength' => Rule\MaxLengthRule::class,
+            'sameLength' => Rule\SameLengthRule::class,
+            'breakable' => Rule\BreakableRule::class,
+            'strength' => Rule\StrengthRule::class,
             // Rules with aliases.
-            "empty" => Rule\EmptyRule::class,
-            "emp" => Rule\EmptyRule::class,
-            "array" => Rule\ArrayRule::class,
-            "arr" => Rule\ArrayRule::class,
-            "boolean" => Rule\BooleanRule::class,
-            "bool" => Rule\BooleanRule::class,
-            "cpf" => Rule\CPFRule::class,
-            "CPF" => Rule\CPFRule::class,
-            "cnpj" => Rule\CNPJRule::class,
-            "CNPJ" => Rule\CNPJRule::class,
+            'empty' => Rule\EmptyRule::class,
+            'emp' => Rule\EmptyRule::class,
+            'array' => Rule\ArrayRule::class,
+            'arr' => Rule\ArrayRule::class,
+            'boolean' => Rule\BooleanRule::class,
+            'bool' => Rule\BooleanRule::class,
+            'cpf' => Rule\CPFRule::class,
+            'CPF' => Rule\CPFRule::class,
+            'cnpj' => Rule\CNPJRule::class,
+            'CNPJ' => Rule\CNPJRule::class,
         ];
     }
 
     /**
      * Defines a new validator.
+     *
      * @param string $name      Rule name.
      * @param string $classname Rule class.
      */
@@ -65,7 +68,9 @@ class ValidationRulesSingleton
 
     /**
      * Check if validator was defined.
-     * @param  string  $name Rule name.
+     *
+     * @param  string $name Rule name.
+     *
      * @return boolean
      */
     public function has($name)
@@ -78,7 +83,9 @@ class ValidationRulesSingleton
      * It'll return the full name of an alias, for instance.
      * It'll not normalize rule case.
      * Will return null if rule not exists.
+     *
      * @param  string $name Rule name to normalize.
+     *
      * @return string|null
      */
     public function normalize($name)
@@ -92,10 +99,12 @@ class ValidationRulesSingleton
 
     /**
      * Validate a input.
+     *
      * @param  ValidationFieldRule $rule  Rule instance.
      * @param  mixed               $input Current input value.
+     *
      * @throws Exception\RuleNotImplementedException If rule was not implemented.
-     * @return mixed|Result
+     * @return Result
      */
     public function validate(ValidationFieldRule $rule, $input)
     {
@@ -108,12 +117,12 @@ class ValidationRulesSingleton
 
         // If it is an action, so call action and return it value.
         if (is_subclass_of($validateClass, Action::class)) {
-            return call_user_func([ $validateClass, "action" ], $input, $rule->parameters);
+            return call_user_func([ $validateClass, 'action' ], $input, $rule->parameters);
         }
 
         // Call rule validate method.
-        $validateMethod = $rule->negative === true ? "validateNegative" : "validate";
-        $validateOutputData = [];
+        $validateMethod = $rule->negative === true ? 'validateNegative' : 'validate';
+        $validateOutputData = [ ];
         $validateReturn = call_user_func_array([ $validateClass, $validateMethod ], [ $input, $rule->parameters, &$validateOutputData ]);
 
         // If returns a instance of Result, return it directly.
@@ -127,6 +136,6 @@ class ValidationRulesSingleton
         }
 
         // Returns a fail.
-        return new Fail("fail:" . $rule->originalName, $validateOutputData);
+        return new Fail('fail:' . $rule->originalName, $validateOutputData);
     }
 }

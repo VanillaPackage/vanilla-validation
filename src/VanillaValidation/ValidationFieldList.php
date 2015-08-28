@@ -2,6 +2,10 @@
 
 namespace Rentalhost\VanillaValidation;
 
+/**
+ * Class ValidationFieldList
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldList
 {
     /**
@@ -15,7 +19,7 @@ class ValidationFieldList
      */
     public function __construct()
     {
-        $this->fields = [];
+        $this->fields = [ ];
     }
 
     /**
@@ -31,8 +35,10 @@ class ValidationFieldList
 
     /**
      * Add a new field and return it instance.
+     *
      * @param string $name  Field name.
      * @param mixed  $value Field value.
+     *
      * @return ValidationField
      */
     public function add($name, $value = null)
@@ -59,7 +65,7 @@ class ValidationFieldList
      */
     public function clear()
     {
-        $this->fields = [];
+        $this->fields = [ ];
     }
 
     /**
@@ -70,7 +76,7 @@ class ValidationFieldList
      */
     public function validate()
     {
-        $results = [];
+        $results = [ ];
         $resultStatus = true;
 
         // Run each fields rules.
@@ -83,8 +89,8 @@ class ValidationFieldList
 
         return new ValidationResult(
             $resultStatus,
-            $resultStatus ? "success" : "fail",
-            call_user_func_array("array_merge", $results)
+            $resultStatus ? 'success' : 'fail',
+            call_user_func_array('array_merge', $results)
         );
     }
 }

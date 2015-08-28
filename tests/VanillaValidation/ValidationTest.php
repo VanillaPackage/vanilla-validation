@@ -4,6 +4,10 @@ namespace Rentalhost\VanillaValidation;
 
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -20,48 +24,48 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $validation = new Validation;
-        $validation->field("username", "user")->required()->string();
-        $validation->field("password", "pass")->required()->string();
+        $validation->field('username', 'user')->required()->string();
+        $validation->field('password', 'pass')->required()->string();
 
         $validationResult = $validation->validate();
 
         // Default validation test.
-        $this->assertInstanceOf(ValidationResult::class, $validationResult);
-        $this->assertTrue($validationResult->isSuccess());
-        $this->assertCount(0, $validationResult->getFails());
-        $this->assertCount(4, $validationResult->getSuccesses());
+        static::assertInstanceOf(ValidationResult::class, $validationResult);
+        static::assertTrue($validationResult->isSuccess());
+        static::assertCount(0, $validationResult->getFails());
+        static::assertCount(4, $validationResult->getSuccesses());
 
         // Success test.
-        $this->assertTrue($validation->test());
-        $this->assertTrue($validation->test($validationResult));
+        static::assertTrue($validation->test());
+        static::assertTrue($validation->test($validationResult));
 
-        $this->assertInstanceOf(ValidationResult::class, $validationResult);
-        $this->assertTrue($validationResult->isSuccess());
-        $this->assertCount(0, $validationResult->getFails());
-        $this->assertCount(4, $validationResult->getSuccesses());
+        static::assertInstanceOf(ValidationResult::class, $validationResult);
+        static::assertTrue($validationResult->isSuccess());
+        static::assertCount(0, $validationResult->getFails());
+        static::assertCount(4, $validationResult->getSuccesses());
 
         // Fail.
-        $validationResult = $validation->validate([ "username" => null ]);
+        $validationResult = $validation->validate([ 'username' => null ]);
 
-        $this->assertFalse($validationResult->isSuccess());
-        $this->assertCount(2, $validationResult->getFails());
-        $this->assertCount(2, $validationResult->getSuccesses());
+        static::assertFalse($validationResult->isSuccess());
+        static::assertCount(2, $validationResult->getFails());
+        static::assertCount(2, $validationResult->getSuccesses());
 
         // Reference test (again success).
-        $this->assertTrue($validation->test());
-        $this->assertTrue($validation->test($validationResult));
+        static::assertTrue($validation->test());
+        static::assertTrue($validation->test($validationResult));
 
-        $this->assertTrue($validationResult->isSuccess());
-        $this->assertCount(0, $validationResult->getFails());
-        $this->assertCount(4, $validationResult->getSuccesses());
+        static::assertTrue($validationResult->isSuccess());
+        static::assertCount(0, $validationResult->getFails());
+        static::assertCount(4, $validationResult->getSuccesses());
 
         // Reference test (now fail).
-        $this->assertFalse($validation->testWith([ "username" => null ]));
-        $this->assertFalse($validation->testWith([ "username" => null ], $validationResult));
+        static::assertFalse($validation->testWith([ 'username' => null ]));
+        static::assertFalse($validation->testWith([ 'username' => null ], $validationResult));
 
-        $this->assertFalse($validationResult->isSuccess());
-        $this->assertCount(2, $validationResult->getFails());
-        $this->assertCount(2, $validationResult->getSuccesses());
+        static::assertFalse($validationResult->isSuccess());
+        static::assertCount(2, $validationResult->getFails());
+        static::assertCount(2, $validationResult->getSuccesses());
     }
 
     /**
@@ -71,7 +75,7 @@ class ValidationTest extends PHPUnit_Framework_TestCase
      */
     public function testStatic()
     {
-        $this->assertTrue(Validation::required()->string()->validate("test")->isSuccess());
+        static::assertTrue(Validation::required()->string()->validate('test')->isSuccess());
     }
 
     /**
@@ -81,49 +85,49 @@ class ValidationTest extends PHPUnit_Framework_TestCase
      */
     public function testCollect()
     {
-        $validation = Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(" hello ");
+        Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(' hello ');
 
-        $this->assertSame(" hello ", $beforeAction);
-        $this->assertSame("hello", $afterAction);
+        static::assertSame(' hello ', $beforeAction);
+        static::assertSame('hello', $afterAction);
 
         // Pre-definition of values.
         $validation = new Validation;
-        $validation->field("name1", " hello ")->collect($beforeAction1)->trim()->collect($afterAction1);
-        $validation->field("name2", " hello ")->collect($beforeAction2)->trim()->collect($afterAction2);
+        $validation->field('name1', ' hello ')->collect($beforeAction1)->trim()->collect($afterAction1);
+        $validation->field('name2', ' hello ')->collect($beforeAction2)->trim()->collect($afterAction2);
 
-        $this->assertNull($beforeAction1);
-        $this->assertNull($beforeAction2);
-        $this->assertNull($afterAction1);
-        $this->assertNull($afterAction2);
+        static::assertNull($beforeAction1);
+        static::assertNull($beforeAction2);
+        static::assertNull($afterAction1);
+        static::assertNull($afterAction2);
 
         $validation->validate();
 
-        $this->assertSame(" hello ", $beforeAction1);
-        $this->assertSame(" hello ", $beforeAction2);
-        $this->assertSame("hello", $afterAction1);
-        $this->assertSame("hello", $afterAction2);
+        static::assertSame(' hello ', $beforeAction1);
+        static::assertSame(' hello ', $beforeAction2);
+        static::assertSame('hello', $afterAction1);
+        static::assertSame('hello', $afterAction2);
 
-        unset($beforeAction1, $beforeAction2, $afterAction1, $afterAction2);
+        unset( $beforeAction1, $beforeAction2, $afterAction1, $afterAction2 );
 
         // Post-definition of values.
         $validation = new Validation;
-        $validation->field("name1")->collect($beforeAction1)->trim()->collect($afterAction1);
-        $validation->field("name2")->collect($beforeAction2)->trim()->collect($afterAction2);
+        $validation->field('name1')->collect($beforeAction1)->trim()->collect($afterAction1);
+        $validation->field('name2')->collect($beforeAction2)->trim()->collect($afterAction2);
 
-        $this->assertNull($beforeAction1);
-        $this->assertNull($beforeAction2);
-        $this->assertNull($afterAction1);
-        $this->assertNull($afterAction2);
+        static::assertNull($beforeAction1);
+        static::assertNull($beforeAction2);
+        static::assertNull($afterAction1);
+        static::assertNull($afterAction2);
 
         $validation->validate([
-            "name1" => " hello ",
-            "name2" => " hello ",
+            'name1' => ' hello ',
+            'name2' => ' hello ',
         ]);
 
-        $this->assertSame(" hello ", $beforeAction1);
-        $this->assertSame(" hello ", $beforeAction2);
-        $this->assertSame("hello", $afterAction1);
-        $this->assertSame("hello", $afterAction2);
+        static::assertSame(' hello ', $beforeAction1);
+        static::assertSame(' hello ', $beforeAction2);
+        static::assertSame('hello', $afterAction1);
+        static::assertSame('hello', $afterAction2);
     }
 
     /**
@@ -134,24 +138,24 @@ class ValidationTest extends PHPUnit_Framework_TestCase
      */
     public function testOption()
     {
-        $defaultLocale = Validation::option("locale");
+        $defaultLocale = Validation::option('locale');
 
-        $this->assertNotEmpty($defaultLocale);
+        static::assertNotEmpty($defaultLocale);
 
-        Validation::option("locale", null);
+        Validation::option('locale', null);
 
-        $this->assertNull(Validation::option("locale"));
+        static::assertNull(Validation::option('locale'));
 
-        Validation::option("locale", "pt-BR");
+        Validation::option('locale', 'pt-BR');
 
-        $this->assertSame("pt-BR", Validation::option("locale"));
+        static::assertSame('pt-BR', Validation::option('locale'));
 
-        $this->assertNull(Validation::option("unexistentOption"));
+        static::assertNull(Validation::option('unexistentOption'));
 
-        Validation::option("unexistentOption", "value");
+        Validation::option('unexistentOption', 'value');
 
-        $this->assertNull(Validation::option("unexistentOption"));
+        static::assertNull(Validation::option('unexistentOption'));
 
-        Validation::option("locale", $defaultLocale);
+        Validation::option('locale', $defaultLocale);
     }
 }

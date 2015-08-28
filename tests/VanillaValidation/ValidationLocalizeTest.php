@@ -4,6 +4,10 @@ namespace Rentalhost\VanillaValidation;
 
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationLocalizeTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -17,11 +21,11 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
     {
         $singleton = ValidationLocalize::singleton();
 
-        $this->assertInstanceOf(ValidationLocalize::class, $singleton);
+        static::assertInstanceOf(ValidationLocalize::class, $singleton);
 
         $singletonCached = ValidationLocalize::singleton();
 
-        $this->assertInstanceOf(ValidationLocalize::class, $singletonCached);
+        static::assertInstanceOf(ValidationLocalize::class, $singletonCached);
     }
 
     /**
@@ -33,27 +37,27 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
      */
     public function testTranslateFail()
     {
-        $defaultLocale = Validation::option("locale");
+        $defaultLocale = Validation::option('locale');
 
-        Validation::option("locale", "pt-BR");
+        Validation::option('locale', 'pt-BR');
 
         $validation = new Validation;
-        $validation->field("username", "")->required();
+        $validation->field('username', '')->required();
         $validationFails = $validation->validate()->getFails();
 
-        $this->assertSame('o campo "username" é obrigatório', $validationFails[0]->getLocalized());
+        static::assertSame('o campo "username" é obrigatório', $validationFails[0]->getLocalized());
 
-        $validationFails = Validation::required()->validate("")->getFails();
+        $validationFails = Validation::required()->validate('')->getFails();
 
-        $this->assertSame('o campo é obrigatório', $validationFails[0]->getLocalized());
+        static::assertSame('o campo é obrigatório', $validationFails[0]->getLocalized());
 
-        Validation::option("locale", [ "unknow", "pt-BR", "en" ]);
+        Validation::option('locale', [ 'unknow', 'pt-BR', 'en' ]);
 
-        $validationFails = Validation::cpf()->validate("11122244405")->getFails();
+        $validationFails = Validation::cpf()->validate('11122244405')->getFails();
 
-        $this->assertSame('o campo deve ser um CPF', $validationFails[0]->getLocalized());
+        static::assertSame('o campo deve ser um CPF', $validationFails[0]->getLocalized());
 
-        Validation::option("locale", $defaultLocale);
+        Validation::option('locale', $defaultLocale);
     }
 
     /**
@@ -63,18 +67,18 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
      */
     public function testQuantify()
     {
-        $defaultLocale = Validation::option("locale");
+        $defaultLocale = Validation::option('locale');
 
-        Validation::option("locale", "pt-BR");
+        Validation::option('locale', 'pt-BR');
 
-        $validationFails = Validation::minLength(1)->validate("")->getFails();
+        $validationFails = Validation::minLength(1)->validate('')->getFails();
 
-        $this->assertSame('o campo deve possuir no mínimo um caractere', $validationFails[0]->getLocalized());
+        static::assertSame('o campo deve possuir no mínimo um caractere', $validationFails[0]->getLocalized());
 
-        $validationFails = Validation::minLength(10)->validate("hello")->getFails();
+        $validationFails = Validation::minLength(10)->validate('hello')->getFails();
 
-        $this->assertSame('o campo deve possuir no mínimo 10 caracteres', $validationFails[0]->getLocalized());
+        static::assertSame('o campo deve possuir no mínimo 10 caracteres', $validationFails[0]->getLocalized());
 
-        Validation::option("locale", $defaultLocale);
+        Validation::option('locale', $defaultLocale);
     }
 }

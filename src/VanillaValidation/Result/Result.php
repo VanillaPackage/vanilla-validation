@@ -3,7 +3,13 @@
 namespace Rentalhost\VanillaValidation\Result;
 
 use Rentalhost\VanillaResult\Result as BaseResult;
+use Rentalhost\VanillaValidation\ValidationField;
+use Rentalhost\VanillaValidation\ValidationFieldRule;
 
+/**
+ * Class Result
+ * @package Rentalhost\VanillaValidation\Result
+ */
 abstract class Result extends BaseResult
 {
     /**
@@ -32,14 +38,13 @@ abstract class Result extends BaseResult
 
     /**
      * Construct a result.
+     *
      * @param boolean $status  Status.
      * @param string  $message Message of result.
      * @param array   $data    Additional data (default empty array).
      */
     public function __construct($status = true, $message = null, array $data = null)
     {
-        $this->setStatus($status);
-        $this->message = $message;
-        $this->data = $data ?: [];
+        parent::__construct($status, $message, $data ?: [ ]);
     }
 }

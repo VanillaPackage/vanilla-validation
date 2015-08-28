@@ -4,11 +4,22 @@ namespace Rentalhost\VanillaValidation\Rule;
 
 use Rentalhost\VanillaValidation\Result\FailBreakable;
 
+/**
+ * Class RequiredRule
+ * @package Rentalhost\VanillaValidation\Rule
+ */
 class RequiredRule extends Rule
 {
     /**
      * Validate if input is valid.
-     * @param string $parameters[0] Pass true if you like to break validation if it fails (default false).
+     *
+     * @param mixed $input      Rule input.
+     * @param array $parameters Rule parameters.
+     * @param array &$data      Output data.
+     *
+     * @return bool|FailBreakable
+     * @var boolean $parameters [0] Pass true if you like to break validation if it fails (default false).
+     *
      * @see Rule::validate
      */
     public function validate($input, array $parameters, array &$data)
@@ -19,18 +30,25 @@ class RequiredRule extends Rule
 
         // If true is passed to first parameter and the input is empty,
         // so we will break the rules iteration.
-        if (array_key_exists(0, $parameters)
-        &&  $parameters[0] === true
-        &&  empty($input)) {
-            return new FailBreakable("fail:required");
+        if (!$input &&
+            array_key_exists(0, $parameters) &&
+            $parameters[0] === true
+        ) {
+            return new FailBreakable('fail:required');
         }
 
-        return !empty($input);
+        return !!$input;
     }
 
     /**
      * If negative, this rule will ever returns true.
+     *
+     * @param  mixed $input      Rule input.
+     * @param  array $parameters Rule parameters.
+     * @param  array $data       Output data.
+     *
      * @see Rule::validate
+     * @return bool
      */
     public function validateNegative($input, array $parameters, array &$data)
     {

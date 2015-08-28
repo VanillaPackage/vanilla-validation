@@ -2,6 +2,12 @@
 
 namespace Rentalhost\VanillaValidation;
 
+use Rentalhost\VanillaValidation\Result\Result;
+
+/**
+ * Class ValidationFieldRule
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldRule
 {
     /**
@@ -31,6 +37,7 @@ class ValidationFieldRule
 
     /**
      * Construct a new rule.
+     *
      * @param string  $name       Rule name.
      * @param mixed[] $parameters Rule parameters.
      */
@@ -43,13 +50,15 @@ class ValidationFieldRule
         }
 
         $this->name = ValidationRules::normalize($name) ?: $name;
-        $this->originalName = $this->negative ? "not" . ucfirst($this->name) : $this->name;
-        $this->parameters = $parameters ?: [];
+        $this->originalName = $this->negative ? 'not' . ucfirst($this->name) : $this->name;
+        $this->parameters = $parameters ?: [ ];
     }
 
     /**
      * Validate this rule with value.
+     *
      * @param mixed $value Value to validate.
+     *
      * @return Result
      */
     public function validate($value)

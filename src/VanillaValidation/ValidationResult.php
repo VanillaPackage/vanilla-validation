@@ -3,12 +3,18 @@
 namespace Rentalhost\VanillaValidation;
 
 use Rentalhost\VanillaResult\Result;
+use Rentalhost\VanillaValidation\Result\Fail;
+use Success;
 
+/**
+ * Class ValidationResult
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationResult extends Result
 {
     /**
      * Returns all fails results.
-     * @return Result\Result[]
+     * @return Fail[]
      */
     public function getFails()
     {
@@ -17,7 +23,7 @@ class ValidationResult extends Result
 
     /**
      * Returns all successes results.
-     * @return Result\Result[]
+     * @return Success[]
      */
     public function getSuccesses()
     {
@@ -26,21 +32,23 @@ class ValidationResult extends Result
 
     /**
      * Returns both fails and successes results.
-     * @return Result\Result[]
+     * @return Fail[]|Success[]
      */
     public function getResults()
     {
-        return $this->getData() ?: [];
+        return $this->getData() ?: [ ];
     }
 
     /**
      * Get results filtered.
+     *
      * @param  boolean $status Result status.
-     * @return Result\Result[]
+     *
+     * @return Result[]
      */
     private function getResultsFiltered($status)
     {
-        $results = [];
+        $results = [ ];
 
         foreach ($this->getResults() as $result) {
             if ($result->isSuccess() === $status) {

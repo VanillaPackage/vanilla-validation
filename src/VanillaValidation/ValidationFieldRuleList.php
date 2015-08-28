@@ -2,11 +2,13 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Result\Fail;
 use Rentalhost\VanillaValidation\Result\FailBreakable;
-use Rentalhost\VanillaValidation\Result\Success;
 use Rentalhost\VanillaValidation\Result\Result;
 
+/**
+ * Class ValidationFieldRuleList
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldRuleList
 {
     /**
@@ -20,13 +22,15 @@ class ValidationFieldRuleList
      */
     public function __construct()
     {
-        $this->rules = [];
+        $this->rules = [ ];
     }
 
     /**
      * Add a new rule.
+     *
      * @param string $name       Rule name.
      * @param array  $parameters Rule parameters.
+     *
      * @return void
      */
     public function add($name, $parameters = null)
@@ -49,23 +53,25 @@ class ValidationFieldRuleList
      */
     public function clear()
     {
-        $this->rules = [];
+        $this->rules = [ ];
     }
 
     /**
      * Validate all rules with value.
+     *
      * @param mixed $input Initial input.
-     * @return Result
+     *
+     * @return ValidationResult
      */
     public function validate($input)
     {
-        $results = [];
+        $results = [ ];
         $resultStatus = true;
 
         // Run each rules in this list.
         foreach ($this->rules as $ruleIndex => $rule) {
             // Fill breakable first parameter with current status.
-            if ($rule->name === "breakable") {
+            if ($rule->name === 'breakable') {
                 $rule->parameters[0] = $resultStatus;
             }
 
@@ -73,8 +79,9 @@ class ValidationFieldRuleList
             $ruleResult = $rule->validate($input);
 
             // If it returns a FailBreakable and is a breakable, so break iteration.
-            if ($rule->name === "breakable"
-            &&  $ruleResult instanceof FailBreakable) {
+            if ($rule->name === 'breakable'
+                && $ruleResult instanceof FailBreakable
+            ) {
                 break;
             }
 
@@ -103,6 +110,6 @@ class ValidationFieldRuleList
             $input = $ruleResult;
         }
 
-        return new ValidationResult($resultStatus, $resultStatus ? "success" : "fail", $results);
+        return new ValidationResult($resultStatus, $resultStatus ? 'success' : 'fail', $results);
     }
 }

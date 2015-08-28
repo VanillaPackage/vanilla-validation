@@ -5,6 +5,10 @@ namespace Rentalhost\VanillaValidation\Result;
 use Rentalhost\VanillaValidation\Validation;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class FailTest
+ * @package Rentalhost\VanillaValidation\Result
+ */
 class FailTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -14,12 +18,12 @@ class FailTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
-        $resultFail = new Fail("fail:message");
+        $resultFail = new Fail('fail:message');
 
-        $this->assertInstanceOf(Result::class, $resultFail);
-        $this->assertFalse($resultFail->isSuccess());
-        $this->assertSame("fail:message", $resultFail->getMessage());
-        $this->assertSame([], $resultFail->getData());
+        static::assertInstanceOf(Result::class, $resultFail);
+        static::assertFalse($resultFail->isSuccess());
+        static::assertSame('fail:message', $resultFail->getMessage());
+        static::assertSame([ ], $resultFail->getData());
     }
 
     /**
@@ -28,36 +32,36 @@ class FailTest extends PHPUnit_Framework_TestCase
      */
     public function testLocale()
     {
-        $optionLocale = Validation::option("locale");
+        $optionLocale = Validation::option('locale');
 
         // Valid.
-        Validation::option("locale", [ "pt-BR" ]);
+        Validation::option('locale', [ 'pt-BR' ]);
 
-        $validation = Validation::required()->validate("");
+        $validation = Validation::required()->validate('');
 
-        $this->assertCount(1, $validation->getFails());
+        static::assertCount(1, $validation->getFails());
 
         $validationFail = $validation->getFails()[0];
 
-        $this->assertSame("o campo é obrigatório", $validationFail->getLocalized());
+        static::assertSame('o campo é obrigatório', $validationFail->getLocalized());
 
-        Validation::option("locale", "pt-BR");
+        Validation::option('locale', 'pt-BR');
 
-        $this->assertSame("o campo é obrigatório", $validationFail->getLocalized());
+        static::assertSame('o campo é obrigatório', $validationFail->getLocalized());
 
-        Validation::option("locale", [ "unknow", "pt-BR" ]);
+        Validation::option('locale', [ 'unknow', 'pt-BR' ]);
 
-        $this->assertSame("o campo é obrigatório", $validationFail->getLocalized());
+        static::assertSame('o campo é obrigatório', $validationFail->getLocalized());
 
         // Fail.
-        Validation::option("locale", [ "unknow" ]);
+        Validation::option('locale', [ 'unknow' ]);
 
-        $this->assertSame("fail:required", $validationFail->getLocalized());
+        static::assertSame('fail:required', $validationFail->getLocalized());
 
-        Validation::option("locale", "unknow");
+        Validation::option('locale', 'unknow');
 
-        $this->assertSame("fail:required", $validationFail->getLocalized());
+        static::assertSame('fail:required', $validationFail->getLocalized());
 
-        Validation::option("locale", $optionLocale);
+        Validation::option('locale', $optionLocale);
     }
 }

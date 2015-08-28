@@ -2,9 +2,12 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Result\Result;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationRulesSingletonTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -19,18 +22,18 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
     {
         $rules = new ValidationRulesSingleton;
 
-        $this->assertTrue($rules->has("required"));
-        $this->assertFalse($rules->has("leftTrim"));
+        static::assertTrue($rules->has('required'));
+        static::assertFalse($rules->has('leftTrim'));
 
-        $rules->define("leftTrim", Test\LeftTrimAction::class);
+        $rules->define('leftTrim', Test\LeftTrimAction::class);
 
-        $this->assertTrue($rules->has("leftTrim"));
+        static::assertTrue($rules->has('leftTrim'));
 
-        $this->assertNull($rules->normalize("inexistent"));
-        $this->assertNull($rules->normalize("notRequired"));
-        $this->assertSame("required", $rules->normalize("required"));
-        $this->assertSame("boolean", $rules->normalize("bool"));
-        $this->assertSame("boolean", $rules->normalize("boolean"));
+        static::assertNull($rules->normalize('inexistent'));
+        static::assertNull($rules->normalize('notRequired'));
+        static::assertSame('required', $rules->normalize('required'));
+        static::assertSame('boolean', $rules->normalize('bool'));
+        static::assertSame('boolean', $rules->normalize('boolean'));
     }
 
     /**
@@ -42,28 +45,28 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
     {
         $rules = new ValidationRulesSingleton;
 
-        $fieldRule = new ValidationFieldRule("trim");
+        $fieldRule = new ValidationFieldRule('trim');
 
-        $this->assertSame("hello", $rules->validate($fieldRule, "hello"));
-        $this->assertSame("hello", $rules->validate($fieldRule, " hello "));
+        static::assertSame('hello', $rules->validate($fieldRule, 'hello'));
+        static::assertSame('hello', $rules->validate($fieldRule, ' hello '));
 
-        $fieldRule = new ValidationFieldRule("trim", [ "-" ]);
+        $fieldRule = new ValidationFieldRule('trim', [ '-' ]);
 
-        $this->assertSame("hello", $rules->validate($fieldRule, "-hello-"));
+        static::assertSame('hello', $rules->validate($fieldRule, '-hello-'));
 
-        $fieldRule = new ValidationFieldRule("required");
+        $fieldRule = new ValidationFieldRule('required');
 
-        $this->assertTrue($rules->validate($fieldRule, "value")->isSuccess());
-        $this->assertFalse($rules->validate($fieldRule, "")->isSuccess());
-        $this->assertFalse($rules->validate($fieldRule, false)->isSuccess());
-        $this->assertFalse($rules->validate($fieldRule, null)->isSuccess());
+        static::assertTrue($rules->validate($fieldRule, 'value')->isSuccess());
+        static::assertFalse($rules->validate($fieldRule, '')->isSuccess());
+        static::assertFalse($rules->validate($fieldRule, false)->isSuccess());
+        static::assertFalse($rules->validate($fieldRule, null)->isSuccess());
 
-        $fieldRule = new ValidationFieldRule("notRequired");
+        $fieldRule = new ValidationFieldRule('notRequired');
 
-        $this->assertTrue($rules->validate($fieldRule, "value")->isSuccess());
-        $this->assertTrue($rules->validate($fieldRule, "")->isSuccess());
-        $this->assertTrue($rules->validate($fieldRule, false)->isSuccess());
-        $this->assertTrue($rules->validate($fieldRule, null)->isSuccess());
+        static::assertTrue($rules->validate($fieldRule, 'value')->isSuccess());
+        static::assertTrue($rules->validate($fieldRule, '')->isSuccess());
+        static::assertTrue($rules->validate($fieldRule, false)->isSuccess());
+        static::assertTrue($rules->validate($fieldRule, null)->isSuccess());
     }
 
     /**
@@ -73,9 +76,9 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
      */
     public function testRuleNotImplementedException()
     {
-        $this->setExpectedException(Exception\RuleNotImplementedException::class);
+        static::setExpectedException(Exception\RuleNotImplementedException::class);
 
-        $fieldRule = new ValidationFieldRule("undefined");
+        $fieldRule = new ValidationFieldRule('undefined');
 
         ValidationRules::validate($fieldRule, null);
     }

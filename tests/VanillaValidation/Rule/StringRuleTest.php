@@ -5,31 +5,44 @@ namespace Rentalhost\VanillaValidation\Test\Rule;
 use Rentalhost\VanillaValidation\Validation;
 use Rentalhost\VanillaValidation\ValidationChain;
 
+/**
+ * Class StringRuleTest
+ * @package Rentalhost\VanillaValidation\Test\Rule
+ */
 class StringRuleTest extends RuleTestCase
 {
     /**
      * Test rule.
-     * @covers Rentalhost\VanillaValidation\Rule\StringRule::validate
-     * @covers Rentalhost\VanillaValidation\Rule\StringRule::validateNegative
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\StringRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\StringRule::validateNegative
      * @dataProvider dataRule
      */
-    public function testRule($name, $parameters, $input, $expectedMessage = "success", $expectedData = null)
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
     {
-        return parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
 
+    /**
+     * Rules data.
+     */
     public function dataRule()
     {
         return [
             1000 =>
-            [ "string", [], "test" ],
-            [ "string", [], "" ],
-
+                [ 'string', [ ], 'test' ],
+            [ 'string', [ ], '' ],
             2000 =>
-            [ "string", [], 0, "fail:string" ],
-            [ "string", [], [], "fail:string" ],
-            [ "string", [], false, "fail:string" ],
-            [ "string", [], null, "fail:string" ],
+                [ 'string', [ ], 0, 'fail:string' ],
+            [ 'string', [ ], [ ], 'fail:string' ],
+            [ 'string', [ ], false, 'fail:string' ],
+            [ 'string', [ ], null, 'fail:string' ],
         ];
     }
 
@@ -40,6 +53,6 @@ class StringRuleTest extends RuleTestCase
      */
     public function testDirect()
     {
-        $this->assertInstanceOf(ValidationChain::class, Validation::string());
+        static::assertInstanceOf(ValidationChain::class, Validation::string());
     }
 }

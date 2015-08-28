@@ -2,10 +2,12 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Result\Fail;
-use Rentalhost\VanillaValidation\Result\Success;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationChainTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationChainTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -17,21 +19,21 @@ class ValidationChainTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
-        $this->assertClassHasAttribute("rules", ValidationChain::class);
+        static::assertClassHasAttribute('rules', ValidationChain::class);
 
         $chain = new ValidationChain;
 
-        $this->assertTrue($chain->notEmpty()->trim()->validate(" ")->isSuccess());
+        static::assertTrue($chain->notEmpty()->trim()->validate(' ')->isSuccess());
 
         $chain = new ValidationChain;
 
-        $this->assertFalse($chain->required()->validate(" ")->isSuccess());
+        static::assertFalse($chain->required()->validate(' ')->isSuccess());
 
         $chain = new ValidationChain;
 
-        $this->assertTrue($chain->required()->string()->validate("hello")->isSuccess());
-        $this->assertFalse($chain->required()->string()->validate(123)->isSuccess());
-        $this->assertFalse($chain->required()->string()->validate(null)->isSuccess());
+        static::assertTrue($chain->required()->string()->validate('hello')->isSuccess());
+        static::assertFalse($chain->required()->string()->validate(123)->isSuccess());
+        static::assertFalse($chain->required()->string()->validate(null)->isSuccess());
     }
 
     /**
@@ -41,9 +43,9 @@ class ValidationChainTest extends PHPUnit_Framework_TestCase
      */
     public function testCollect()
     {
-        $validation = Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(" hello ");
+        Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(' hello ');
 
-        $this->assertSame(" hello ", $beforeAction);
-        $this->assertSame("hello", $afterAction);
+        static::assertSame(' hello ', $beforeAction);
+        static::assertSame('hello', $afterAction);
     }
 }

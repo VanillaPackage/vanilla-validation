@@ -4,10 +4,15 @@ namespace Rentalhost\VanillaValidation\Result;
 
 use Rentalhost\VanillaValidation\ValidationLocalize;
 
+/**
+ * Class Fail
+ * @package Rentalhost\VanillaValidation\Result
+ */
 class Fail extends Result
 {
     /**
      * Costruct a fail result.
+     *
      * @param string $message Fail message.
      * @param mixed  $data    Fail data.
      */

@@ -2,14 +2,25 @@
 
 namespace Rentalhost\VanillaValidation\Rule;
 
+/**
+ * Class EqualsRule
+ * @package Rentalhost\VanillaValidation\Rule
+ */
 class EqualsRule extends Rule
 {
     /**
      * Validate if input have the same value than expected.
      * Useful to validate by password confirmation.
-     * @param mixed   $parameter[0] Value to compare with.
-     * @param boolean $parameter[1] Stricty comparison (optional, default false).
-     * @see Rule::validate
+     *
+     * @param mixed $input      Rule input.
+     * @param array $parameters Rule parameters.
+     * @param array &$data      Output data.
+     *
+     * @var mixed   $parameters [0] Value to compare with.
+     * @var bool    $parameters [1] Stricty comparison (optional, default false).
+     *
+     * @see                     Rule::validate
+     * @return bool
      */
     public function validate($input, array $parameters, array &$data)
     {
@@ -18,10 +29,13 @@ class EqualsRule extends Rule
         }
 
         // Strict comparison.
-        if (array_key_exists(1, $parameters)
-        &&  $parameters[1] === true) {
+        if (array_key_exists(1, $parameters) &&
+            $parameters[1] === true
+        ) {
             return $input === $parameters[0];
         }
+
+        /** @noinspection TypeUnsafeComparisonInspection */
 
         return $input == $parameters[0];
     }

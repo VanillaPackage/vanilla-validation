@@ -4,6 +4,10 @@ namespace Rentalhost\VanillaValidation;
 
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationFieldRuleTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationFieldRuleTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -13,42 +17,42 @@ class ValidationFieldRuleTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
-        $this->assertClassHasAttribute("name", ValidationFieldRule::class);
-        $this->assertClassHasAttribute("parameters", ValidationFieldRule::class);
-        $this->assertClassHasAttribute("negative", ValidationFieldRule::class);
+        static::assertClassHasAttribute('name', ValidationFieldRule::class);
+        static::assertClassHasAttribute('parameters', ValidationFieldRule::class);
+        static::assertClassHasAttribute('negative', ValidationFieldRule::class);
 
-        $fieldRule = new ValidationFieldRule("name");
+        $fieldRule = new ValidationFieldRule('name');
 
-        $this->assertSame("name", $fieldRule->name);
-        $this->assertSame("name", $fieldRule->originalName);
-        $this->assertSame([], $fieldRule->parameters);
-        $this->assertNull($fieldRule->negative);
+        static::assertSame('name', $fieldRule->name);
+        static::assertSame('name', $fieldRule->originalName);
+        static::assertSame([ ], $fieldRule->parameters);
+        static::assertNull($fieldRule->negative);
 
-        $fieldRule = new ValidationFieldRule("nameWillNotBeLowercase");
+        $fieldRule = new ValidationFieldRule('nameWillNotBeLowercase');
 
-        $this->assertSame("nameWillNotBeLowercase", $fieldRule->name);
+        static::assertSame('nameWillNotBeLowercase', $fieldRule->name);
 
-        $fieldRule = new ValidationFieldRule("notName");
+        $fieldRule = new ValidationFieldRule('notName');
 
-        $this->assertTrue($fieldRule->negative);
-        $this->assertSame("name", $fieldRule->name);
-        $this->assertSame("notName", $fieldRule->originalName);
+        static::assertTrue($fieldRule->negative);
+        static::assertSame('name', $fieldRule->name);
+        static::assertSame('notName', $fieldRule->originalName);
 
-        $fieldRule = new ValidationFieldRule("NotWillBeNegative");
+        $fieldRule = new ValidationFieldRule('NotWillBeNegative');
 
-        $this->assertNull($fieldRule->negative);
-        $this->assertSame("NotWillBeNegative", $fieldRule->name);
-        $this->assertSame("NotWillBeNegative", $fieldRule->originalName);
+        static::assertNull($fieldRule->negative);
+        static::assertSame('NotWillBeNegative', $fieldRule->name);
+        static::assertSame('NotWillBeNegative', $fieldRule->originalName);
 
-        $fieldRule = new ValidationFieldRule("notwillbenegative");
+        $fieldRule = new ValidationFieldRule('notwillbenegative');
 
-        $this->assertNull($fieldRule->negative);
-        $this->assertSame("notwillbenegative", $fieldRule->name);
-        $this->assertSame("notwillbenegative", $fieldRule->originalName);
+        static::assertNull($fieldRule->negative);
+        static::assertSame('notwillbenegative', $fieldRule->name);
+        static::assertSame('notwillbenegative', $fieldRule->originalName);
 
-        $fieldRule = new ValidationFieldRule("name", [ 1, 2, 3 ]);
+        $fieldRule = new ValidationFieldRule('name', [ 1, 2, 3 ]);
 
-        $this->assertSame([ 1, 2, 3 ], $fieldRule->parameters);
+        static::assertSame([ 1, 2, 3 ], $fieldRule->parameters);
     }
 
     /**
@@ -58,9 +62,9 @@ class ValidationFieldRuleTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate()
     {
-        $fieldRule = new ValidationFieldRule("required");
+        $fieldRule = new ValidationFieldRule('required');
 
-        $this->assertTrue($fieldRule->validate("hello")->isSuccess());
-        $this->assertFalse($fieldRule->validate("")->isSuccess());
+        static::assertTrue($fieldRule->validate('hello')->isSuccess());
+        static::assertFalse($fieldRule->validate('')->isSuccess());
     }
 }

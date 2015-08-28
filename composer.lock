@@ -47,16 +47,16 @@
         },
         {
             "name": "rentalhost/vanilla-parameter",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-parameter.git",
-                "reference": "2e44f191796d024752f27e55664c260d63198ec7"
+                "reference": "6d12a61ba23c1960ee12e5269610051642307385"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-parameter/get/2e44f191796d024752f27e55664c260d63198ec7.zip",
-                "reference": "2e44f191796d024752f27e55664c260d63198ec7",
+                "url": "https://bitbucket.org/rentalhost/vanilla-parameter/get/6d12a61ba23c1960ee12e5269610051642307385.zip",
+                "reference": "6d12a61ba23c1960ee12e5269610051642307385",
                 "shasum": ""
             },
             "require-dev": {
@@ -79,20 +79,20 @@
                 }
             ],
             "description": "The vanilla-parameter will help you with variadic arguments.",
-            "time": "2015-08-17 23:07:18"
+            "time": "2015-08-28 19:23:48"
         },
         {
             "name": "rentalhost/vanilla-result",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-result.git",
-                "reference": "e87b37ef59aa1c3f6b1dcaded39d6e18df2d95bb"
+                "reference": "9b292bf0377360c90aa5a0ee8077f233cce58e5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-result/get/e87b37ef59aa1c3f6b1dcaded39d6e18df2d95bb.zip",
-                "reference": "e87b37ef59aa1c3f6b1dcaded39d6e18df2d95bb",
+                "url": "https://bitbucket.org/rentalhost/vanilla-result/get/9b292bf0377360c90aa5a0ee8077f233cce58e5f.zip",
+                "reference": "9b292bf0377360c90aa5a0ee8077f233cce58e5f",
                 "shasum": ""
             },
             "require-dev": {
@@ -115,7 +115,7 @@
                 }
             ],
             "description": "The vanilla-result will help you to create a result controller instance.",
-            "time": "2015-08-11 20:47:02"
+            "time": "2015-08-28 17:47:53"
         },
         {
             "name": "symfony/translation",
@@ -585,16 +585,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.4",
+            "version": "4.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7"
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2246830f4a1a551c67933e4171bf2126dc29d357",
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357",
                 "shasum": ""
             },
             "require": {
@@ -653,24 +653,24 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-15 04:21:23"
+            "time": "2015-08-24 04:09:38"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "doctrine/instantiator": "^1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
@@ -709,7 +709,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-10 06:54:24"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sebastian/comparator",

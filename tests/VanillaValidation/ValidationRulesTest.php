@@ -2,9 +2,12 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Result\Result;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class ValidationRulesTest
+ * @package Rentalhost\VanillaValidation
+ */
 class ValidationRulesTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -14,12 +17,12 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
-        $this->assertTrue(ValidationRules::has("required"));
-        $this->assertFalse(ValidationRules::has("leftTrim"));
+        static::assertTrue(ValidationRules::has('required'));
+        static::assertFalse(ValidationRules::has('leftTrim'));
 
-        ValidationRules::define("leftTrim", Test\LeftTrimAction::class);
+        ValidationRules::define('leftTrim', Test\LeftTrimAction::class);
 
-        $this->assertTrue(ValidationRules::has("leftTrim"));
+        static::assertTrue(ValidationRules::has('leftTrim'));
     }
 
     /**
@@ -32,6 +35,6 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     {
         $singleton = ValidationRules::singleton();
 
-        $this->assertTrue($singleton->has("required"));
+        static::assertTrue($singleton->has('required'));
     }
 }

@@ -6,6 +6,10 @@ use Rentalhost\VanillaValidation\ValidationField;
 use Rentalhost\VanillaValidation\ValidationFieldRule;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * Class SuccessTest
+ * @package Rentalhost\VanillaValidation\Result
+ */
 class SuccessTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -17,10 +21,10 @@ class SuccessTest extends PHPUnit_Framework_TestCase
     {
         $resultSuccess = new Success;
 
-        $this->assertInstanceOf(Result::class, $resultSuccess);
-        $this->assertTrue($resultSuccess->isSuccess());
-        $this->assertSame("success", $resultSuccess->getMessage());
-        $this->assertSame([], $resultSuccess->getData());
+        static::assertInstanceOf(Result::class, $resultSuccess);
+        static::assertTrue($resultSuccess->isSuccess());
+        static::assertSame('success', $resultSuccess->getMessage());
+        static::assertSame([ ], $resultSuccess->getData());
     }
 
     /**
@@ -29,23 +33,23 @@ class SuccessTest extends PHPUnit_Framework_TestCase
      */
     public function testPublicProperties()
     {
-        $this->assertClassHasAttribute("field", Success::class);
-        $this->assertClassHasAttribute("value", Success::class);
-        $this->assertClassHasAttribute("ruleIndex", Success::class);
-        $this->assertClassHasAttribute("rule", Success::class);
+        static::assertClassHasAttribute('field', Success::class);
+        static::assertClassHasAttribute('value', Success::class);
+        static::assertClassHasAttribute('ruleIndex', Success::class);
+        static::assertClassHasAttribute('rule', Success::class);
 
-        $validation = new ValidationField("name", "value");
+        $validation = new ValidationField('name', 'value');
         $validation->required();
 
         $validationResult = $validation->validate();
         $validationResultFirst = $validationResult->getResults()[0];
 
-        $this->assertInstanceOf(Result::class, $validationResultFirst);
-        $this->assertInstanceOf(ValidationField::class, $validationResultFirst->field);
-        $this->assertInternalType("string", $validationResultFirst->field->name);
-        $this->assertInternalType("string", $validationResultFirst->field->value);
-        $this->assertInternalType("string", $validationResultFirst->value);
-        $this->assertInternalType("integer", $validationResultFirst->ruleIndex);
-        $this->assertEquals(new ValidationFieldRule("required"), $validationResultFirst->rule);
+        static::assertInstanceOf(Result::class, $validationResultFirst);
+        static::assertInstanceOf(ValidationField::class, $validationResultFirst->field);
+        static::assertInternalType('string', $validationResultFirst->field->name);
+        static::assertInternalType('string', $validationResultFirst->field->value);
+        static::assertInternalType('string', $validationResultFirst->value);
+        static::assertInternalType('integer', $validationResultFirst->ruleIndex);
+        static::assertEquals(new ValidationFieldRule('required'), $validationResultFirst->rule);
     }
 }

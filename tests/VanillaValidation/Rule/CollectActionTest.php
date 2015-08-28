@@ -3,8 +3,11 @@
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
 use Rentalhost\VanillaValidation\Validation;
-use Rentalhost\VanillaValidation\ValidationChain;
 
+/**
+ * Class CollectActionTest
+ * @package Rentalhost\VanillaValidation\Test\Rule
+ */
 class CollectActionTest extends ActionTestCase
 {
     /**
@@ -13,10 +16,10 @@ class CollectActionTest extends ActionTestCase
      */
     public function testAction()
     {
-        $validation = Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(" hello ");
+        Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(' hello ');
 
-        $this->assertSame(" hello ", $beforeAction);
-        $this->assertSame("hello", $afterAction);
+        static::assertSame(' hello ', $beforeAction);
+        static::assertSame('hello', $afterAction);
     }
 
     /**

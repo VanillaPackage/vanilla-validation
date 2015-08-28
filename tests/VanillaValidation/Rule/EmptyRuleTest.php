@@ -5,31 +5,44 @@ namespace Rentalhost\VanillaValidation\Test\Rule;
 use Rentalhost\VanillaValidation\Validation;
 use Rentalhost\VanillaValidation\ValidationChain;
 
+/**
+ * Class EmptyRuleTest
+ * @package Rentalhost\VanillaValidation\Test\Rule
+ */
 class EmptyRuleTest extends RuleTestCase
 {
     /**
      * Test rule.
-     * @covers Rentalhost\VanillaValidation\Rule\EmptyRule::validate
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\EmptyRule::validate
      * @dataProvider dataRule
      */
-    public function testRule($name, $parameters, $input, $expectedMessage = "success", $expectedData = null)
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
     {
-        return parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
 
+    /**
+     * Rules data.
+     */
     public function dataRule()
     {
         return [
             1000 =>
-            [ "empty", [], 0 ],
-            [ "empty", [], [] ],
-            [ "empty", [], "" ],
-            [ "empty", [], false ],
-            [ "empty", [], null ],
-
+                [ 'empty', [ ], 0 ],
+            [ 'empty', [ ], [ ] ],
+            [ 'empty', [ ], '' ],
+            [ 'empty', [ ], false ],
+            [ 'empty', [ ], null ],
             2000 =>
-            [ "empty", [], "test", "fail:empty" ],
-            [ "empty", [], " ", "fail:empty" ],
+                [ 'empty', [ ], 'test', 'fail:empty' ],
+            [ 'empty', [ ], ' ', 'fail:empty' ],
         ];
     }
 
@@ -40,6 +53,6 @@ class EmptyRuleTest extends RuleTestCase
      */
     public function testDirect()
     {
-        $this->assertInstanceOf(ValidationChain::class, Validation::emp());
+        static::assertInstanceOf(ValidationChain::class, Validation::emp());
     }
 }
