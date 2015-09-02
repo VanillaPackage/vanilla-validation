@@ -24,8 +24,8 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $validation = new Validation;
-        $validation->field('username', 'user')->required()->string();
-        $validation->field('password', 'pass')->required()->string();
+        $validation->field('username', 'user')->required(false)->string();
+        $validation->field('password', 'pass')->required(false)->string();
 
         $validationResult = $validation->validate();
 

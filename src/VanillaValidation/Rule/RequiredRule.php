@@ -17,7 +17,7 @@ class RequiredRule extends Rule
      * @param array $parameters Rule parameters.
      * @param array &$data      Output data.
      *
-     * @var boolean $parameters [0] Pass true if you like to break validation if it fails (default false).
+     * @var boolean $parameters [0] Pass false if you like to continue validation even if this rule fails (default true).
      *
      * @see Rule::validate
      * @return bool|FailBreakable
@@ -28,12 +28,8 @@ class RequiredRule extends Rule
             $input = trim($input);
         }
 
-        // If true is passed to first parameter and the input is empty,
-        // so we will break the rules iteration.
-        if (!$input &&
-            array_key_exists(0, $parameters) &&
-            $parameters[0] === true
-        ) {
+        // If false is passed to first parameter, the rule will not be braked.
+        if (!$input && ( !array_key_exists(0, $parameters) || $parameters[0] === true )) {
             return new FailBreakable('fail:required');
         }
 

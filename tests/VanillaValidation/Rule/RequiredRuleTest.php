@@ -74,11 +74,11 @@ class RequiredRuleTest extends RuleTestCase
      */
     public function testBreakable()
     {
-        $validation = Validation::required()->minLength(8)->validate('');
+        $validation = Validation::required(false)->minLength(8)->validate('');
 
         static::assertCount(2, $validation->getFails());
 
-        $validation = Validation::required(true)->minLength(8)->validate('');
+        $validation = Validation::required()->minLength(8)->validate('');
 
         static::assertCount(1, $validation->getFails());
         static::assertSame('required', $validation->getFails()[0]->rule->name);

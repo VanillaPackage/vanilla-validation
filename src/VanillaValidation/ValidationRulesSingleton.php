@@ -4,8 +4,8 @@ namespace Rentalhost\VanillaValidation;
 
 use Rentalhost\VanillaValidation\Interfaces\Action;
 use Rentalhost\VanillaValidation\Result\Fail;
-use Rentalhost\VanillaValidation\Result\Success;
 use Rentalhost\VanillaValidation\Result\Result;
+use Rentalhost\VanillaValidation\Result\Success;
 
 /**
  * Class ValidationRulesSingleton
@@ -94,7 +94,7 @@ class ValidationRulesSingleton
             return null;
         }
 
-        return array_search($this->rules[$name], $this->rules);
+        return array_search($this->rules[$name], $this->rules, true);
     }
 
     /**

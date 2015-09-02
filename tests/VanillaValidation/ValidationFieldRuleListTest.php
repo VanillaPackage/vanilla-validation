@@ -2,9 +2,10 @@
 
 namespace Rentalhost\VanillaValidation;
 
-use Rentalhost\VanillaValidation\Result\Fail;
-use Rentalhost\VanillaValidation\Result\Success;
 use PHPUnit_Framework_TestCase;
+use Rentalhost\VanillaValidation\Result\Fail;
+use Rentalhost\VanillaValidation\Result\FailBreakable;
+use Rentalhost\VanillaValidation\Result\Success;
 
 /**
  * Class ValidationFieldRuleListTest
@@ -46,7 +47,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
     public function testValidate()
     {
         $ruleList = new ValidationFieldRuleList;
-        $ruleList->add('required');
+        $ruleList->add('required', [ false ]);
 
         // Prepare.
         $ruleListResult = $ruleList->validate('value');
@@ -54,7 +55,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         $resultSuccess = new Success;
         $resultSuccess->value = 'value';
         $resultSuccess->ruleIndex = 0;
-        $resultSuccess->rule = new ValidationFieldRule('required');
+        $resultSuccess->rule = new ValidationFieldRule('required', [ false ]);
 
         // Success test.
         static::assertInstanceOf(ValidationResult::class, $ruleListResult);
@@ -70,7 +71,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         $resultFail = new Fail('fail:required');
         $resultFail->value = null;
         $resultFail->ruleIndex = 0;
-        $resultFail->rule = new ValidationFieldRule('required');
+        $resultFail->rule = new ValidationFieldRule('required', [ false ]);
 
         // Fail test.
         static::assertFalse($ruleListResult->isSuccess());
@@ -86,7 +87,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
 
         $ruleListResult = $ruleList->validate(' ');
 
-        $resultFail = new Fail('fail:required');
+        $resultFail = new FailBreakable('fail:required');
         $resultFail->value = '';
         $resultFail->ruleIndex = 1;
         $resultFail->rule = new ValidationFieldRule('required');

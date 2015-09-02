@@ -64,6 +64,7 @@ class CNPJRule extends Rule
         $digit = 0;
 
         // Sum and multiply.
+        /** @noinspection ForeachInvariantsInspection */
         for ($i = 0; $i < $positions; $i++) {
             $digit += $inputSplitted[$i] * self::$CNPJMask[$startFrom + $i];
         }
