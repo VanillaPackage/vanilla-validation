@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c20a54f2b705646ec937184e0ab54c93",
+    "hash": "fcc6cf608b3e2c0eddef0963b34171d8",
     "packages": [
         {
             "name": "rentalhost/vanilla-event",
-            "version": "1.0.1",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-event.git",
-                "reference": "ec048875d6208372eb6541c9b5f9d8612289b818"
+                "reference": "d852768574c8f023830c52134702d8c3667b8966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-event/get/ec048875d6208372eb6541c9b5f9d8612289b818.zip",
-                "reference": "ec048875d6208372eb6541c9b5f9d8612289b818",
+                "url": "https://bitbucket.org/rentalhost/vanilla-event/get/d852768574c8f023830c52134702d8c3667b8966.zip",
+                "reference": "d852768574c8f023830c52134702d8c3667b8966",
                 "shasum": ""
             },
             "require": {
-                "rentalhost/vanilla-parameter": "^1.0"
+                "rentalhost/vanilla-parameter": "<0.2.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.7"
@@ -43,20 +43,20 @@
                 }
             ],
             "description": "The vanilla-event will help you to works with events.",
-            "time": "2015-08-18 00:48:24"
+            "time": "2015-09-08 21:57:03"
         },
         {
             "name": "rentalhost/vanilla-parameter",
-            "version": "1.0.2",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-parameter.git",
-                "reference": "6d12a61ba23c1960ee12e5269610051642307385"
+                "reference": "758a21a65f339708d7c33f35e558c9856c42dbde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-parameter/get/6d12a61ba23c1960ee12e5269610051642307385.zip",
-                "reference": "6d12a61ba23c1960ee12e5269610051642307385",
+                "url": "https://bitbucket.org/rentalhost/vanilla-parameter/get/758a21a65f339708d7c33f35e558c9856c42dbde.zip",
+                "reference": "758a21a65f339708d7c33f35e558c9856c42dbde",
                 "shasum": ""
             },
             "require-dev": {
@@ -79,20 +79,20 @@
                 }
             ],
             "description": "The vanilla-parameter will help you with variadic arguments.",
-            "time": "2015-08-28 19:23:48"
+            "time": "2015-08-28 22:46:35"
         },
         {
             "name": "rentalhost/vanilla-result",
-            "version": "1.0.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/rentalhost/vanilla-result.git",
-                "reference": "9b292bf0377360c90aa5a0ee8077f233cce58e5f"
+                "reference": "2c2c70709d4091c79e0a57fde701a08ab7dcbe29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/rentalhost/vanilla-result/get/9b292bf0377360c90aa5a0ee8077f233cce58e5f.zip",
-                "reference": "9b292bf0377360c90aa5a0ee8077f233cce58e5f",
+                "url": "https://bitbucket.org/rentalhost/vanilla-result/get/2c2c70709d4091c79e0a57fde701a08ab7dcbe29.zip",
+                "reference": "2c2c70709d4091c79e0a57fde701a08ab7dcbe29",
                 "shasum": ""
             },
             "require-dev": {
@@ -115,20 +115,20 @@
                 }
             ],
             "description": "The vanilla-result will help you to create a result controller instance.",
-            "time": "2015-08-28 17:47:53"
+            "time": "2015-09-02 23:14:55"
         },
         {
             "name": "symfony/translation",
-            "version": "v2.7.3",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "c8dc34cc936152c609cdd722af317e4239d10dd6"
+                "reference": "485877661835e188cd78345c6d4eef1290d17571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/c8dc34cc936152c609cdd722af317e4239d10dd6",
-                "reference": "c8dc34cc936152c609cdd722af317e4239d10dd6",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/485877661835e188cd78345c6d4eef1290d17571",
+                "reference": "485877661835e188cd78345c6d4eef1290d17571",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +140,7 @@
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/config": "~2.7",
-                "symfony/intl": "~2.3",
+                "symfony/intl": "~2.4",
                 "symfony/phpunit-bridge": "~2.7",
                 "symfony/yaml": "~2.2"
             },
@@ -176,7 +176,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:07:40"
+            "time": "2015-09-06 08:36:38"
         }
     ],
     "packages-dev": [
@@ -1084,16 +1084,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.3",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff"
+                "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/71340e996171474a53f3d29111d046be4ad8a0ff",
-                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/2dc7b06c065df96cc686c66da2705e5e18aef661",
+                "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661",
                 "shasum": ""
             },
             "require": {
@@ -1129,7 +1129,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-28 14:07:07"
+            "time": "2015-08-24 07:13:45"
         }
     ],
     "aliases": [],
