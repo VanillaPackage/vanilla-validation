@@ -40,6 +40,8 @@ namespace Rentalhost\VanillaValidation;
  * @method $this notBoolean()
  * @method $this bool()
  * @method $this notBool()
+ * @method $this cep()
+ * @method $this notCep()
  * @method $this cpf()
  * @method $this notCpf()
  * @method $this cnpj()

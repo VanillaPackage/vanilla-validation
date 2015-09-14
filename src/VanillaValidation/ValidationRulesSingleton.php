@@ -48,6 +48,8 @@ class ValidationRulesSingleton
             'arr' => Rule\ArrayRule::class,
             'boolean' => Rule\BooleanRule::class,
             'bool' => Rule\BooleanRule::class,
+            'cep' => Rule\CEPRule::class,
+            'CEP' => Rule\CEPRule::class,
             'cpf' => Rule\CPFRule::class,
             'CPF' => Rule\CPFRule::class,
             'cnpj' => Rule\CNPJRule::class,

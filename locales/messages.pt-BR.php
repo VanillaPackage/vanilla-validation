@@ -5,6 +5,8 @@ return [
     'fail:notArray' => 'o campo ":field" não pode ser um array',
     'fail:boolean' => 'o campo ":field" deve ser um booleano',
     'fail:notBoolean' => 'o campo ":field" não pode ser um booleano',
+    'fail:cep' => 'o campo ":field" deve ser um CEP',
+    'fail:notCep' => 'o campo ":field" não pode ser um CEP',
     'fail:cnpj' => 'o campo ":field" deve ser um CNPJ',
     'fail:notCnpj' => 'o campo ":field" não pode ser um CNPJ',
     'fail:cpf' => 'o campo ":field" deve ser um CPF',

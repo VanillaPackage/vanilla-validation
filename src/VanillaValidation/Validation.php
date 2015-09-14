@@ -41,6 +41,8 @@ use Rentalhost\VanillaEvent\EventListener;
  * @method static ValidationChain notBoolean()
  * @method static ValidationChain bool()
  * @method static ValidationChain notBool()
+ * @method static ValidationChain cep()
+ * @method static ValidationChain notCep()
  * @method static ValidationChain cpf()
  * @method static ValidationChain notCpf()
  * @method static ValidationChain cnpj()
