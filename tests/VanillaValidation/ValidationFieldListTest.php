@@ -66,5 +66,12 @@ class ValidationFieldListTest extends PHPUnit_Framework_TestCase
         static::assertFalse($fieldListResult->isSuccess());
         static::assertCount(1, $fieldListResult->getFails());
         static::assertCount(3, $fieldListResult->getSuccesses());
+
+        $fieldList = new ValidationFieldList;
+        $fieldListResult = $fieldList->validate();
+
+        static::assertTrue($fieldListResult->isSuccess());
+        static::assertCount(0, $fieldListResult->getFails());
+        static::assertCount(0, $fieldListResult->getSuccesses());
     }
 }

@@ -90,7 +90,7 @@ class ValidationFieldList
         return new ValidationResult(
             $resultStatus,
             $resultStatus ? 'success' : 'fail',
-            call_user_func_array('array_merge', $results)
+            $results ? call_user_func_array('array_merge', $results) : [ ]
         );
     }
 }
