@@ -26,6 +26,7 @@ namespace Rentalhost\VanillaValidation;
  * @method $this sameLength( integer $length )
  * @method $this notSameLength( integer $length )
  * @method $this breakable()
+ * @method $this nullable()
  * @method $this strength( float $expectedStrength )
  * @method $this notStrength( float $expectedStrength )
  * @method $this empty()

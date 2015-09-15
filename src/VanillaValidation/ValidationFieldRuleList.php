@@ -3,6 +3,7 @@
 namespace Rentalhost\VanillaValidation;
 
 use Rentalhost\VanillaValidation\Result\FailBreakable;
+use Rentalhost\VanillaValidation\Result\Nullable;
 use Rentalhost\VanillaValidation\Result\Result;
 
 /**
@@ -78,9 +79,10 @@ class ValidationFieldRuleList
             // Default validation.
             $ruleResult = $rule->validate($input);
 
-            // If it returns a FailBreakable and is a breakable, so break iteration.
-            if ($rule->name === 'breakable'
-                && $ruleResult instanceof FailBreakable
+            // 1. If it returns a FailBreakable and is a breakable, so break iteration.
+            // 2. If it returns true and is a nullable, so break iteration.
+            if (( $rule->name === 'breakable' && $ruleResult instanceof FailBreakable ) ||
+                ( $rule->name === 'nullable' && $ruleResult instanceof Nullable )
             ) {
                 break;
             }

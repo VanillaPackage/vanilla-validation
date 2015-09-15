@@ -189,7 +189,7 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test breakable pseudo-rule.
+     * Test breakable rule.
      * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
      * @covers Rentalhost\VanillaValidation\Rule\BreakableRule::validate
      * @return void
@@ -208,5 +208,33 @@ class ValidationFieldRuleListTest extends PHPUnit_Framework_TestCase
         $validation = Validation::maxLength(8)->breakable()->minLength(8)->validate('hello');
 
         static::assertSame('minLength', $validation->getFails()[0]->rule->name);
+    }
+
+    /**
+     * Test nullable rule.
+     * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
+     * @covers Rentalhost\VanillaValidation\Result\Nullable::__construct
+     * @covers Rentalhost\VanillaValidation\Rule\NullableRule::validate
+     */
+    public function testNullable()
+    {
+        // Both are invalid, because both is not nullable ('hello' != empty).
+        $validation = Validation::nullable()->minLength(8)->validate('hello');
+
+        static::assertCount(1, $validation->getFails());
+
+        $validation = Validation::minLength(8)->nullable()->validate('hello');
+
+        static::assertCount(1, $validation->getFails());
+
+        // But here, one first will works, because it check by nullable first,
+        // then the next rule is ignored ('' == empty).
+        $validation = Validation::nullable()->minLength(8)->validate('');
+
+        static::assertCount(0, $validation->getFails());
+
+        $validation = Validation::minLength(8)->nullable()->validate('');
+
+        static::assertCount(1, $validation->getFails());
     }
 }

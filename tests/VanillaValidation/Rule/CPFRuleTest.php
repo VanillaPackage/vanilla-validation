@@ -88,4 +88,21 @@ class CPFRuleTest extends RuleTestCase
     {
         static::assertTrue(Validation::intersectNumbers()->cpf()->validate('342.444.198-88')->isSuccess());
     }
+
+    /**
+     * Test real nullable case.
+     * @coversNothing
+     */
+    public function testNullable()
+    {
+        // Null before validation.
+        static::assertTrue(Validation::nullable()->cpf()->validate('')->isSuccess());
+        static::assertTrue(Validation::nullable()->cpf()->validate('  ')->isSuccess());
+
+        // Null will pass and will fail in validation.
+        static::assertFalse(Validation::nullable()->cpf()->validate('fail')->isSuccess());
+
+        // Fail in validation before null check.
+        static::assertFalse(Validation::cpf()->nullable()->validate('')->isSuccess());
+    }
 }

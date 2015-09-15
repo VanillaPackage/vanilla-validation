@@ -40,6 +40,7 @@ class ValidationRulesSingleton
             'maxLength' => Rule\MaxLengthRule::class,
             'sameLength' => Rule\SameLengthRule::class,
             'breakable' => Rule\BreakableRule::class,
+            'nullable' => Rule\NullableRule::class,
             'strength' => Rule\StrengthRule::class,
             // Rules with aliases.
             'empty' => Rule\EmptyRule::class,
