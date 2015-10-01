@@ -42,6 +42,7 @@ class ValidationRulesSingleton
             'sameLength' => Rule\SameLengthRule::class,
             'breakable' => Rule\BreakableRule::class,
             'nullable' => Rule\NullableRule::class,
+            'positive' => Rule\PositiveRule::class,
             'strength' => Rule\StrengthRule::class,
 
             // Rules with aliases.

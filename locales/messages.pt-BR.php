@@ -43,6 +43,9 @@ return [
 
     'fail:required' => 'o campo ":field" é obrigatório',
 
+    'fail:positive' => 'o campo ":field" deve ser um número positivo',
+    'fail:notPositive' => 'o campo ":field" não deve ser um número positivo',
+
     'fail:sameLength' =>
         '{1} o campo ":field" deve possuir exatamente um caractere|' .
         'o campo ":field" deve possuir exatamente :length caracteres',

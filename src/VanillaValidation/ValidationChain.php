@@ -31,6 +31,8 @@ namespace Rentalhost\VanillaValidation;
  * @method $this notSameLength( integer $length )
  * @method $this breakable()
  * @method $this nullable()
+ * @method $this positive()
+ * @method $this notPositive()
  * @method $this strength( float $expectedStrength )
  * @method $this notStrength( float $expectedStrength )
  * @method $this empty()

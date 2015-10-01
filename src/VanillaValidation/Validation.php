@@ -32,6 +32,8 @@ use Rentalhost\VanillaEvent\EventListener;
  * @method static ValidationChain notSameLength( integer $length )
  * @method static ValidationChain breakable()
  * @method static ValidationChain nullable()
+ * @method static ValidationChain positive()
+ * @method static ValidationChain notPositive()
  * @method static ValidationChain strength( float $expectedStrength )
  * @method static ValidationChain notStrength( float $expectedStrength )
  * @method static ValidationChain empty()
