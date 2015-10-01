@@ -27,6 +27,9 @@ return [
 
     'fail:equals' => 'o campo ":field" não possui o valor esperado',
 
+    'fail:integer' => 'o campo ":field" deve ser um número inteiro',
+    'fail:notInteger' => 'o campo ":field" não deve ser um número inteiro',
+
     'fail:mask' => 'o campo ":field" deve ser definido no formato especificado',
     'fail:notMask' => 'o campo ":field" não pode ser definido no formato especificado',
 

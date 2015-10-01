@@ -29,6 +29,7 @@ class ValidationRulesSingleton
             'trim' => Rule\TrimAction::class,
             'collect' => Rule\CollectAction::class,
             'intersectNumbers' => Rule\IntersectNumbersAction::class,
+
             // Rules.
             'required' => Rule\RequiredRule::class,
             'string' => Rule\StringRule::class,
@@ -42,6 +43,7 @@ class ValidationRulesSingleton
             'breakable' => Rule\BreakableRule::class,
             'nullable' => Rule\NullableRule::class,
             'strength' => Rule\StrengthRule::class,
+
             // Rules with aliases.
             'empty' => Rule\EmptyRule::class,
             'emp' => Rule\EmptyRule::class,
@@ -55,6 +57,8 @@ class ValidationRulesSingleton
             'CPF' => Rule\CPFRule::class,
             'cnpj' => Rule\CNPJRule::class,
             'CNPJ' => Rule\CNPJRule::class,
+            'integer' => Rule\IntegerRule::class,
+            'int' => Rule\IntegerRule::class,
         ];
     }
 
