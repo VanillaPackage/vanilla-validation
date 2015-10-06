@@ -2,16 +2,17 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
+use PHPUnit_Framework_TestCase;
 use Rentalhost\VanillaValidation\Validation;
 
 /**
  * Class CollectActionTest
  * @package Rentalhost\VanillaValidation\Test\Rule
  */
-class CollectActionTest extends ActionTestCase
+class CollectActionTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test action.
+     * Test collect action.
      * @covers Rentalhost\VanillaValidation\Rule\CollectAction::action
      */
     public function testAction()
@@ -20,12 +21,5 @@ class CollectActionTest extends ActionTestCase
 
         static::assertSame(' hello ', $beforeAction);
         static::assertSame('hello', $afterAction);
-    }
-
-    /**
-     * Not useful now.
-     */
-    public function dataAction()
-    {
     }
 }
