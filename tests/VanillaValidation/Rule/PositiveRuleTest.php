@@ -45,7 +45,6 @@ class PositiveRuleTest extends RuleTestCase
             [ 'positive', [ ], '1.23' ],
             [ 'positive', [ ], '1.' ],
             [ 'positive', [ ], '.1' ],
-            [ 'positive', [ ], '0xFF' ],
             2000 =>
                 [ 'positive', [ ], null, 'fail:positive' ],
             [ 'positive', [ ], 'a', 'fail:positive' ],
@@ -55,6 +54,7 @@ class PositiveRuleTest extends RuleTestCase
             [ 'positive', [ ], '-1.23', 'fail:positive' ],
             [ 'positive', [ ], -123, 'fail:positive' ],
             [ 'positive', [ ], '-123', 'fail:positive' ],
+            [ 'positive', [ ], '0xFF', 'fail:positive' ],
         ];
     }
 

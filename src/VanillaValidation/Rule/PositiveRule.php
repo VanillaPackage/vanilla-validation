@@ -20,6 +20,6 @@ class PositiveRule extends Rule
      */
     public function validate($input, array $parameters, array &$data)
     {
-        return is_numeric($input) !== false && $input >= 0;
+        return filter_var($input, FILTER_VALIDATE_FLOAT) !== false && $input >= 0;
     }
 }
