@@ -55,7 +55,7 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
 
         $validationFails = Validation::cpf()->validate('11122244405')->getFails();
 
-        static::assertSame('o campo deve ser um CPF', $validationFails[0]->getLocalized());
+        static::assertSame('o campo deve ser um CPF válido', $validationFails[0]->getLocalized());
 
         Validation::option('locale', $defaultLocale);
     }
