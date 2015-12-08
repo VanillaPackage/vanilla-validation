@@ -81,7 +81,7 @@ class ValidationField
      */
     public function __construct($name, $value = null)
     {
-        $this->name = $name;
+        $this->name  = $name;
         $this->value = $value;
         $this->rules = new ValidationFieldRuleList;
     }
@@ -110,7 +110,9 @@ class ValidationField
      */
     public function collect(&$reference)
     {
-        return $this->__call('collect', [ &$reference ]);
+        $this->rules->add('collect', [ &$reference ]);
+
+        return $this;
     }
 
     /**

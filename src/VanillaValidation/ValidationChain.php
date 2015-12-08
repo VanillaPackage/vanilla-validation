@@ -94,7 +94,9 @@ class ValidationChain
      */
     public function collect(&$reference)
     {
-        return $this->__call('collect', [ &$reference ]);
+        $this->rules->add('collect', [ &$reference ]);
+
+        return $this;
     }
 
     /**

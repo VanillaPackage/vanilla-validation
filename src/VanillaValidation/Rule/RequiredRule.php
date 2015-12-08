@@ -33,7 +33,7 @@ class RequiredRule extends Rule
             return new FailBreakable('fail:required');
         }
 
-        return !!$input;
+        return (bool) $input;
     }
 
     /**
