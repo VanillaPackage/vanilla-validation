@@ -18,7 +18,7 @@ class ValidationRulesSingleton
      * @var string[]
      */
     private $rules;
-    
+
     /**
      * Construct default rules.
      */
@@ -29,7 +29,7 @@ class ValidationRulesSingleton
             'trim'             => Rule\TrimAction::class,
             'collect'          => Rule\CollectAction::class,
             'intersectNumbers' => Rule\IntersectNumbersAction::class,
-            
+
             // Rules.
             'required'         => Rule\RequiredRule::class,
             'string'           => Rule\StringRule::class,
@@ -44,7 +44,7 @@ class ValidationRulesSingleton
             'nullable'         => Rule\NullableRule::class,
             'positive'         => Rule\PositiveRule::class,
             'strength'         => Rule\StrengthRule::class,
-            
+
             // Rules with aliases.
             'empty'            => Rule\EmptyRule::class,
             'emp'              => Rule\EmptyRule::class,
@@ -62,7 +62,7 @@ class ValidationRulesSingleton
             'int'              => Rule\IntegerRule::class,
         ];
     }
-    
+
     /**
      * Defines a new validator.
      *
@@ -73,7 +73,7 @@ class ValidationRulesSingleton
     {
         $this->rules[$name] = $classname;
     }
-    
+
     /**
      * Check if validator was defined.
      *
@@ -85,7 +85,7 @@ class ValidationRulesSingleton
     {
         return array_key_exists($name, $this->rules);
     }
-    
+
     /**
      * Normalize the rule name.
      * It'll return the full name of an alias, for instance.
@@ -101,10 +101,10 @@ class ValidationRulesSingleton
         if (!$this->has($name)) {
             return null;
         }
-        
+
         return array_search($this->rules[$name], $this->rules, true);
     }
-    
+
     /**
      * Validate a input.
      *
@@ -120,14 +120,15 @@ class ValidationRulesSingleton
         if (!$this->has($rule->name)) {
             throw new Exception\RuleNotImplementedException("rule not implemented: {$rule->name}");
         }
-        
+
+        /** @var Action $validateClass */
         $validateClass = new $this->rules[$rule->name];
-        
+
         // If it is an action, so call action and return it value.
         if (is_subclass_of($validateClass, Action::class)) {
-            return call_user_func([ $validateClass, 'action' ], $input, $rule->parameters);
+            return $validateClass->action($input, $rule->parameters);
         }
-        
+
         // Call rule validate method.
         $validateMethod     = $rule->negative === true ? 'validateNegative' : 'validate';
         $validateOutputData = [ ];
@@ -136,17 +137,17 @@ class ValidationRulesSingleton
             $rule->parameters,
             &$validateOutputData,
         ]);
-        
+
         // If returns a instance of Result, return it directly.
         if ($validateReturn instanceof Result) {
             return $validateReturn;
         }
-        
+
         // Returns a success.
         if ($validateReturn) {
             return new Success($validateOutputData);
         }
-        
+
         // Returns a fail.
         return new Fail('fail:' . $rule->originalName, $validateOutputData);
     }
