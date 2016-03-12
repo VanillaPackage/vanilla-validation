@@ -9,6 +9,33 @@ namespace Rentalhost\VanillaValidation\Rule;
 class CPFRule extends Rule
 {
     /**
+     * Calculate digit value.
+     *
+     * @param  string|integer[] $inputSplitted Input splitted.
+     * @param  integer          $positions     Number of positions to calculate.
+     *
+     * @return integer
+     */
+    private static function calculateDigit($inputSplitted, $positions)
+    {
+        $digit    = 0;
+        $position = 0;
+        
+        // Sum and multiply.
+        for ($i = $positions; $i >= 2; $i--) {
+            $digit += $inputSplitted[$position] * $i;
+            $position++;
+        }
+        
+        // Zero.
+        if ($digit % 11 < 2) {
+            return 0;
+        }
+        
+        return 11 - ( $digit % 11 );
+    }
+    
+    /**
      * Validate if input is a valid CPF.
      * @see Rule::validate
      *
@@ -27,47 +54,20 @@ class CPFRule extends Rule
         ) {
             return false;
         }
-
+        
         $inputSplitted = str_split($input);
-
+        
         // Calculate tenth and eleventh digits.
         $tenthDigit = self::calculateDigit($inputSplitted, 10);
-
+        
         $inputSplitted[9] = $tenthDigit;
-        $eleventhDigit = self::calculateDigit($inputSplitted, 11);
-
+        $eleventhDigit    = self::calculateDigit($inputSplitted, 11);
+        
         // Store verificator digits and full expected value on output data.
-        $data['digits'] = $tenthDigit . $eleventhDigit;
+        $data['digits']   = $tenthDigit . $eleventhDigit;
         $data['expected'] = substr($input, 0, 9) . $data['digits'];
-
+        
         // Returns true if this verificator digits matches.
         return substr($input, -2) === $data['digits'];
-    }
-
-    /**
-     * Calculate digit value.
-     *
-     * @param  string|integer[] $inputSplitted Input splitted.
-     * @param  integer          $positions     Number of positions to calculate.
-     *
-     * @return integer
-     */
-    private static function calculateDigit($inputSplitted, $positions)
-    {
-        $digit = 0;
-        $position = 0;
-
-        // Sum and multiply.
-        for ($i = $positions; $i >= 2; $i--) {
-            $digit += $inputSplitted[$position] * $i;
-            $position++;
-        }
-
-        // Zero.
-        if ($digit % 11 < 2) {
-            return 0;
-        }
-
-        return 11 - ( $digit % 11 );
     }
 }

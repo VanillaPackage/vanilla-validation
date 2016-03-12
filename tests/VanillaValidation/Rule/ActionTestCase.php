@@ -2,8 +2,8 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
-use Rentalhost\VanillaValidation\ValidationFieldRule;
 use PHPUnit_Framework_TestCase;
+use Rentalhost\VanillaValidation\ValidationFieldRule;
 
 /**
  * Class ActionTestCase
@@ -11,6 +11,11 @@ use PHPUnit_Framework_TestCase;
  */
 abstract class ActionTestCase extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Actions data.
+     */
+    abstract public function dataAction();
+    
     /**
      * Test action.
      *
@@ -22,12 +27,7 @@ abstract class ActionTestCase extends PHPUnit_Framework_TestCase
     public function testAction($name, $parameters, $input, $expectedReturn)
     {
         $fieldRule = new ValidationFieldRule($name, $parameters);
-
+        
         static::assertSame($expectedReturn, $fieldRule->validate($input));
     }
-
-    /**
-     * Actions data.
-     */
-    abstract public function dataAction();
 }

@@ -12,6 +12,22 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class MaxLengthRuleTest extends RuleTestCase
 {
     /**
+     * Rules data.
+     */
+    public function dataRule()
+    {
+        return [
+            1000 =>
+                [ 'maxLength', [ 5 ], 'hello', 'success', [ 'length' => 5, 'quantify' => 5 ] ],
+            [ 'maxLength', [ 10 ], 'hello', 'success', [ 'length' => 10, 'quantify' => 10 ] ],
+            2000 =>
+                [ 'maxLength', [ ], 'hello', 'fail:maxLength' ],
+            [ 'maxLength', [ 0 ], 'hello', 'fail:maxLength', [ 'length' => 0, 'quantify' => 0 ] ],
+            [ 'maxLength', [ -5 ], 'hello', 'fail:maxLength', [ 'length' => -5, 'quantify' => -5 ] ],
+        ];
+    }
+    
+    /**
      * Test rule.
      *
      * @param string $name            Rule name.
@@ -28,23 +44,7 @@ class MaxLengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-
-    /**
-     * Rules data.
-     */
-    public function dataRule()
-    {
-        return [
-            1000 =>
-                [ 'maxLength', [ 5 ], 'hello', 'success', [ 'length' => 5, 'quantify' => 5 ] ],
-            [ 'maxLength', [ 10 ], 'hello', 'success', [ 'length' => 10, 'quantify' => 10 ] ],
-            2000 =>
-                [ 'maxLength', [ ], 'hello', 'fail:maxLength' ],
-            [ 'maxLength', [ 0 ], 'hello', 'fail:maxLength', [ 'length' => 0, 'quantify' => 0 ] ],
-            [ 'maxLength', [ -5 ], 'hello', 'fail:maxLength', [ 'length' => -5, 'quantify' => -5 ] ],
-        ];
-    }
-
+    
     /**
      * Test rule directly.
      * @coversNothing

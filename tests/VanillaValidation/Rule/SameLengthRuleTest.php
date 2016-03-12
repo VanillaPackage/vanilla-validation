@@ -12,6 +12,22 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class SameLengthRuleTest extends RuleTestCase
 {
     /**
+     * Rules data.
+     */
+    public function dataRule()
+    {
+        return [
+            1000 =>
+                [ 'sameLength', [ 5 ], 'hello', 'success', [ 'length' => 5, 'quantify' => 5 ] ],
+            2000 =>
+                [ 'sameLength', [ ], 'hello', 'fail:sameLength' ],
+            [ 'sameLength', [ 10 ], 'hello', 'fail:sameLength', [ 'length' => 10, 'quantify' => 10 ] ],
+            [ 'sameLength', [ 0 ], 'hello', 'fail:sameLength', [ 'length' => 0, 'quantify' => 0 ] ],
+            [ 'sameLength', [ -5 ], 'hello', 'fail:sameLength', [ 'length' => -5, 'quantify' => -5 ] ],
+        ];
+    }
+    
+    /**
      * Test rule.
      *
      * @param string $name            Rule name.
@@ -28,23 +44,7 @@ class SameLengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-
-    /**
-     * Rules data.
-     */
-    public function dataRule()
-    {
-        return [
-            1000 =>
-                [ 'sameLength', [ 5 ], 'hello', 'success', [ 'length' => 5, 'quantify' => 5 ] ],
-            2000 =>
-                [ 'sameLength', [ ], 'hello', 'fail:sameLength' ],
-            [ 'sameLength', [ 10 ], 'hello', 'fail:sameLength', [ 'length' => 10, 'quantify' => 10 ] ],
-            [ 'sameLength', [ 0 ], 'hello', 'fail:sameLength', [ 'length' => 0, 'quantify' => 0 ] ],
-            [ 'sameLength', [ -5 ], 'hello', 'fail:sameLength', [ 'length' => -5, 'quantify' => -5 ] ],
-        ];
-    }
-
+    
     /**
      * Test rule directly.
      * @coversNothing

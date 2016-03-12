@@ -22,7 +22,7 @@ class CollectAction implements Action
     {
         /** @noinspection OnlyWritesOnParameterInspection */
         $parameters[0] = $input;
-
+        
         return $input;
     }
 }

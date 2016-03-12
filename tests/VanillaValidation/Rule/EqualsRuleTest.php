@@ -12,24 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class EqualsRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\EqualsRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\EqualsRule::validateNegative
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -49,7 +31,25 @@ class EqualsRuleTest extends RuleTestCase
             [ 'equals', [ '1', true ], 1, 'fail:equals' ],
         ];
     }
-
+    
+    /**
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\EqualsRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\EqualsRule::validateNegative
+     * @dataProvider dataRule
+     */
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
+    {
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+    }
+    
     /**
      * Test rule directly.
      * @coversNothing

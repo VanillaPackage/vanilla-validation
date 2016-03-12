@@ -20,16 +20,7 @@ class ValidationResult extends Result
     {
         return $this->getResultsFiltered(false);
     }
-
-    /**
-     * Returns all successes results.
-     * @return Success[]
-     */
-    public function getSuccesses()
-    {
-        return $this->getResultsFiltered(true);
-    }
-
+    
     /**
      * Returns both fails and successes results.
      * @return Fail[]|Success[]
@@ -38,7 +29,16 @@ class ValidationResult extends Result
     {
         return $this->getData() ?: [ ];
     }
-
+    
+    /**
+     * Returns all successes results.
+     * @return Success[]
+     */
+    public function getSuccesses()
+    {
+        return $this->getResultsFiltered(true);
+    }
+    
     /**
      * Get results filtered.
      *
@@ -49,13 +49,13 @@ class ValidationResult extends Result
     private function getResultsFiltered($status)
     {
         $results = [ ];
-
+        
         foreach ($this->getResults() as $result) {
             if ($result->isSuccess() === $status) {
                 $results[] = $result;
             }
         }
-
+        
         return $results;
     }
 }

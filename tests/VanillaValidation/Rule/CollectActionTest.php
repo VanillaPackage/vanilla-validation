@@ -18,7 +18,7 @@ class CollectActionTest extends PHPUnit_Framework_TestCase
     public function testAction()
     {
         Validation::collect($beforeAction)->trim()->collect($afterAction)->validate(' hello ');
-
+        
         static::assertSame(' hello ', $beforeAction);
         static::assertSame('hello', $afterAction);
     }

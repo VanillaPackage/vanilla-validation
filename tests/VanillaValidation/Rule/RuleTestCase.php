@@ -2,9 +2,9 @@
 
 namespace Rentalhost\VanillaValidation\Test\Rule;
 
-use Rentalhost\VanillaValidation\ValidationFieldRule;
-use Rentalhost\VanillaValidation\Result\Result;
 use PHPUnit_Framework_TestCase;
+use Rentalhost\VanillaValidation\Result\Result;
+use Rentalhost\VanillaValidation\ValidationFieldRule;
 
 /**
  * Class RuleTestCase
@@ -12,6 +12,11 @@ use PHPUnit_Framework_TestCase;
  */
 abstract class RuleTestCase extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Rules data.
+     */
+    abstract public function dataRule();
+    
     /**
      * Test rule.
      *
@@ -23,17 +28,12 @@ abstract class RuleTestCase extends PHPUnit_Framework_TestCase
      */
     public function testRule($name, $parameters, $input, $expectedMessage, $expectedData)
     {
-        $fieldRule = new ValidationFieldRule($name, $parameters);
+        $fieldRule  = new ValidationFieldRule($name, $parameters);
         $validation = $fieldRule->validate($input);
-
+        
         static::assertInstanceOf(Result::class, $validation);
         static::assertSame($expectedMessage === 'success', $validation->isSuccess());
         static::assertSame($expectedMessage, $validation->getMessage());
         static::assertSame($expectedData ?: [ ], $validation->getData());
     }
-
-    /**
-     * Rules data.
-     */
-    abstract public function dataRule();
 }

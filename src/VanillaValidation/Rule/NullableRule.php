@@ -25,7 +25,7 @@ class NullableRule extends Rule
         if (trim($input) === '') {
             return new Nullable();
         }
-
+        
         return true;
     }
 }

@@ -25,10 +25,10 @@ class MaxLengthRule extends Rule
         if (!array_key_exists(0, $parameters)) {
             return false;
         }
-
-        $data['length'] = (int) $parameters[0];
+        
+        $data['length']   = (int) $parameters[0];
         $data['quantify'] = $data['length'];
-
+        
         return strlen($input) <= $data['length'];
     }
 }

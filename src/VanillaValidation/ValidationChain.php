@@ -61,7 +61,7 @@ class ValidationChain
      * @var ValidationFieldRuleList
      */
     public $rules;
-
+    
     /**
      * Construct a new chain.
      */
@@ -69,7 +69,7 @@ class ValidationChain
     {
         $this->rules = new ValidationFieldRuleList;
     }
-
+    
     /**
      * Add a rule to chain.
      *
@@ -81,10 +81,10 @@ class ValidationChain
     public function __call($name, $parameters)
     {
         $this->rules->add($name, $parameters);
-
+        
         return $this;
     }
-
+    
     /**
      * Add the collect action.
      *
@@ -95,10 +95,10 @@ class ValidationChain
     public function collect(&$reference)
     {
         $this->rules->add('collect', [ &$reference ]);
-
+        
         return $this;
     }
-
+    
     /**
      * Validate each rules of this chain.
      *

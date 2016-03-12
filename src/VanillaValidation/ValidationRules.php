@@ -19,20 +19,7 @@ class ValidationRules
      * @var self
      */
     private static $instance;
-
-    /**
-     * Returns the singleton instance or create it.
-     * @return self
-     */
-    public static function singleton()
-    {
-        if (!self::$instance) {
-            self::$instance = new ValidationRulesSingleton;
-        }
-
-        return self::$instance;
-    }
-
+    
     /**
      * Call a method from a singleton.
      *
@@ -44,5 +31,18 @@ class ValidationRules
     public static function __callStatic($name, $args)
     {
         return call_user_func_array([ self::singleton(), $name ], $args);
+    }
+    
+    /**
+     * Returns the singleton instance or create it.
+     * @return self
+     */
+    public static function singleton()
+    {
+        if (!self::$instance) {
+            self::$instance = new ValidationRulesSingleton;
+        }
+        
+        return self::$instance;
     }
 }

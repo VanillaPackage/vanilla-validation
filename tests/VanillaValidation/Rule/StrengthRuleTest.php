@@ -12,26 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class StrengthRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::validateNegative
-     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::calculateStrength
-     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::percentualToInteger
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -54,7 +34,27 @@ class StrengthRuleTest extends RuleTestCase
             [ 'strength', [ 0.70 ], 'abcdefghijklmnopqr', 'fail:strength', [ 'expected' => 0.70, 'strength' => 0.37 ] ],
         ];
     }
-
+    
+    /**
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::validateNegative
+     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::calculateStrength
+     * @covers       Rentalhost\VanillaValidation\Rule\StrengthRule::percentualToInteger
+     * @dataProvider dataRule
+     */
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
+    {
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+    }
+    
     /**
      * Test rule directly.
      * @coversNothing

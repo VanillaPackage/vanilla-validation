@@ -13,7 +13,7 @@ class MaskRule extends Rule
         '#' => '\d',
         '@' => '[a-zA-Z]',
     ];
-
+    
     /**
      * Validate if input match with mask.
      *
@@ -33,26 +33,26 @@ class MaskRule extends Rule
         if (empty( $parameters[0] )) {
             return false;
         }
-
-        $mask = $parameters[0];
+        
+        $mask      = $parameters[0];
         $maskRules = self::$defaultMasks;
-
+        
         // Parameter 1 (rules) will overwrite mask rules.
         if (!empty( $parameters[1] )) {
             $maskRules = array_filter(array_replace($maskRules, $parameters[1]));
         }
-
+        
         // Define mask quotted keys.
-        $maskQuotes = array_diff(array_unique(str_split($mask)), array_keys($maskRules));
+        $maskQuotes     = array_diff(array_unique(str_split($mask)), array_keys($maskRules));
         $maskExpression = '~^' . str_replace(
                 array_keys($maskRules),
                 array_values($maskRules),
                 str_replace($maskQuotes, array_map('preg_quote', $maskQuotes), $mask)
             ) . '$~';
-
+        
         // Data.
         $data['expression'] = $maskExpression;
-
+        
         return (bool) preg_match($maskExpression, $input);
     }
 }

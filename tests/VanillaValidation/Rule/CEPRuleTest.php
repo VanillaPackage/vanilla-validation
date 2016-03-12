@@ -12,24 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class CEPRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\CEPRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\CEPRule::validateNegative
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -57,7 +39,25 @@ class CEPRuleTest extends RuleTestCase
             [ 'CEP', [ ], 'not34244419888valid', 'fail:cep' ],
         ];
     }
-
+    
+    /**
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\CEPRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\CEPRule::validateNegative
+     * @dataProvider dataRule
+     */
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
+    {
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+    }
+    
     /**
      * Test rule directly.
      * @coversNothing
@@ -69,7 +69,7 @@ class CEPRuleTest extends RuleTestCase
         static::assertInstanceOf(ValidationChain::class, Validation::CEP());
         static::assertInstanceOf(ValidationChain::class, Validation::cep());
     }
-
+    
     /**
      * Test intersect numbers with CEP.
      * @coversNothing

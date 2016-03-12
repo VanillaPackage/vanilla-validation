@@ -15,26 +15,26 @@ class ValidationFieldRule
      * @var string
      */
     public $name;
-
+    
     /**
      * Store rule original name.
      * @var string
      */
     public $originalName;
-
+    
     /**
      * Store rule parameters.
      * @var mixed[]
      */
     public $parameters;
-
+    
     /**
      * Store if rule is negative.
      * @example notString()
      * @var boolean
      */
     public $negative;
-
+    
     /**
      * Construct a new rule.
      *
@@ -45,15 +45,15 @@ class ValidationFieldRule
     {
         // Check if rule is negative.
         if (preg_match('/^not[A-Z]/', $name)) {
-            $name = strtolower($name[3]) . substr($name, 4);
+            $name           = strtolower($name[3]) . substr($name, 4);
             $this->negative = true;
         }
-
-        $this->name = ValidationRules::normalize($name) ?: $name;
+        
+        $this->name         = ValidationRules::normalize($name) ?: $name;
         $this->originalName = $this->negative ? 'not' . ucfirst($this->name) : $this->name;
-        $this->parameters = $parameters ?: [ ];
+        $this->parameters   = $parameters ?: [ ];
     }
-
+    
     /**
      * Validate this rule with value.
      *

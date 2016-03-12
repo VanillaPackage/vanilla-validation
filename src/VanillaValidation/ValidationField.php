@@ -60,19 +60,19 @@ class ValidationField
      * @var string
      */
     public $name;
-
+    
     /**
      * Store field value.
      * @var mixed
      */
     public $value;
-
+    
     /**
      * Store field rules.
      * @var ValidationFieldRuleList
      */
     public $rules;
-
+    
     /**
      * Construct a new field.
      *
@@ -85,7 +85,7 @@ class ValidationField
         $this->value = $value;
         $this->rules = new ValidationFieldRuleList;
     }
-
+    
     /**
      * Set a rule to field.
      *
@@ -97,10 +97,10 @@ class ValidationField
     public function __call($name, $parameters)
     {
         $this->rules->add($name, $parameters);
-
+        
         return $this;
     }
-
+    
     /**
      * Add the collect action.
      *
@@ -111,10 +111,10 @@ class ValidationField
     public function collect(&$reference)
     {
         $this->rules->add('collect', [ &$reference ]);
-
+        
         return $this;
     }
-
+    
     /**
      * Validate each rules of this field.
      * It will run the rules list validate method, passing this value
@@ -124,11 +124,11 @@ class ValidationField
     public function validate()
     {
         $results = $this->rules->validate($this->value);
-
+        
         foreach ($results->getResults() as $result) {
             $result->field = $this;
         }
-
+        
         return $results;
     }
 }

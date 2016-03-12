@@ -31,7 +31,7 @@ class BreakableRule extends Rule
         ) {
             return new FailBreakable('fail:breakable');
         }
-
+        
         return true;
     }
 }

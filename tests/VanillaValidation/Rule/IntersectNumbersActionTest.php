@@ -13,6 +13,20 @@ class IntersectNumbersActionTest extends ActionTestCase
 {
     /** @noinspection SenselessProxyMethodInspection */
     /**
+     * Actions data.
+     */
+    public function dataAction()
+    {
+        return [
+            [ 'intersectNumbers', [ ], 'test', '' ],
+            [ 'intersectNumbers', [ ], '123', '123' ],
+            [ 'intersectNumbers', [ ], '1.2.3', '123' ],
+            [ 'intersectNumbers', [ ], 'Hello0', '0' ],
+            [ 'intersectNumbers', [ ], '0.55', '055' ],
+        ];
+    }
+    
+    /**
      * Test action.
      *
      * @param string $name           Action name.
@@ -27,21 +41,7 @@ class IntersectNumbersActionTest extends ActionTestCase
     {
         parent::testAction($name, $parameters, $input, $expectedReturn);
     }
-
-    /**
-     * Actions data.
-     */
-    public function dataAction()
-    {
-        return [
-            [ 'intersectNumbers', [ ], 'test', '' ],
-            [ 'intersectNumbers', [ ], '123', '123' ],
-            [ 'intersectNumbers', [ ], '1.2.3', '123' ],
-            [ 'intersectNumbers', [ ], 'Hello0', '0' ],
-            [ 'intersectNumbers', [ ], '0.55', '055' ],
-        ];
-    }
-
+    
     /**
      * Test rule directly.
      * @coversNothing

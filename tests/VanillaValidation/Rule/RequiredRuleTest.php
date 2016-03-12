@@ -12,24 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class RequiredRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validateNegative
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -54,17 +36,25 @@ class RequiredRuleTest extends RuleTestCase
             [ 'notRequired', [ ], null ],
         ];
     }
-
+    
     /**
-     * Test rule directly.
-     * @coversNothing
-     * @return void
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\RequiredRule::validateNegative
+     * @dataProvider dataRule
      */
-    public function testDirect()
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
     {
-        static::assertInstanceOf(ValidationChain::class, Validation::required());
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-
+    
     /**
      * Test if rule breakable parameter works properly.
      * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
@@ -75,12 +65,22 @@ class RequiredRuleTest extends RuleTestCase
     public function testBreakable()
     {
         $validation = Validation::required(false)->minLength(8)->validate('');
-
+        
         static::assertCount(2, $validation->getFails());
-
+        
         $validation = Validation::required()->minLength(8)->validate('');
-
+        
         static::assertCount(1, $validation->getFails());
         static::assertSame('required', $validation->getFails()[0]->rule->name);
+    }
+    
+    /**
+     * Test rule directly.
+     * @coversNothing
+     * @return void
+     */
+    public function testDirect()
+    {
+        static::assertInstanceOf(ValidationChain::class, Validation::required());
     }
 }

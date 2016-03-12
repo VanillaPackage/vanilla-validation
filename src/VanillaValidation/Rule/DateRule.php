@@ -28,7 +28,7 @@ class DateRule extends Rule
         else if (!is_string($input)) {
             return false;
         }
-
+        
         return strtotime($input) !== false;
     }
 }

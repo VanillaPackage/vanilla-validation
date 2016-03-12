@@ -13,6 +13,19 @@ class TrimActionTest extends ActionTestCase
 {
     /** @noinspection SenselessProxyMethodInspection */
     /**
+     * Actions data.
+     */
+    public function dataAction()
+    {
+        return [
+            [ 'trim', [ ], 'test', 'test' ],
+            [ 'trim', [ ], ' test ', 'test' ],
+            [ 'trim', [ '-' ], ' test ', ' test ' ],
+            [ 'trim', [ '-' ], '-test-', 'test' ],
+        ];
+    }
+    
+    /**
      * Test action.
      *
      * @param string $name           Action name.
@@ -27,20 +40,7 @@ class TrimActionTest extends ActionTestCase
     {
         parent::testAction($name, $parameters, $input, $expectedReturn);
     }
-
-    /**
-     * Actions data.
-     */
-    public function dataAction()
-    {
-        return [
-            [ 'trim', [ ], 'test', 'test' ],
-            [ 'trim', [ ], ' test ', 'test' ],
-            [ 'trim', [ '-' ], ' test ', ' test ' ],
-            [ 'trim', [ '-' ], '-test-', 'test' ],
-        ];
-    }
-
+    
     /**
      * Test rule directly.
      * @coversNothing

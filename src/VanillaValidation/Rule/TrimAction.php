@@ -23,7 +23,7 @@ class TrimAction implements Action
     public function action($input, array $parameters)
     {
         array_unshift($parameters, $input);
-
+        
         return call_user_func_array('trim', $parameters);
     }
 }

@@ -17,25 +17,25 @@ abstract class Result extends BaseResult
      * @var ValidationField
      */
     public $field;
-
+    
     /**
      * Stores input value. Which was passed to validator.
      * @var string|mixed
      */
     public $value;
-
+    
     /**
      * Stores rule index from the field rules set.
      * @var integer
      */
     public $ruleIndex;
-
+    
     /**
      * Stores rule instance.
      * @var ValidationFieldRule
      */
     public $rule;
-
+    
     /**
      * Construct a result.
      *

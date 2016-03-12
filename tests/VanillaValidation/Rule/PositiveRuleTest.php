@@ -12,24 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class PositiveRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\PositiveRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\PositiveRule::validateNegative
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -57,7 +39,25 @@ class PositiveRuleTest extends RuleTestCase
             [ 'positive', [ ], '0xFF', 'fail:positive' ],
         ];
     }
-
+    
+    /**
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\PositiveRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\PositiveRule::validateNegative
+     * @dataProvider dataRule
+     */
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
+    {
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+    }
+    
     /**
      * Test rule directly.
      * @coversNothing

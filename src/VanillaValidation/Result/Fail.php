@@ -20,7 +20,7 @@ class Fail extends Result
     {
         parent::__construct(false, $message, $data);
     }
-
+    
     /**
      * Returns the fail message localized.
      * @return string

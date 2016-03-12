@@ -12,6 +12,23 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class StringRuleTest extends RuleTestCase
 {
     /**
+     * Rules data.
+     */
+    public function dataRule()
+    {
+        return [
+            1000 =>
+                [ 'string', [ ], 'test' ],
+            [ 'string', [ ], '' ],
+            2000 =>
+                [ 'string', [ ], 0, 'fail:string' ],
+            [ 'string', [ ], [ ], 'fail:string' ],
+            [ 'string', [ ], false, 'fail:string' ],
+            [ 'string', [ ], null, 'fail:string' ],
+        ];
+    }
+    
+    /**
      * Test rule.
      *
      * @param string $name            Rule name.
@@ -28,24 +45,7 @@ class StringRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-
-    /**
-     * Rules data.
-     */
-    public function dataRule()
-    {
-        return [
-            1000 =>
-                [ 'string', [ ], 'test' ],
-            [ 'string', [ ], '' ],
-            2000 =>
-                [ 'string', [ ], 0, 'fail:string' ],
-            [ 'string', [ ], [ ], 'fail:string' ],
-            [ 'string', [ ], false, 'fail:string' ],
-            [ 'string', [ ], null, 'fail:string' ],
-        ];
-    }
-
+    
     /**
      * Test rule directly.
      * @coversNothing

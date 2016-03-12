@@ -13,7 +13,7 @@ class IntersectNumbersAction implements Action
     /**
      * Will affect the input to keep only numeric characters.
      *
-     * @param string $input Current input.
+     * @param string $input      Current input.
      * @param array  $parameters Action parameters.
      *
      * @return string

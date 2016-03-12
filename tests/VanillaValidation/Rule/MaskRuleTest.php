@@ -12,24 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class MaskRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\MaskRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\MaskRule::validateNegative
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -66,17 +48,25 @@ class MaskRuleTest extends RuleTestCase
             [ 'mask', [ '#####-###', [ '#' => null ] ], '00000-111', 'fail:mask', [ 'expression' => '~^#####\-###$~' ] ],
         ];
     }
-
+    
     /**
-     * Test rule directly.
-     * @coversNothing
-     * @return void
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\MaskRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\MaskRule::validateNegative
+     * @dataProvider dataRule
      */
-    public function testDirect()
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
     {
-        static::assertInstanceOf(ValidationChain::class, Validation::mask('#-##'));
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-
+    
     /**
      * Test CPF with mask.
      * @coversNothing
@@ -88,8 +78,18 @@ class MaskRuleTest extends RuleTestCase
             ->intersectNumbers()->cpf()
             ->mask('###########')->collect($afterAction)
             ->validate('342.444.198-88');
-
+        
         static::assertTrue($validation->isSuccess());
         static::assertSame('34244419888', $afterAction);
+    }
+    
+    /**
+     * Test rule directly.
+     * @coversNothing
+     * @return void
+     */
+    public function testDirect()
+    {
+        static::assertInstanceOf(ValidationChain::class, Validation::mask('#-##'));
     }
 }

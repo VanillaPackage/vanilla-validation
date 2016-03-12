@@ -13,7 +13,7 @@ class ValidationFieldList
      * @var ValidationField[]
      */
     private $fields;
-
+    
     /**
      * Construct.
      */
@@ -21,7 +21,7 @@ class ValidationFieldList
     {
         $this->fields = [ ];
     }
-
+    
     /**
      * Clone all fields too.
      * @return void
@@ -32,7 +32,7 @@ class ValidationFieldList
             $field = clone $field;
         }
     }
-
+    
     /**
      * Add a new field and return it instance.
      *
@@ -44,12 +44,12 @@ class ValidationFieldList
     public function add($name, $value = null)
     {
         $field = new ValidationField($name, $value);
-
+        
         $this->fields[] = $field;
-
+        
         return $field;
     }
-
+    
     /**
      * Returns all fields.
      * @return ValidationField[]
@@ -58,7 +58,7 @@ class ValidationFieldList
     {
         return $this->fields;
     }
-
+    
     /**
      * Clear all fields.
      * @return void
@@ -67,7 +67,7 @@ class ValidationFieldList
     {
         $this->fields = [ ];
     }
-
+    
     /**
      * Validate all fields.
      * Basically it compiles all fields validations results into one.
@@ -76,17 +76,17 @@ class ValidationFieldList
      */
     public function validate()
     {
-        $results = [ ];
+        $results      = [ ];
         $resultStatus = true;
-
+        
         // Run each fields rules.
         foreach ($this->fields as $field) {
             $fieldResults = $field->validate();
             $resultStatus = $resultStatus && $fieldResults->isSuccess();
-
+            
             $results[] = $fieldResults->getResults();
         }
-
+        
         return new ValidationResult(
             $resultStatus,
             $resultStatus ? 'success' : 'fail',

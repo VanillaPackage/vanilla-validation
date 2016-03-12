@@ -12,25 +12,6 @@ use Rentalhost\VanillaValidation\ValidationChain;
 class CNPJRuleTest extends RuleTestCase
 {
     /**
-     * Test rule.
-     *
-     * @param string $name            Rule name.
-     * @param array  $parameters      Rule parameters.
-     * @param mixed  $input           Rule input.
-     * @param string $expectedMessage Rule result expected message.
-     * @param null   $expectedData    Rule result expected data.
-     *
-     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::validate
-     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::validateNegative
-     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::calculateDigit
-     * @dataProvider dataRule
-     */
-    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
-    {
-        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
-    }
-
-    /**
      * Rules data.
      */
     public function dataRule()
@@ -59,7 +40,26 @@ class CNPJRuleTest extends RuleTestCase
             [ 'CNPJ', [ ], 'not38175021000110valid', 'fail:cnpj' ],
         ];
     }
-
+    
+    /**
+     * Test rule.
+     *
+     * @param string $name            Rule name.
+     * @param array  $parameters      Rule parameters.
+     * @param mixed  $input           Rule input.
+     * @param string $expectedMessage Rule result expected message.
+     * @param null   $expectedData    Rule result expected data.
+     *
+     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::validate
+     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::validateNegative
+     * @covers       Rentalhost\VanillaValidation\Rule\CNPJRule::calculateDigit
+     * @dataProvider dataRule
+     */
+    public function testRule($name, $parameters, $input, $expectedMessage = 'success', $expectedData = null)
+    {
+        parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
+    }
+    
     /**
      * Test rule directly.
      * @coversNothing
@@ -71,7 +71,7 @@ class CNPJRuleTest extends RuleTestCase
         static::assertInstanceOf(ValidationChain::class, Validation::CNPJ());
         static::assertInstanceOf(ValidationChain::class, Validation::cnpj());
     }
-
+    
     /**
      * Test intersect numbers with CNPJ.
      * @coversNothing

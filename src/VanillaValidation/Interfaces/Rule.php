@@ -18,7 +18,7 @@ interface Rule
      * @return boolean
      */
     public function validate($input, array $parameters, array &$data);
-
+    
     /**
      * Negative validation of rule.
      * @see self::validate
