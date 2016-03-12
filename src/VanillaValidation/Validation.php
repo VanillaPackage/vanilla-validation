@@ -154,14 +154,15 @@ class Validation
     /**
      * Add a field and return the instance.
      *
-     * @param  string $name  Field name.
-     * @param  mixed  $value Field value.
+     * @param string     $name  Field name.
+     * @param mixed|null $value Field value.
+     * @param mixed|null $data  Additional data to field.
      *
      * @return ValidationField
      */
-    public function field($name, $value = null)
+    public function field($name, $value = null, $data = null)
     {
-        return $this->fields->add($name, $value);
+        return $this->fields->add($name, $value, $data);
     }
 
     /**

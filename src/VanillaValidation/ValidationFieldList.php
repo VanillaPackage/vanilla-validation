@@ -13,7 +13,7 @@ class ValidationFieldList
      * @var ValidationField[]
      */
     private $fields;
-    
+
     /**
      * Construct.
      */
@@ -21,7 +21,7 @@ class ValidationFieldList
     {
         $this->fields = [ ];
     }
-    
+
     /**
      * Clone all fields too.
      * @return void
@@ -32,24 +32,25 @@ class ValidationFieldList
             $field = clone $field;
         }
     }
-    
+
     /**
      * Add a new field and return it instance.
      *
-     * @param string $name  Field name.
-     * @param mixed  $value Field value.
+     * @param string     $name  Field name.
+     * @param mixed|null $value Field value.
+     * @param mixed|null $data  Additional data to field.
      *
      * @return ValidationField
      */
-    public function add($name, $value = null)
+    public function add($name, $value = null, $data = null)
     {
-        $field = new ValidationField($name, $value);
-        
+        $field = new ValidationField($name, $value, $data);
+
         $this->fields[] = $field;
-        
+
         return $field;
     }
-    
+
     /**
      * Returns all fields.
      * @return ValidationField[]
@@ -58,7 +59,7 @@ class ValidationFieldList
     {
         return $this->fields;
     }
-    
+
     /**
      * Clear all fields.
      * @return void
@@ -67,7 +68,7 @@ class ValidationFieldList
     {
         $this->fields = [ ];
     }
-    
+
     /**
      * Validate all fields.
      * Basically it compiles all fields validations results into one.
@@ -78,15 +79,15 @@ class ValidationFieldList
     {
         $results      = [ ];
         $resultStatus = true;
-        
+
         // Run each fields rules.
         foreach ($this->fields as $field) {
             $fieldResults = $field->validate();
             $resultStatus = $resultStatus && $fieldResults->isSuccess();
-            
+
             $results[] = $fieldResults->getResults();
         }
-        
+
         return new ValidationResult(
             $resultStatus,
             $resultStatus ? 'success' : 'fail',

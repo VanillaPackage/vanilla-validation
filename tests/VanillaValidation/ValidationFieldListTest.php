@@ -24,22 +24,37 @@ class ValidationFieldListTest extends PHPUnit_Framework_TestCase
         $fieldList = new ValidationFieldList;
         $fieldList->add('name1', 'value1');
         $fieldList->add('name2', 'value2');
-        
+
         $field1 = new ValidationField('name1', 'value1');
         $field2 = new ValidationField('name2', 'value2');
-        
+
         static::assertEquals([ $field1, $field2 ], $fieldList->all());
-        
+
         $fieldListClone = clone $fieldList;
-        
+
         static::assertNotSame($fieldListClone->all(), $fieldList->all());
-        
+
         $fieldListClone->clear();
-        
+
         static::assertEmpty($fieldListClone->all());
         static::assertNotEmpty($fieldList->all());
     }
-    
+
+    /**
+     * Test field with data.
+     * @coversNothing
+     */
+    public function testFieldWithData()
+    {
+        $validationFieldList = new ValidationFieldList();
+        $validationField     = $validationFieldList->add(null, null, true);
+        $validationField->required();
+
+        $validationResult = $validationFieldList->validate();
+        
+        static::assertTrue($validationResult->getFails()[0]->field->data);
+    }
+
     /**
      * Test validate method.
      * @covers Rentalhost\VanillaValidation\ValidationFieldList::validate
@@ -50,26 +65,26 @@ class ValidationFieldListTest extends PHPUnit_Framework_TestCase
         $fieldList = new ValidationFieldList;
         $fieldList->add('name1', 'value1')->string()->required();
         $fieldList->add('name2', 'value2')->string()->required();
-        
+
         $fieldListResult = $fieldList->validate();
-        
+
         static::assertTrue($fieldListResult->isSuccess());
         static::assertCount(0, $fieldListResult->getFails());
         static::assertCount(4, $fieldListResult->getSuccesses());
-        
+
         $fieldList = new ValidationFieldList;
         $fieldList->add('name1', 'value1')->string()->required();
         $fieldList->add('name2', 123)->string()->required();
-        
+
         $fieldListResult = $fieldList->validate();
-        
+
         static::assertFalse($fieldListResult->isSuccess());
         static::assertCount(1, $fieldListResult->getFails());
         static::assertCount(3, $fieldListResult->getSuccesses());
-        
+
         $fieldList       = new ValidationFieldList;
         $fieldListResult = $fieldList->validate();
-        
+
         static::assertTrue($fieldListResult->isSuccess());
         static::assertCount(0, $fieldListResult->getFails());
         static::assertCount(0, $fieldListResult->getSuccesses());
