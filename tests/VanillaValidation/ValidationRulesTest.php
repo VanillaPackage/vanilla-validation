@@ -3,6 +3,7 @@
 namespace Rentalhost\VanillaValidation;
 
 use PHPUnit_Framework_TestCase;
+use ReflectionProperty;
 
 /**
  * Class ValidationRulesTest
@@ -33,5 +34,14 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $singleton = ValidationRules::singleton();
 
         static::assertTrue($singleton->has('required'));
+
+        /** @var ReflectionProperty $resetInstance */
+        $resetInstance = new ReflectionProperty(ValidationRules::class, 'instance');
+        $resetInstance->setAccessible(true);
+        $resetInstance->setValue(null);
+
+        $singletonUncached = ValidationRules::singleton();
+
+        static::assertTrue($singletonUncached->has('required'));
     }
 }

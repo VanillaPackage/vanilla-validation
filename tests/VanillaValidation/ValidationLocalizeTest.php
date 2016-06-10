@@ -3,6 +3,7 @@
 namespace Rentalhost\VanillaValidation;
 
 use PHPUnit_Framework_TestCase;
+use ReflectionProperty;
 
 /**
  * Class ValidationLocalizeTest
@@ -45,6 +46,15 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
         $singletonCached = ValidationLocalize::singleton();
 
         static::assertInstanceOf(ValidationLocalize::class, $singletonCached);
+
+        /** @var ReflectionProperty $resetInstance */
+        $resetInstance = new ReflectionProperty(ValidationLocalize::class, 'instance');
+        $resetInstance->setAccessible(true);
+        $resetInstance->setValue(null);
+
+        $singletonUncached = ValidationLocalize::singleton();
+
+        static::assertInstanceOf(ValidationLocalize::class, $singletonUncached);
     }
 
     /**
