@@ -36,7 +36,7 @@ class RequiredRuleTest extends RuleTestCase
             [ 'notRequired', [ ], null ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -54,30 +54,28 @@ class RequiredRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test if rule breakable parameter works properly.
      * @covers Rentalhost\VanillaValidation\ValidationFieldRuleList::validate
      * @covers Rentalhost\VanillaValidation\ValidationRulesSingleton::validate
      * @covers Rentalhost\VanillaValidation\Rule\RequiredRule::validate
-     * @return void
      */
     public function testBreakable()
     {
         $validation = Validation::required(false)->minLength(8)->validate('');
-        
+
         static::assertCount(2, $validation->getFails());
-        
+
         $validation = Validation::required()->minLength(8)->validate('');
-        
+
         static::assertCount(1, $validation->getFails());
         static::assertSame('required', $validation->getFails()[0]->rule->name);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

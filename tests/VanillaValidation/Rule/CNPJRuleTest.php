@@ -40,7 +40,7 @@ class CNPJRuleTest extends RuleTestCase
             [ 'CNPJ', [ ], 'not38175021000110valid', 'fail:cnpj' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -59,11 +59,10 @@ class CNPJRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {
@@ -71,11 +70,10 @@ class CNPJRuleTest extends RuleTestCase
         static::assertInstanceOf(ValidationChain::class, Validation::CNPJ());
         static::assertInstanceOf(ValidationChain::class, Validation::cnpj());
     }
-    
+
     /**
      * Test intersect numbers with CNPJ.
      * @coversNothing
-     * @return void
      */
     public function testWithIntersectNumbers()
     {

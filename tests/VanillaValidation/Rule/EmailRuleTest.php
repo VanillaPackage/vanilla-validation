@@ -36,7 +36,7 @@ class EmailRuleTest extends RuleTestCase
             [ 'email', [ ], '.test@test.com', 'fail:email' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -54,11 +54,10 @@ class EmailRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

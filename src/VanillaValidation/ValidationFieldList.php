@@ -24,7 +24,6 @@ class ValidationFieldList
 
     /**
      * Clone all fields too.
-     * @return void
      */
     public function __clone()
     {
@@ -62,7 +61,6 @@ class ValidationFieldList
 
     /**
      * Clear all fields.
-     * @return void
      */
     public function clear()
     {

@@ -34,7 +34,7 @@ class ArrayRuleTest extends RuleTestCase
             [ 'notArray', [ ], new ArrayIterator, 'fail:notArray' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -52,11 +52,10 @@ class ArrayRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

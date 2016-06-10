@@ -19,7 +19,6 @@ class ValidationTest extends PHPUnit_Framework_TestCase
      * @covers Rentalhost\VanillaValidation\Validation::overwriteWith
      * @covers Rentalhost\VanillaValidation\Validation::test
      * @covers Rentalhost\VanillaValidation\Validation::testWith
-     * @return void
      */
     public function testBasic()
     {
@@ -71,7 +70,6 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     /**
      * Test collect method.
      * @covers Rentalhost\VanillaValidation\Validation::collect
-     * @return void
      */
     public function testCollect()
     {
@@ -137,7 +135,6 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     /**
      * Test option method.
      * @covers Rentalhost\VanillaValidation\Validation::option
-     * @return void
      */
     public function testOption()
     {
@@ -165,7 +162,6 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     /**
      * Test static/chain method.
      * @covers Rentalhost\VanillaValidation\Validation::__callStatic
-     * @return void
      */
     public function testStatic()
     {

@@ -39,7 +39,7 @@ class CEPRuleTest extends RuleTestCase
             [ 'CEP', [ ], 'not34244419888valid', 'fail:cep' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -57,11 +57,10 @@ class CEPRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {
@@ -69,11 +68,10 @@ class CEPRuleTest extends RuleTestCase
         static::assertInstanceOf(ValidationChain::class, Validation::CEP());
         static::assertInstanceOf(ValidationChain::class, Validation::cep());
     }
-    
+
     /**
      * Test intersect numbers with CEP.
      * @coversNothing
-     * @return void
      */
     public function testWithIntersectNumbers()
     {

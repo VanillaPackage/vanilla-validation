@@ -26,7 +26,7 @@ class MaxLengthRuleTest extends RuleTestCase
             [ 'maxLength', [ -5 ], 'hello', 'fail:maxLength', [ 'length' => -5, 'quantify' => -5 ] ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -44,11 +44,10 @@ class MaxLengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

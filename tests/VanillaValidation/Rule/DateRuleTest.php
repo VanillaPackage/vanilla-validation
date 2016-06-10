@@ -30,7 +30,7 @@ class DateRuleTest extends RuleTestCase
             [ 'date', [ ], (object) [ ], 'fail:date' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -48,11 +48,10 @@ class DateRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

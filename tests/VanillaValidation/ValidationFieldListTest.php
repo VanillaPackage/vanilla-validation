@@ -17,7 +17,6 @@ class ValidationFieldListTest extends PHPUnit_Framework_TestCase
      * @covers Rentalhost\VanillaValidation\ValidationFieldList::add
      * @covers Rentalhost\VanillaValidation\ValidationFieldList::all
      * @covers Rentalhost\VanillaValidation\ValidationFieldList::clear
-     * @return void
      */
     public function testBasic()
     {
@@ -51,14 +50,13 @@ class ValidationFieldListTest extends PHPUnit_Framework_TestCase
         $validationField->required();
 
         $validationResult = $validationFieldList->validate();
-        
+
         static::assertTrue($validationResult->getFails()[0]->field->data);
     }
 
     /**
      * Test validate method.
      * @covers Rentalhost\VanillaValidation\ValidationFieldList::validate
-     * @return void
      */
     public function testValidate()
     {

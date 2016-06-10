@@ -47,7 +47,7 @@ class CPFRuleTest extends RuleTestCase
             [ 'CPF', [ ], 'not34244419888valid', 'fail:cpf' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -66,11 +66,10 @@ class CPFRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {
@@ -78,7 +77,7 @@ class CPFRuleTest extends RuleTestCase
         static::assertInstanceOf(ValidationChain::class, Validation::CPF());
         static::assertInstanceOf(ValidationChain::class, Validation::cpf());
     }
-    
+
     /**
      * Test real nullable case.
      * @coversNothing
@@ -88,18 +87,17 @@ class CPFRuleTest extends RuleTestCase
         // Null before validation.
         static::assertTrue(Validation::nullable()->cpf()->validate('')->isSuccess());
         static::assertTrue(Validation::nullable()->cpf()->validate('  ')->isSuccess());
-        
+
         // Null will pass and will fail in validation.
         static::assertFalse(Validation::nullable()->cpf()->validate('fail')->isSuccess());
-        
+
         // Fail in validation before null check.
         static::assertFalse(Validation::cpf()->nullable()->validate('')->isSuccess());
     }
-    
+
     /**
      * Test intersect numbers with CPF.
      * @coversNothing
-     * @return void
      */
     public function testWithIntersectNumbers()
     {

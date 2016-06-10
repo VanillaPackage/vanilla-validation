@@ -26,7 +26,7 @@ class SameLengthRuleTest extends RuleTestCase
             [ 'sameLength', [ -5 ], 'hello', 'fail:sameLength', [ 'length' => -5, 'quantify' => -5 ] ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -44,11 +44,10 @@ class SameLengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

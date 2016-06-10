@@ -16,7 +16,6 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
      * Test basic methods.
      * @covers Rentalhost\VanillaValidation\ValidationField::__construct
      * @covers Rentalhost\VanillaValidation\ValidationField::__call
-     * @return void
      */
     public function testBasic()
     {
@@ -67,14 +66,13 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
         $validationField->required();
 
         $validationResult = $validationField->validate();
-        
+
         static::assertTrue($validationResult->getFails()[0]->field->data);
     }
 
     /**
      * Test validate method.
      * @covers Rentalhost\VanillaValidation\ValidationField::validate
-     * @return void
      */
     public function testValidate()
     {

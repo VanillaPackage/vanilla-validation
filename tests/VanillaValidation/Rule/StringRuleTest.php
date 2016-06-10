@@ -27,7 +27,7 @@ class StringRuleTest extends RuleTestCase
             [ 'string', [ ], null, 'fail:string' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -45,11 +45,10 @@ class StringRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

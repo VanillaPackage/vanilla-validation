@@ -13,7 +13,6 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
     /**
      * Test if quantify system works properly.
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::translateFail
-     * @return void
      */
     public function testQuantify()
     {
@@ -36,7 +35,6 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
      * Test basic methods.
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::__construct
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::singleton
-     * @return void
      */
     public function testSingleton()
     {
@@ -54,7 +52,6 @@ class ValidationLocalizeTest extends PHPUnit_Framework_TestCase
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::translateFail
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::maskKey
      * @covers Rentalhost\VanillaValidation\ValidationLocalize::configureLocale
-     * @return void
      */
     public function testTranslateFail()
     {

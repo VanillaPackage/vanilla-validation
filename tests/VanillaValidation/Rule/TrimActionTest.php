@@ -24,7 +24,7 @@ class TrimActionTest extends ActionTestCase
             [ 'trim', [ '-' ], '-test-', 'test' ],
         ];
     }
-    
+
     /**
      * Test action.
      *
@@ -40,11 +40,10 @@ class TrimActionTest extends ActionTestCase
     {
         parent::testAction($name, $parameters, $input, $expectedReturn);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

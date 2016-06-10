@@ -48,7 +48,7 @@ class MaskRuleTest extends RuleTestCase
             [ 'mask', [ '#####-###', [ '#' => null ] ], '00000-111', 'fail:mask', [ 'expression' => '~^#####\-###$~' ] ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -66,11 +66,10 @@ class MaskRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test CPF with mask.
      * @coversNothing
-     * @return void
      */
     public function testCPFMask()
     {
@@ -78,15 +77,14 @@ class MaskRuleTest extends RuleTestCase
             ->intersectNumbers()->cpf()
             ->mask('###########')->collect($afterAction)
             ->validate('342.444.198-88');
-        
+
         static::assertTrue($validation->isSuccess());
         static::assertSame('34244419888', $afterAction);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

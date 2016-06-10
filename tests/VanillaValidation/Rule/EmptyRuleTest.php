@@ -28,7 +28,7 @@ class EmptyRuleTest extends RuleTestCase
             [ 'empty', [ ], ' ', 'fail:empty' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -45,11 +45,10 @@ class EmptyRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

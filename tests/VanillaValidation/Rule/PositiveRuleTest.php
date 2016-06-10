@@ -39,7 +39,7 @@ class PositiveRuleTest extends RuleTestCase
             [ 'positive', [ ], '0xFF', 'fail:positive' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -57,11 +57,10 @@ class PositiveRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

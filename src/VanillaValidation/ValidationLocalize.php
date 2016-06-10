@@ -50,7 +50,6 @@ class ValidationLocalize
 
     /**
      * Configure translator locale.
-     * @return void
      */
     public static function configureLocale()
     {

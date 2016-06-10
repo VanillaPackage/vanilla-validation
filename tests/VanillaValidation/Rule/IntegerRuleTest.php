@@ -36,7 +36,7 @@ class IntegerRuleTest extends RuleTestCase
             [ 'integer', [ ], '-1.23', 'fail:integer' ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -54,11 +54,10 @@ class IntegerRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

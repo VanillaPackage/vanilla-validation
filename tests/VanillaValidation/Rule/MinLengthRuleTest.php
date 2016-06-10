@@ -26,7 +26,7 @@ class MinLengthRuleTest extends RuleTestCase
             [ 'minLength', [ 10 ], 'hello', 'fail:minLength', [ 'length' => 10, 'quantify' => 10 ] ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -44,11 +44,10 @@ class MinLengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

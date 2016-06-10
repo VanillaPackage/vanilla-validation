@@ -144,7 +144,6 @@ class Validation
 
     /**
      * Clone the field list.
-     * @return void
      */
     public function __clone()
     {
@@ -219,8 +218,6 @@ class Validation
      * Overwrite all fields values on instance.
      *
      * @param  array $values Values to overwrite.
-     *
-     * @return void
      */
     private function overwriteWith(array $values)
     {

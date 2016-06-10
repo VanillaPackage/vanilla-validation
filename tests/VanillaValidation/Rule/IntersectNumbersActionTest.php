@@ -25,7 +25,7 @@ class IntersectNumbersActionTest extends ActionTestCase
             [ 'intersectNumbers', [ ], '0.55', '055' ],
         ];
     }
-    
+
     /**
      * Test action.
      *
@@ -41,11 +41,10 @@ class IntersectNumbersActionTest extends ActionTestCase
     {
         parent::testAction($name, $parameters, $input, $expectedReturn);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {

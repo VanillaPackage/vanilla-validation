@@ -13,7 +13,6 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     /**
      * Test basic methods.
      * @covers Rentalhost\VanillaValidation\ValidationRules::__callStatic
-     * @return void
      */
     public function testBasic()
     {
@@ -28,7 +27,6 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     /**
      * Test singleton.
      * @covers Rentalhost\VanillaValidation\ValidationRules::singleton
-     * @return void
      */
     public function testSingleton()
     {

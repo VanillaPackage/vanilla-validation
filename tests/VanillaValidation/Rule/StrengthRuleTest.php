@@ -34,7 +34,7 @@ class StrengthRuleTest extends RuleTestCase
             [ 'strength', [ 0.70 ], 'abcdefghijklmnopqr', 'fail:strength', [ 'expected' => 0.70, 'strength' => 0.37 ] ],
         ];
     }
-    
+
     /**
      * Test rule.
      *
@@ -54,11 +54,10 @@ class StrengthRuleTest extends RuleTestCase
     {
         parent::testRule($name, $parameters, $input, $expectedMessage, $expectedData);
     }
-    
+
     /**
      * Test rule directly.
      * @coversNothing
-     * @return void
      */
     public function testDirect()
     {
