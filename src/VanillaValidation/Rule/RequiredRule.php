@@ -27,15 +27,17 @@ class RequiredRule extends Rule
         if (is_string($input)) {
             $input = trim($input);
         }
-        
+
+        $inputEmpty = !$input && $input !== '0';
+
         // If false is passed to first parameter, the rule will not be braked.
-        if (!$input && ( !array_key_exists(0, $parameters) || $parameters[0] === true )) {
+        if ($inputEmpty && (!array_key_exists(0, $parameters) || $parameters[0] === true)) {
             return new FailBreakable('fail:required');
         }
-        
-        return (bool) $input;
+
+        return !$inputEmpty;
     }
-    
+
     /**
      * If negative, this rule will ever returns true.
      *

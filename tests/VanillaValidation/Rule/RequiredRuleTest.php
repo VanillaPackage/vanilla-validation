@@ -19,6 +19,7 @@ class RequiredRuleTest extends RuleTestCase
         return [
             1000 =>
                 [ 'required', [ ], 'test' ],
+            [ 'required', [ ], '0' ],
             2000 =>
                 [ 'required', [ ], 0, 'fail:required' ],
             [ 'required', [ ], [ ], 'fail:required' ],
