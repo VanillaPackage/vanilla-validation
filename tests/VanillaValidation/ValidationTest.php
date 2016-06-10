@@ -137,7 +137,6 @@ class ValidationTest extends PHPUnit_Framework_TestCase
     /**
      * Test option method.
      * @covers Rentalhost\VanillaValidation\Validation::option
-     * @runInSeparateProcess
      * @return void
      */
     public function testOption()

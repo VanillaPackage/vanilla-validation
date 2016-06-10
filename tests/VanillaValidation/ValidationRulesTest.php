@@ -19,22 +19,21 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     {
         static::assertTrue(ValidationRules::has('required'));
         static::assertFalse(ValidationRules::has('leftTrim'));
-        
+
         ValidationRules::define('leftTrim', Test\LeftTrimAction::class);
-        
+
         static::assertTrue(ValidationRules::has('leftTrim'));
     }
-    
+
     /**
      * Test singleton.
      * @covers Rentalhost\VanillaValidation\ValidationRules::singleton
-     * @runInSeparateProcess
      * @return void
      */
     public function testSingleton()
     {
         $singleton = ValidationRules::singleton();
-        
+
         static::assertTrue($singleton->has('required'));
     }
 }
