@@ -25,6 +25,7 @@ class TrimActionTest extends ActionTestCase
         ];
     }
 
+    /** @noinspection SenselessProxyMethodInspection */
     /**
      * Test action.
      *

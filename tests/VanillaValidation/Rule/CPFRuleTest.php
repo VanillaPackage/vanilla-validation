@@ -74,6 +74,7 @@ class CPFRuleTest extends RuleTestCase
     public function testDirect()
     {
         /** @noinspection CallableReferenceNameMismatchInspection */
+        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         static::assertInstanceOf(ValidationChain::class, Validation::CPF());
         static::assertInstanceOf(ValidationChain::class, Validation::cpf());
     }

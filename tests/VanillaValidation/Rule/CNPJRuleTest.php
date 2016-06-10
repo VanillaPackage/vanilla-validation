@@ -67,6 +67,7 @@ class CNPJRuleTest extends RuleTestCase
     public function testDirect()
     {
         /** @noinspection CallableReferenceNameMismatchInspection */
+        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         static::assertInstanceOf(ValidationChain::class, Validation::CNPJ());
         static::assertInstanceOf(ValidationChain::class, Validation::cnpj());
     }

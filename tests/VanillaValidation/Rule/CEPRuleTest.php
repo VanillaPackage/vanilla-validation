@@ -65,6 +65,7 @@ class CEPRuleTest extends RuleTestCase
     public function testDirect()
     {
         /** @noinspection CallableReferenceNameMismatchInspection */
+        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         static::assertInstanceOf(ValidationChain::class, Validation::CEP());
         static::assertInstanceOf(ValidationChain::class, Validation::cep());
     }

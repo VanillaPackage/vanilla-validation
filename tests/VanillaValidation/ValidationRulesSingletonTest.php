@@ -41,7 +41,7 @@ class ValidationRulesSingletonTest extends PHPUnit_Framework_TestCase
      */
     public function testRuleNotImplementedException()
     {
-        static::setExpectedException(Exception\RuleNotImplementedException::class);
+        $this->expectException(Exception\RuleNotImplementedException::class);
 
         $fieldRule = new ValidationFieldRule('undefined');
 

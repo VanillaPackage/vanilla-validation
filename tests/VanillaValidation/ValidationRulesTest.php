@@ -33,6 +33,7 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     {
         $singleton = ValidationRules::singleton();
 
+        /** @noinspection StaticInvocationViaThisInspection */
         static::assertTrue($singleton->has('required'));
 
         /** @var ReflectionProperty $resetInstance */
@@ -42,6 +43,7 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
 
         $singletonUncached = ValidationRules::singleton();
 
+        /** @noinspection StaticInvocationViaThisInspection */
         static::assertTrue($singletonUncached->has('required'));
     }
 }

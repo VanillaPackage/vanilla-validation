@@ -26,7 +26,7 @@ class ValidationFieldTest extends PHPUnit_Framework_TestCase
         $field = new ValidationField('name');
 
         static::assertSame('name', $field->name);
-        static::assertSame(null, $field->value);
+        static::assertNull($field->value);
         static::assertInstanceOf(ValidationFieldRuleList::class, $field->rules);
 
         $field = new ValidationField('name', 'value');

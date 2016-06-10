@@ -26,6 +26,7 @@ class IntersectNumbersActionTest extends ActionTestCase
         ];
     }
 
+    /** @noinspection SenselessProxyMethodInspection */
     /**
      * Test action.
      *
